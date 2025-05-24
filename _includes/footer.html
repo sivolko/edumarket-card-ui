@@ -1,0 +1,364 @@
+<footer class="site-footer">
+  <div class="footer-main">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Brand Section -->
+        <div class="footer-brand">
+          <div class="brand-logo">
+            <svg width="40" height="40" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="4" y="4" width="24" height="24" rx="6" fill="#6366f1"/>
+              <path d="M12 10h8v2h-8v-2zm0 4h8v2h-8v-2zm0 4h6v2h-6v-2z" fill="white"/>
+              <circle cx="8" cy="11" r="1" fill="white"/>
+              <circle cx="8" cy="15" r="1" fill="white"/>
+              <circle cx="8" cy="19" r="1" fill="white"/>
+            </svg>
+          </div>
+          <h3>EduMarket</h3>
+          <p>Connecting passionate learners with exceptional teachers. Build your skills, achieve your goals, and unlock your potential.</p>
+          
+          <div class="social-links">
+            <a href="#" class="social-link" aria-label="Facebook">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-link" aria-label="Twitter">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="social-link" aria-label="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="social-link" aria-label="LinkedIn">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="#" class="social-link" aria-label="YouTube">
+              <i class="fab fa-youtube"></i>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Quick Links -->
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="{{ '/' | relative_url }}">Home</a></li>
+            <li><a href="{{ '/teachers/' | relative_url }}">Find Teachers</a></li>
+            <li><a href="{{ '/subjects/' | relative_url }}">Browse Subjects</a></li>
+            <li><a href="#" onclick="showSignupModal()">Become a Teacher</a></li>
+            <li><a href="#" onclick="showSignupModal()">Join as Student</a></li>
+          </ul>
+        </div>
+        
+        <!-- Categories -->
+        <div class="footer-section">
+          <h4>Popular Categories</h4>
+          <ul class="footer-links">
+            {% for category in site.subject_categories limit:6 %}
+            <li><a href="{{ '/subjects/' | relative_url }}#{{ category.name | downcase }}">
+              <i class="fas fa-{{ category.icon }}"></i>
+              {{ category.name }}
+            </a></li>
+            {% endfor %}
+          </ul>
+        </div>
+        
+        <!-- Support -->
+        <div class="footer-section">
+          <h4>Support</h4>
+          <ul class="footer-links">
+            <li><a href="#" onclick="showSupportModal()">Help Center</a></li>
+            <li><a href="#" onclick="showSupportModal()">Contact Us</a></li>
+            <li><a href="#" onclick="showSupportModal()">Community Guidelines</a></li>
+            <li><a href="#" onclick="showSupportModal()">Safety</a></li>
+            <li><a href="#" onclick="showSupportModal()">Report Issue</a></li>
+          </ul>
+        </div>
+        
+        <!-- Newsletter -->
+        <div class="footer-section">
+          <h4>Stay Updated</h4>
+          <p>Get the latest updates on new teachers, courses, and platform features.</p>
+          <form class="newsletter-form" onsubmit="handleNewsletter(event)">
+            <div class="input-group">
+              <input type="email" placeholder="Enter your email" required class="newsletter-input">
+              <button type="submit" class="newsletter-btn">
+                <i class="fas fa-paper-plane"></i>
+              </button>
+            </div>
+          </form>
+          
+          <div class="app-download">
+            <p>Download our mobile app:</p>
+            <div class="app-buttons">
+              <a href="#" class="app-button">
+                <i class="fab fa-apple"></i>
+                <span>App Store</span>
+              </a>
+              <a href="#" class="app-button">
+                <i class="fab fa-google-play"></i>
+                <span>Play Store</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Footer Bottom -->
+  <div class="footer-bottom">
+    <div class="container">
+      <div class="footer-bottom-content">
+        <div class="copyright">
+          <p>&copy; {{ 'now' | date: "%Y" }} EduMarket. All rights reserved.</p>
+        </div>
+        
+        <div class="footer-links-bottom">
+          <a href="#" onclick="showSupportModal()">Privacy Policy</a>
+          <a href="#" onclick="showSupportModal()">Terms of Service</a>
+          <a href="#" onclick="showSupportModal()">Cookie Policy</a>
+          <a href="#" onclick="showSupportModal()">Accessibility</a>
+        </div>
+        
+        <div class="footer-meta">
+          <span class="build-info">Built with ❤️ using Jekyll</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+.site-footer {
+  background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+  color: white;
+  margin-top: auto;
+}
+
+.footer-main {
+  padding: var(--space-16) 0 var(--space-8);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1.5fr;
+  gap: var(--space-8);
+}
+
+.footer-brand h3 {
+  font-size: 1.5rem;
+  font-weight: var(--font-weight-bold);
+  margin: var(--space-4) 0;
+  color: #6366f1;
+}
+
+.footer-brand p {
+  color: #d1d5db;
+  line-height: 1.6;
+  margin-bottom: var(--space-6);
+}
+
+.social-links {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-full);
+  color: white;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.social-link:hover {
+  background: #6366f1;
+  transform: translateY(-2px);
+}
+
+.footer-section h4 {
+  font-size: 1.125rem;
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--space-4);
+  color: white;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: var(--space-2);
+}
+
+.footer-links a {
+  color: #d1d5db;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.footer-links a:hover {
+  color: #6366f1;
+}
+
+.newsletter-form {
+  margin: var(--space-4) 0;
+}
+
+.input-group {
+  display: flex;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.newsletter-input {
+  flex: 1;
+  padding: var(--space-3);
+  background: transparent;
+  border: none;
+  color: white;
+  outline: none;
+}
+
+.newsletter-input::placeholder {
+  color: #9ca3af;
+}
+
+.newsletter-btn {
+  background: #6366f1;
+  border: none;
+  color: white;
+  padding: var(--space-3) var(--space-4);
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.newsletter-btn:hover {
+  background: #4f46e5;
+}
+
+.app-download {
+  margin-top: var(--space-6);
+}
+
+.app-download p {
+  color: #d1d5db;
+  margin-bottom: var(--space-3);
+}
+
+.app-buttons {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.app-button {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md);
+  color: white;
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: all var(--transition-fast);
+}
+
+.app-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.footer-bottom {
+  background: rgba(0, 0, 0, 0.2);
+  padding: var(--space-4) 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-bottom-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+.copyright p {
+  color: #9ca3af;
+  margin: 0;
+}
+
+.footer-links-bottom {
+  display: flex;
+  gap: var(--space-6);
+  flex-wrap: wrap;
+}
+
+.footer-links-bottom a {
+  color: #d1d5db;
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: color var(--transition-fast);
+}
+
+.footer-links-bottom a:hover {
+  color: #6366f1;
+}
+
+.footer-meta {
+  color: #9ca3af;
+  font-size: 0.875rem;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+  
+  .footer-bottom-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .footer-links-bottom {
+    justify-content: center;
+  }
+  
+  .app-buttons {
+    flex-direction: column;
+  }
+  
+  .social-links {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+  .footer-grid {
+    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  }
+}
+</style>
+
+<script>
+function handleNewsletter(event) {
+  event.preventDefault();
+  const email = event.target.querySelector('.newsletter-input').value;
+  alert(`Thank you for subscribing with ${email}! 🎉`);
+  event.target.reset();
+}
+
+function showSupportModal() {
+  alert('Support page would be implemented here!');
+}
+</script>
