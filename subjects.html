@@ -1,0 +1,735 @@
+---
+layout: default
+title: "Browse Subject Categories"
+description: "Explore our comprehensive range of subjects and find expert teachers in your area of interest."
+permalink: /subjects/
+---
+
+<div class="subjects-page">
+  <!-- Page Header -->
+  <section class="subjects-header">
+    <div class="container">
+      <div class="header-content">
+        <h1>Explore Subject Categories</h1>
+        <p class="header-subtitle">Discover {{ site.subject_categories.size }} comprehensive categories with expert teachers ready to guide your learning journey</p>
+        
+        <!-- Search Bar -->
+        <div class="subject-search">
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" id="subjectSearch" placeholder="Search subjects or topics..." />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Categories -->
+  <section class="quick-categories">
+    <div class="container">
+      <div class="quick-nav">
+        <button class="quick-nav-btn active" data-filter="all">All Categories</button>
+        <button class="quick-nav-btn" data-filter="popular">Popular</button>
+        <button class="quick-nav-btn" data-filter="stem">STEM</button>
+        <button class="quick-nav-btn" data-filter="arts">Arts & Humanities</button>
+        <button class="quick-nav-btn" data-filter="business">Business</button>
+        <button class="quick-nav-btn" data-filter="languages">Languages</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Categories Grid -->
+  <section class="categories-grid-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>All Subject Categories</h2>
+        <p>Choose from our wide range of subjects taught by expert educators</p>
+      </div>
+      
+      <div class="categories-grid" id="categoriesGrid">
+        {% for category in site.subject_categories %}
+          {% include subject-card.html category=category size="normal" clickable=true show_count=true %}
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- Popular Subjects Section -->
+  <section class="popular-subjects">
+    <div class="container">
+      <div class="section-header">
+        <h2>Most Popular Subjects</h2>
+        <p>Top subjects our students are learning right now</p>
+      </div>
+      
+      <div class="popular-grid">
+        <div class="popular-subject-card">
+          <div class="subject-icon">
+            <i class="fab fa-python"></i>
+          </div>
+          <h3>Python Programming</h3>
+          <p>Learn the most versatile programming language</p>
+          <div class="subject-stats">
+            <span class="stat"><i class="fas fa-users"></i> 1,200+ students</span>
+            <span class="stat"><i class="fas fa-star"></i> 4.9 rating</span>
+          </div>
+          <a href="/subjects/programming/" class="subject-link">Explore Python</a>
+        </div>
+        
+        <div class="popular-subject-card">
+          <div class="subject-icon">
+            <i class="fas fa-calculator"></i>
+          </div>
+          <h3>Advanced Mathematics</h3>
+          <p>Master calculus, algebra, and beyond</p>
+          <div class="subject-stats">
+            <span class="stat"><i class="fas fa-users"></i> 980+ students</span>
+            <span class="stat"><i class="fas fa-star"></i> 4.8 rating</span>
+          </div>
+          <a href="/subjects/mathematics/" class="subject-link">Explore Math</a>
+        </div>
+        
+        <div class="popular-subject-card">
+          <div class="subject-icon">
+            <i class="fas fa-paint-brush"></i>
+          </div>
+          <h3>Graphic Design</h3>
+          <p>Create stunning visuals and digital art</p>
+          <div class="subject-stats">
+            <span class="stat"><i class="fas fa-users"></i> 750+ students</span>
+            <span class="stat"><i class="fas fa-star"></i> 4.9 rating</span>
+          </div>
+          <a href="/subjects/design/" class="subject-link">Explore Design</a>
+        </div>
+        
+        <div class="popular-subject-card">
+          <div class="subject-icon">
+            <i class="fas fa-globe"></i>
+          </div>
+          <h3>English Language</h3>
+          <p>Improve writing, speaking, and comprehension</p>
+          <div class="subject-stats">
+            <span class="stat"><i class="fas fa-users"></i> 1,500+ students</span>
+            <span class="stat"><i class="fas fa-star"></i> 4.7 rating</span>
+          </div>
+          <a href="/subjects/languages/" class="subject-link">Explore English</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Learning Paths Section -->
+  <section class="learning-paths">
+    <div class="container">
+      <div class="section-header">
+        <h2>Structured Learning Paths</h2>
+        <p>Follow our curated learning journeys designed by education experts</p>
+      </div>
+      
+      <div class="paths-grid">
+        <div class="learning-path">
+          <div class="path-header">
+            <div class="path-icon">
+              <i class="fas fa-laptop-code"></i>
+            </div>
+            <h3>Full Stack Developer</h3>
+            <span class="path-duration">6-8 months</span>
+          </div>
+          
+          <div class="path-subjects">
+            <span class="path-subject">HTML/CSS</span>
+            <span class="path-subject">JavaScript</span>
+            <span class="path-subject">React</span>
+            <span class="path-subject">Node.js</span>
+            <span class="path-subject">Databases</span>
+          </div>
+          
+          <div class="path-footer">
+            <div class="path-stats">
+              <span>15 teachers</span>
+              <span>240+ students</span>
+            </div>
+            <a href="/paths/full-stack/" class="btn btn-primary">Start Path</a>
+          </div>
+        </div>
+        
+        <div class="learning-path">
+          <div class="path-header">
+            <div class="path-icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <h3>Data Scientist</h3>
+            <span class="path-duration">8-10 months</span>
+          </div>
+          
+          <div class="path-subjects">
+            <span class="path-subject">Python</span>
+            <span class="path-subject">Statistics</span>
+            <span class="path-subject">Machine Learning</span>
+            <span class="path-subject">SQL</span>
+            <span class="path-subject">Visualization</span>
+          </div>
+          
+          <div class="path-footer">
+            <div class="path-stats">
+              <span>12 teachers</span>
+              <span>180+ students</span>
+            </div>
+            <a href="/paths/data-science/" class="btn btn-primary">Start Path</a>
+          </div>
+        </div>
+        
+        <div class="learning-path">
+          <div class="path-header">
+            <div class="path-icon">
+              <i class="fas fa-palette"></i>
+            </div>
+            <h3>UX/UI Designer</h3>
+            <span class="path-duration">4-6 months</span>
+          </div>
+          
+          <div class="path-subjects">
+            <span class="path-subject">Design Principles</span>
+            <span class="path-subject">Figma</span>
+            <span class="path-subject">User Research</span>
+            <span class="path-subject">Prototyping</span>
+            <span class="path-subject">Portfolio</span>
+          </div>
+          
+          <div class="path-footer">
+            <div class="path-stats">
+              <span>8 teachers</span>
+              <span>150+ students</span>
+            </div>
+            <a href="/paths/ux-ui/" class="btn btn-primary">Start Path</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="subjects-cta">
+    <div class="container">
+      <div class="cta-content">
+        <h2>Don't See Your Subject?</h2>
+        <p>We're constantly adding new subjects and teachers. Request your specific topic and we'll help you find the perfect educator.</p>
+        <div class="cta-actions">
+          <a href="/request-subject/" class="btn btn-primary btn-large">
+            <i class="fas fa-plus"></i>
+            Request a Subject
+          </a>
+          <a href="/teachers/" class="btn btn-secondary btn-large">
+            <i class="fas fa-search"></i>
+            Browse All Teachers
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<style>
+/* Subjects Page Styles */
+.subjects-page {
+  padding-top: 80px;
+}
+
+/* Subjects Header */
+.subjects-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: var(--space-16) 0;
+  text-align: center;
+}
+
+.header-content h1 {
+  font-size: clamp(2.5rem, 6vw, 3.5rem);
+  font-weight: var(--font-weight-black);
+  margin-bottom: var(--space-4);
+  color: white;
+}
+
+.header-subtitle {
+  font-size: clamp(1rem, 3vw, 1.25rem);
+  opacity: 0.9;
+  margin-bottom: var(--space-8);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+.subject-search {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.subject-search .search-box {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-full);
+  padding: var(--space-3) var(--space-4);
+  transition: all var(--transition-normal);
+}
+
+.subject-search .search-box:focus-within {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.subject-search i {
+  color: rgba(255, 255, 255, 0.7);
+  margin-right: var(--space-3);
+}
+
+.subject-search input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: white;
+  font-size: 1rem;
+  outline: none;
+}
+
+.subject-search input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Quick Categories */
+.quick-categories {
+  padding: var(--space-8) 0;
+  background: white;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.quick-nav {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.quick-nav-btn {
+  padding: var(--space-3) var(--space-6);
+  border: 1px solid var(--gray-300);
+  background: white;
+  color: var(--gray-700);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  font-weight: var(--font-weight-medium);
+  font-size: 0.875rem;
+}
+
+.quick-nav-btn:hover,
+.quick-nav-btn.active {
+  background: var(--primary-600);
+  color: white;
+  border-color: var(--primary-600);
+  transform: translateY(-2px);
+}
+
+/* Categories Grid Section */
+.categories-grid-section {
+  padding: var(--space-16) 0;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: var(--space-12);
+}
+
+.section-header h2 {
+  font-size: clamp(1.875rem, 4vw, 2.5rem);
+  font-weight: var(--font-weight-bold);
+  color: var(--gray-900);
+  margin-bottom: var(--space-4);
+}
+
+.section-header p {
+  font-size: 1.125rem;
+  color: var(--gray-600);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-8);
+}
+
+/* Popular Subjects */
+.popular-subjects {
+  background: var(--gray-50);
+  padding: var(--space-16) 0;
+}
+
+.popular-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-6);
+}
+
+.popular-subject-card {
+  background: white;
+  padding: var(--space-8);
+  border-radius: var(--radius-xl);
+  text-align: center;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--gray-200);
+  transition: all var(--transition-normal);
+}
+
+.popular-subject-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
+}
+
+.subject-icon {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, var(--primary-500), var(--secondary-500));
+  border-radius: var(--radius-2xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--space-6) auto;
+  color: white;
+  font-size: 2rem;
+}
+
+.popular-subject-card h3 {
+  font-size: 1.25rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--gray-900);
+  margin-bottom: var(--space-3);
+}
+
+.popular-subject-card p {
+  color: var(--gray-600);
+  margin-bottom: var(--space-4);
+  line-height: 1.5;
+}
+
+.subject-stats {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.subject-stats .stat {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: 0.875rem;
+  color: var(--gray-500);
+}
+
+.subject-stats i {
+  color: var(--primary-500);
+}
+
+.subject-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--primary-600);
+  text-decoration: none;
+  font-weight: var(--font-weight-semibold);
+  transition: color var(--transition-fast);
+}
+
+.subject-link:hover {
+  color: var(--primary-700);
+}
+
+/* Learning Paths */
+.learning-paths {
+  padding: var(--space-16) 0;
+}
+
+.paths-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--space-8);
+}
+
+.learning-path {
+  background: white;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  transition: all var(--transition-normal);
+  box-shadow: var(--shadow-md);
+}
+
+.learning-path:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--primary-300);
+}
+
+.path-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-4);
+}
+
+.path-icon {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, var(--primary-500), var(--secondary-500));
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.5rem;
+}
+
+.path-header h3 {
+  flex: 1;
+  margin: 0 var(--space-4);
+  font-size: 1.25rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--gray-900);
+}
+
+.path-duration {
+  background: var(--primary-50);
+  color: var(--primary-700);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-semibold);
+}
+
+.path-subjects {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-6);
+}
+
+.path-subject {
+  background: var(--gray-100);
+  color: var(--gray-700);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-medium);
+}
+
+.path-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--gray-200);
+}
+
+.path-stats {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.path-stats span {
+  font-size: 0.75rem;
+  color: var(--gray-500);
+}
+
+/* Subjects CTA */
+.subjects-cta {
+  background: linear-gradient(135deg, var(--primary-600), var(--secondary-600));
+  color: white;
+  padding: var(--space-16) 0;
+  text-align: center;
+}
+
+.subjects-cta h2 {
+  font-size: 2rem;
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--space-4);
+  color: white;
+}
+
+.subjects-cta p {
+  font-size: 1.125rem;
+  opacity: 0.9;
+  margin-bottom: var(--space-8);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-actions {
+  display: flex;
+  gap: var(--space-4);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cta-actions .btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-4) var(--space-8);
+  border-radius: var(--radius-full);
+  font-weight: var(--font-weight-semibold);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  border: none;
+}
+
+.cta-actions .btn-primary {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.cta-actions .btn-primary:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.cta-actions .btn-secondary {
+  background: white;
+  color: var(--primary-600);
+}
+
+.cta-actions .btn-secondary:hover {
+  background: var(--gray-100);
+  transform: translateY(-2px);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .categories-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-6);
+  }
+  
+  .popular-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .paths-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .cta-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .cta-actions .btn {
+    width: 100%;
+    max-width: 300px;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .quick-nav {
+    gap: var(--space-1);
+  }
+  
+  .quick-nav-btn {
+    padding: var(--space-2) var(--space-4);
+    font-size: 0.8rem;
+  }
+  
+  .path-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+  
+  .path-duration {
+    align-self: flex-end;
+  }
+}
+</style>
+
+<script>
+// Subjects page functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('subjectSearch');
+    const quickNavBtns = document.querySelectorAll('.quick-nav-btn');
+    const categoriesGrid = document.getElementById('categoriesGrid');
+    
+    // Search functionality
+    searchInput.addEventListener('input', function() {
+        const query = this.value.toLowerCase();
+        filterCategories(query);
+    });
+    
+    // Quick navigation
+    quickNavBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const filter = this.dataset.filter;
+            
+            quickNavBtns.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            
+            filterByCategory(filter);
+        });
+    });
+    
+    function filterCategories(query) {
+        const categoryCards = categoriesGrid.querySelectorAll('.subject-card');
+        
+        categoryCards.forEach(card => {
+            const categoryName = card.querySelector('.category-title')?.textContent.toLowerCase() || '';
+            const categorySubjects = card.dataset.subjects?.toLowerCase() || '';
+            
+            if (categoryName.includes(query) || categorySubjects.includes(query)) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+    
+    function filterByCategory(filter) {
+        const categoryCards = categoriesGrid.querySelectorAll('.subject-card');
+        
+        categoryCards.forEach(card => {
+            const categorySlug = card.dataset.category;
+            let show = true;
+            
+            switch(filter) {
+                case 'popular':
+                    show = ['tech', 'math', 'languages', 'business'].includes(categorySlug);
+                    break;
+                case 'stem':
+                    show = ['tech', 'sciences', 'math'].includes(categorySlug);
+                    break;
+                case 'arts':
+                    show = ['arts', 'languages'].includes(categorySlug);
+                    break;
+                case 'business':
+                    show = categorySlug === 'business';
+                    break;
+                case 'languages':
+                    show = categorySlug === 'languages';
+                    break;
+                case 'all':
+                default:
+                    show = true;
+                    break;
+            }
+            
+            card.style.display = show ? 'block' : 'none';
+        });
+    }
+});
+</script>
