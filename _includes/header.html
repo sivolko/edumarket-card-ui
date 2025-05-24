@@ -1,0 +1,417 @@
+<header class="site-header">
+  <nav class="navbar">
+    <div class="container">
+      <div class="nav-brand">
+        <a href="{{ '/' | relative_url }}" class="brand-link">
+          <div class="brand-logo">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="4" y="4" width="24" height="24" rx="6" fill="#6366f1"/>
+              <path d="M12 10h8v2h-8v-2zm0 4h8v2h-8v-2zm0 4h6v2h-6v-2z" fill="white"/>
+              <circle cx="8" cy="11" r="1" fill="white"/>
+              <circle cx="8" cy="15" r="1" fill="white"/>
+              <circle cx="8" cy="19" r="1" fill="white"/>
+            </svg>
+          </div>
+          <span class="brand-text">EduMarket</span>
+        </a>
+      </div>
+      
+      <div class="nav-menu" id="navMenu">
+        <ul class="nav-links">
+          <li><a href="{{ '/' | relative_url }}" class="nav-link {% if page.url == '/' %}active{% endif %}">Home</a></li>
+          <li><a href="{{ '/teachers/' | relative_url }}" class="nav-link {% if page.url contains '/teachers' %}active{% endif %}">Teachers</a></li>
+          <li><a href="{{ '/subjects/' | relative_url }}" class="nav-link {% if page.url contains '/subjects' %}active{% endif %}">Subjects</a></li>
+          <li class="nav-dropdown">
+            <a href="#" class="nav-link dropdown-toggle">Categories <i class="fas fa-chevron-down"></i></a>
+            <ul class="dropdown-menu">
+              {% for category in site.subject_categories %}
+              <li><a href="{{ '/subjects/' | relative_url }}#{{ category.name | downcase }}" class="dropdown-link">
+                <i class="fas fa-{{ category.icon }}"></i>
+                {{ category.name }}
+              </a></li>
+              {% endfor %}
+            </ul>
+          </li>
+        </ul>
+        
+        <div class="nav-actions">
+          <button class="search-toggle" onclick="toggleSearch()" aria-label="Toggle search">
+            <i class="fas fa-search"></i>
+          </button>
+          <a href="#" class="btn btn-outline-primary" onclick="showLoginModal()">Log In</a>
+          <a href="#" class="btn btn-primary" onclick="showSignupModal()">Sign Up</a>
+        </div>
+      </div>
+      
+      <button class="nav-toggle" onclick="toggleNavMenu()" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+  
+  <!-- Quick Search Bar -->
+  <div class="quick-search" id="quickSearch">
+    <div class="container">
+      <div class="search-bar">
+        <input type="text" placeholder="Search teachers, subjects, or skills..." class="search-input" id="quickSearchInput">
+        <button class="search-btn" onclick="performQuickSearch()">
+          <i class="fas fa-search"></i>
+        </button>
+        <button class="search-close" onclick="toggleSearch()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<style>
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--gray-200);
+  z-index: 1000;
+  transition: all var(--transition-fast);
+}
+
+.navbar {
+  padding: var(--space-4) 0;
+}
+
+.navbar .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+}
+
+.brand-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  text-decoration: none;
+  color: var(--gray-900);
+}
+
+.brand-text {
+  font-size: 1.5rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--primary);
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: var(--gray-700);
+  font-weight: var(--font-weight-medium);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+  position: relative;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--primary);
+  background: var(--primary-50);
+}
+
+.nav-dropdown {
+  position: relative;
+}
+
+.dropdown-toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: var(--space-2);
+  min-width: 200px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all var(--transition-fast);
+  list-style: none;
+  margin: 0;
+}
+
+.nav-dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  color: var(--gray-700);
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+}
+
+.dropdown-link:hover {
+  background: var(--gray-50);
+  color: var(--primary);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.search-toggle {
+  background: none;
+  border: none;
+  color: var(--gray-600);
+  font-size: 1.25rem;
+  padding: var(--space-2);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.search-toggle:hover {
+  color: var(--primary);
+  background: var(--gray-100);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  font-weight: var(--font-weight-medium);
+  border: 2px solid transparent;
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+.btn-primary:hover {
+  background: var(--primary-dark);
+  border-color: var(--primary-dark);
+}
+
+.btn-outline-primary {
+  background: transparent;
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+.btn-outline-primary:hover {
+  background: var(--primary);
+  color: white;
+}
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  background: none;
+  border: none;
+  padding: var(--space-2);
+  cursor: pointer;
+}
+
+.nav-toggle span {
+  width: 24px;
+  height: 2px;
+  background: var(--gray-700);
+  transition: all var(--transition-fast);
+}
+
+.quick-search {
+  background: var(--primary);
+  padding: var(--space-4) 0;
+  transform: translateY(-100%);
+  transition: transform var(--transition-fast);
+}
+
+.quick-search.active {
+  transform: translateY(0);
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: var(--space-2);
+  gap: var(--space-2);
+}
+
+.search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: var(--space-3);
+  font-size: 1rem;
+}
+
+.search-btn,
+.search-close {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.search-btn:hover,
+.search-close:hover {
+  background: var(--primary-dark);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .nav-menu {
+    position: fixed;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border-top: 1px solid var(--gray-200);
+    flex-direction: column;
+    gap: 0;
+    padding: var(--space-4);
+    transform: translateY(-100%);
+    transition: transform var(--transition-fast);
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .nav-menu.active {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    width: 100%;
+    gap: 0;
+  }
+
+  .nav-link {
+    width: 100%;
+    padding: var(--space-4);
+    border-bottom: 1px solid var(--gray-100);
+  }
+
+  .nav-actions {
+    width: 100%;
+    justify-content: center;
+    margin-top: var(--space-4);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--gray-200);
+  }
+
+  .nav-toggle {
+    display: flex;
+  }
+
+  .dropdown-menu {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    box-shadow: none;
+    border: none;
+    padding-left: var(--space-4);
+  }
+}
+</style>
+
+<script>
+function toggleNavMenu() {
+  const navMenu = document.getElementById('navMenu');
+  navMenu.classList.toggle('active');
+}
+
+function toggleSearch() {
+  const quickSearch = document.getElementById('quickSearch');
+  const searchInput = document.getElementById('quickSearchInput');
+  quickSearch.classList.toggle('active');
+  
+  if (quickSearch.classList.contains('active')) {
+    setTimeout(() => searchInput.focus(), 300);
+  }
+}
+
+function performQuickSearch() {
+  const query = document.getElementById('quickSearchInput').value.trim();
+  if (query) {
+    window.location.href = `{{ '/teachers/' | relative_url }}?search=${encodeURIComponent(query)}`;
+  }
+}
+
+function showLoginModal() {
+  alert('Login functionality would be implemented here!');
+}
+
+function showSignupModal() {
+  alert('Sign up functionality would be implemented here!');
+}
+
+// Close mobile menu when clicking outside
+document.addEventListener('click', function(event) {
+  const navMenu = document.getElementById('navMenu');
+  const navToggle = document.querySelector('.nav-toggle');
+  
+  if (!navMenu.contains(event.target) && !navToggle.contains(event.target)) {
+    navMenu.classList.remove('active');
+  }
+});
+
+// Handle Enter key in search
+document.getElementById('quickSearchInput').addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') {
+    performQuickSearch();
+  }
+});
+</script>
