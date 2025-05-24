@@ -19,18 +19,7 @@ collections:
     output: true
     permalink: /subjects/:name/
 
-# Plugins
-plugins:
-  - jekyll-feed
-  - jekyll-sitemap
-  - jekyll-seo-tag
-  - jekyll-paginate
-
-# Pagination
-paginate: 12
-paginate_path: "/teachers/page:num/"
-
-# Defaults
+# Default values
 defaults:
   - scope:
       path: ""
@@ -42,92 +31,53 @@ defaults:
       type: "subjects"
     values:
       layout: "subject"
+  - scope:
+      path: ""
+    values:
+      layout: "default"
 
-# Custom variables for card-based UI
+# Plugin Settings
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Exclude files from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - .git
+  - .github
+  - README.md
+  - package.json
+  - package-lock.json
+
+# Custom settings
 subject_categories:
+  - name: "Academic"
+    icon: "graduation-cap"
+  - name: "Arts"
+    icon: "palette"
   - name: "Technology"
-    slug: "tech"
-    icon: "💻"
-    color: "from-blue-400 to-purple-600"
-    subjects: ["Computer Science", "Programming", "Web Development", "Data Science"]
-  - name: "Sciences"
-    slug: "sciences"
-    icon: "🧪"
-    color: "from-green-400 to-blue-500"
-    subjects: ["Physics", "Chemistry", "Biology", "Environmental Science"]
-  - name: "Mathematics"
-    slug: "math"
-    icon: "📊"
-    color: "from-purple-400 to-pink-600"
-    subjects: ["Algebra", "Calculus", "Statistics", "Geometry"]
+    icon: "laptop-code"
   - name: "Languages"
-    slug: "languages"
-    icon: "🗣️"
-    color: "from-yellow-400 to-orange-500"
-    subjects: ["English", "Spanish", "French", "German"]
-  - name: "Arts & Design"
-    slug: "arts"
-    icon: "🎨"
-    color: "from-pink-400 to-red-500"
-    subjects: ["Graphic Design", "Fine Arts", "Music", "Photography"]
+    icon: "language"
+  - name: "Music"
+    icon: "music"
   - name: "Business"
-    slug: "business"
-    icon: "💼"
-    color: "from-indigo-400 to-purple-600"
-    subjects: ["Economics", "Marketing", "Finance", "Management"]
-  - name: "Social Studies"
-    slug: "social"
-    icon: "🌍"
-    color: "from-teal-400 to-cyan-500"
-    subjects: ["History", "Geography", "Psychology", "Sociology"]
-  - name: "Health & Fitness"
-    slug: "health"
-    icon: "💪"
-    color: "from-green-400 to-emerald-500"
-    subjects: ["Physical Education", "Nutrition", "Mental Health", "Sports"]
+    icon: "briefcase"
 
-# Teaching modes with modern styling
-teaching_modes:
-  - name: "Online"
-    icon: "🌐"
-    color: "bg-blue-100 text-blue-800"
-  - name: "Offline"
-    icon: "🏫"
-    color: "bg-green-100 text-green-800"
-  - name: "Hybrid"
-    icon: "🔄"
-    color: "bg-purple-100 text-purple-800"
-
-# Experience levels
-experience_levels:
-  - name: "Beginner"
-    color: "bg-yellow-100 text-yellow-800"
-  - name: "Intermediate"
-    color: "bg-blue-100 text-blue-800"
-  - name: "Advanced"
-    color: "bg-purple-100 text-purple-800"
-  - name: "Expert"
-    color: "bg-red-100 text-red-800"
-
-# SEO and social
-author: "EduMarket Team"
+# SEO settings
 twitter:
-  username: "edumarket"
-  card: "summary_large_image"
-facebook:
-  app_id: "your-app-id"
-logo: "/assets/images/logo.png"
+  username: edumarket
+  card: summary_large_image
 social:
-  name: "EduMarket"
+  name: EduMarket
   links:
-    - "https://twitter.com/edumarket"
-    - "https://github.com/sivolko/edumarket-card-ui"
+    - https://twitter.com/edumarket
+    - https://github.com/sivolko/edumarket-card-ui
 
-# Modern UI features
-features:
-  dark_mode: true
-  animations: true
-  progressive_web_app: true
-  search_enabled: true
-  filters_enabled: true
-  mobile_first: true
+# Compression settings
+sass:
+  style: compressed

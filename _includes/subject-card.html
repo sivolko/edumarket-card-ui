@@ -1,0 +1,70 @@
+{% assign subject = include.subject %}
+
+<div class="subject-card {% if subject.featured %}featured{% endif %}" data-category="{{ subject.category | default: 'general' }}">
+  <div class="subject-card-inner">
+    <!-- Subject Icon -->
+    <div class="subject-icon">
+      {% if subject.icon %}
+        <i class="fas fa-{{ subject.icon }}"></i>
+      {% else %}
+        <i class="fas fa-book"></i>
+      {% endif %}
+    </div>
+
+    <!-- Subject Content -->
+    <div class="subject-content">
+      <h3 class="subject-title">{{ subject.name }}</h3>
+      
+      {% if subject.description %}
+      <p class="subject-description">{{ subject.description | truncate: 120 }}</p>
+      {% endif %}
+
+      <!-- Subject Stats -->
+      <div class="subject-stats">
+        {% if subject.teacher_count %}
+        <div class="stat">
+          <i class="fas fa-user-tie"></i>
+          <span>{{ subject.teacher_count }} Teachers</span>
+        </div>
+        {% endif %}
+        
+        {% if subject.course_count %}
+        <div class="stat">
+          <i class="fas fa-book-open"></i>
+          <span>{{ subject.course_count }} Courses</span>
+        </div>
+        {% endif %}
+        
+        {% if subject.student_count %}
+        <div class="stat">
+          <i class="fas fa-user-graduate"></i>
+          <span>{{ subject.student_count }} Students</span>
+        </div>
+        {% endif %}
+      </div>
+
+      <!-- Subject Topics -->
+      {% if subject.topics %}
+      <div class="subject-topics">
+        {% for topic in subject.topics limit:3 %}
+        <span class="topic-tag">{{ topic }}</span>
+        {% endfor %}
+        {% if subject.topics.size > 3 %}
+        <span class="topic-tag more">+{{ subject.topics.size | minus: 3 }} more</span>
+        {% endif %}
+      </div>
+      {% endif %}
+    </div>
+
+    <!-- Card Actions -->
+    <div class="subject-actions">
+      <a href="{{ subject.url | relative_url }}" class="btn btn-primary">Explore Subject</a>
+      {% if subject.featured %}
+      <div class="featured-badge">
+        <i class="fas fa-star"></i>
+        <span>Featured</span>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
