@@ -53,6 +53,9 @@ exclude:
   - package.json
   - package-lock.json
 
+# Image optimization settings
+svgo: false  # Disable svgo to prevent build issues
+
 # Custom settings
 subject_categories:
   - name: "Academic"
