@@ -1,0 +1,205 @@
+---
+layout: default
+title: Page Not Found
+permalink: /404.html
+---
+
+<div class="error-page-wrapper">
+  <div class="container">
+    <div class="error-content">
+      <div class="error-illustration">
+        <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="100" cy="100" r="80" stroke="#e5e7eb" stroke-width="2" fill="none"/>
+          <text x="100" y="110" text-anchor="middle" font-size="48" font-weight="bold" fill="#6366f1">404</text>
+        </svg>
+      </div>
+      
+      <div class="error-text">
+        <h1>Oops! Page Not Found</h1>
+        <p>The page you're looking for doesn't exist or has been moved.</p>
+        <p>Let's get you back on track!</p>
+      </div>
+      
+      <div class="error-actions">
+        <a href="{{ '/' | relative_url }}" class="btn btn-primary">
+          <i class="fas fa-home"></i>
+          Go Home
+        </a>
+        <a href="{{ '/teachers/' | relative_url }}" class="btn btn-secondary">
+          <i class="fas fa-chalkboard-teacher"></i>
+          Browse Teachers
+        </a>
+        <a href="{{ '/subjects/' | relative_url }}" class="btn btn-secondary">
+          <i class="fas fa-book"></i>
+          View Subjects
+        </a>
+      </div>
+      
+      <div class="search-suggestion">
+        <p>Or try searching for what you need:</p>
+        <form class="search-form" onsubmit="handleSearch(event)">
+          <input type="text" placeholder="Search teachers, subjects..." class="search-input">
+          <button type="submit" class="search-btn">
+            <i class="fas fa-search"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.error-page-wrapper {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-8) 0;
+}
+
+.error-content {
+  text-align: center;
+  max-width: 600px;
+}
+
+.error-illustration {
+  margin-bottom: var(--space-8);
+}
+
+.error-text h1 {
+  font-size: 2.5rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--gray-900);
+  margin-bottom: var(--space-4);
+}
+
+.error-text p {
+  font-size: 1.125rem;
+  color: var(--gray-600);
+  margin-bottom: var(--space-2);
+}
+
+.error-actions {
+  display: flex;
+  gap: var(--space-4);
+  justify-content: center;
+  margin: var(--space-8) 0;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  font-weight: var(--font-weight-medium);
+  transition: all var(--transition-fast);
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: white;
+  border: 2px solid var(--primary);
+}
+
+.btn-primary:hover {
+  background: var(--primary-dark);
+  border-color: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+}
+
+.btn-secondary:hover {
+  background: var(--primary);
+  color: white;
+  transform: translateY(-2px);
+}
+
+.search-suggestion {
+  margin-top: var(--space-8);
+  padding-top: var(--space-8);
+  border-top: 1px solid var(--gray-200);
+}
+
+.search-suggestion p {
+  margin-bottom: var(--space-4);
+  color: var(--gray-600);
+}
+
+.search-form {
+  display: flex;
+  max-width: 400px;
+  margin: 0 auto;
+  gap: var(--space-2);
+}
+
+.search-input {
+  flex: 1;
+  padding: var(--space-3) var(--space-4);
+  border: 2px solid var(--gray-300);
+  border-radius: var(--radius-lg);
+  font-size: 1rem;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.search-btn {
+  padding: var(--space-3) var(--space-4);
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.search-btn:hover {
+  background: var(--primary-dark);
+}
+
+@media (max-width: 768px) {
+  .error-text h1 {
+    font-size: 2rem;
+  }
+  
+  .error-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .btn {
+    width: 200px;
+    justify-content: center;
+  }
+  
+  .search-form {
+    flex-direction: column;
+  }
+  
+  .search-btn {
+    align-self: center;
+    width: 120px;
+  }
+}
+</style>
+
+<script>
+function handleSearch(event) {
+  event.preventDefault();
+  const query = event.target.querySelector('.search-input').value.trim();
+  if (query) {
+    // Redirect to teachers page with search parameter
+    window.location.href = `{{ '/teachers/' | relative_url }}?search=${encodeURIComponent(query)}`;
+  }
+}
+</script>
