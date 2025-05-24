@@ -10,6 +10,13 @@ highlighter: rouge
 permalink: pretty
 theme_color: "#6366f1"
 
+# Liquid rendering settings
+liquid:
+  error_mode: strict
+  strict_filters: true
+  strict_variables: true
+  render_depth: 10
+
 # Collections
 collections:
   teachers:
@@ -40,7 +47,6 @@ defaults:
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
-  - jekyll-sitemap
 
 # Exclude files from processing
 exclude:
@@ -61,52 +67,16 @@ svgo: false  # Disable svgo to prevent build issues
 subject_categories:
   - name: "Academic"
     icon: "graduation-cap"
-    slug: "academic"
-    color: "from-blue-500 to-blue-600"
-    subjects:
-      size: 12
   - name: "Arts"
     icon: "palette"
-    slug: "arts"
-    color: "from-purple-500 to-purple-600"
-    subjects:
-      size: 8
   - name: "Technology"
     icon: "laptop-code"
-    slug: "technology"
-    color: "from-green-500 to-green-600"
-    subjects:
-      size: 15
   - name: "Languages"
     icon: "language"
-    slug: "languages"
-    color: "from-red-500 to-red-600"
-    subjects:
-      size: 20
   - name: "Music"
     icon: "music"
-    slug: "music"
-    color: "from-yellow-500 to-yellow-600"
-    subjects:
-      size: 6
   - name: "Business"
     icon: "briefcase"
-    slug: "business"
-    color: "from-indigo-500 to-indigo-600"
-    subjects:
-      size: 10
-  - name: "Science"
-    icon: "flask"
-    slug: "science"
-    color: "from-teal-500 to-teal-600"
-    subjects:
-      size: 14
-  - name: "Sports"
-    icon: "dumbbell"
-    slug: "sports"
-    color: "from-orange-500 to-orange-600"
-    subjects:
-      size: 9
 
 # SEO settings
 twitter:
@@ -121,47 +91,3 @@ social:
 # Compression settings
 sass:
   style: compressed
-
-# Site-wide settings
-timezone: UTC
-lang: en
-author: "EduMarket Team"
-
-# Performance settings
-liquid:
-  error_mode: warn
-  strict_filters: false
-  strict_variables: false
-
-# Jekyll Environment
-environment: production
-
-# Additional configuration for better build performance
-incremental: false
-profile: false
-safe: true
-strict_front_matter: false
-
-# Feed settings
-feed:
-  categories:
-    - teachers
-    - subjects
-    - updates
-
-# Analytics (placeholder for future implementation)
-analytics:
-  google_analytics: # Add GA tracking ID when ready
-  
-# Contact information
-contact:
-  email: "support@edumarket.com"
-  phone: "+1-555-EDUMARKET"
-  address: "123 Education St, Learning City, LC 12345"
-
-# Platform statistics (for homepage)
-stats:
-  total_teachers: 500
-  total_students: 5000
-  total_subjects: 50
-  satisfaction_rate: 98

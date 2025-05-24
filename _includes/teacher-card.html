@@ -1,20 +1,8 @@
-<!-- Modern Teacher Card Component with Recursion Prevention -->
-<!-- Usage: {% include teacher-card.html teacher=teacher depth=0 max_depth=2 %} -->
-
+<!-- Teacher Card Component -->
 {% assign teacher = include.teacher %}
 {% assign card_class = include.class | default: "teacher-card" %}
 {% assign show_details = include.show_details | default: true %}
 {% assign compact = include.compact | default: false %}
-{% assign max_depth = include.max_depth | default: 1 %}
-{% assign current_depth = include.depth | default: 0 %}
-
-<!-- Prevent infinite recursion by checking depth -->
-{% if current_depth >= max_depth %}
-  <!-- Max depth reached - show simplified version -->
-  <div class="teacher-card-simple">
-    <p>Teacher: {{ teacher.name }} (depth limit reached)</p>
-  </div>
-{% else %}
 
 <div class="{{ card_class }}{% if compact %} compact{% endif %}" 
      data-teacher-id="{{ teacher.id }}"
@@ -30,19 +18,17 @@
   <!-- Card Header with Photo and Rating -->
   <div class="teacher-card-header">
     <div class="teacher-photo-container">
-      <img src="{{ teacher.photo }}" 
+      <img src="{{ teacher.photo | default: '/assets/images/default-avatar.png' }}" 
            alt="{{ teacher.name }}" 
            class="teacher-photo"
            loading="lazy" />
       
-      <!-- Verification Badge -->
       {% if teacher.verified %}
       <div class="verification-badge">
         <i class="fas fa-check-circle"></i>
       </div>
       {% endif %}
       
-      <!-- Featured Badge -->
       {% if teacher.featured %}
       <div class="featured-badge">
         <i class="fas fa-star"></i>
@@ -50,135 +36,89 @@
       </div>
       {% endif %}
     </div>
-    
-    <!-- Rating Display -->
-    <div class="rating-display">
-      <div class="stars">
-        {% assign rating = teacher.rating %}
-        {% for i in (1..5) %}
-          {% if i <= rating %}
-            <i class="fas fa-star"></i>
-          {% elsif i <= rating + 0.5 %}
-            <i class="fas fa-star-half-alt"></i>
-          {% else %}
-            <i class="far fa-star"></i>
-          {% endif %}
-        {% endfor %}
+
+    <div class="teacher-info">
+      <h3 class="teacher-name">{{ teacher.name }}</h3>
+      {% if teacher.title %}
+      <p class="teacher-title">{{ teacher.title }}</p>
+      {% endif %}
+      
+      <div class="teacher-rating">
+        <div class="stars">
+          {% assign rating = teacher.rating | default: 0 %}
+          {% for i in (1..5) %}
+            {% if i <= rating %}
+              <i class="fas fa-star"></i>
+            {% else %}
+              <i class="far fa-star"></i>
+            {% endif %}
+          {% endfor %}
+        </div>
+        <span class="rating-value">{{ rating | default: "New" }}</span>
+        {% if teacher.reviews_count %}
+        <span class="reviews-count">({{ teacher.reviews_count }})</span>
+        {% endif %}
       </div>
-      <span class="rating-number">{{ teacher.rating }}</span>
-      <span class="review-count">({{ teacher.students_taught }})</span>
     </div>
   </div>
 
-  <!-- Card Content -->
-  <div class="teacher-card-content">
-    <!-- Teacher Info -->
-    <div class="teacher-info">
-      <h3 class="teacher-name">
-        <a href="/teachers/{{ teacher.name | slugify }}/">{{ teacher.name }}</a>
-      </h3>
-      <p class="teacher-qualification">{{ teacher.qualification }}</p>
-      
-      <!-- Subjects Tags -->
-      <div class="subjects-tags">
-        {% for subject in teacher.subjects limit: 3 %}
-        <span class="subject-tag" data-subject="{{ subject | slugify }}">{{ subject }}</span>
-        {% endfor %}
-        {% if teacher.subjects.size > 3 %}
-        <span class="more-subjects">+{{ teacher.subjects.size | minus: 3 }} more</span>
-        {% endif %}
+  <!-- Card Body -->
+  {% if show_details %}
+  <div class="teacher-card-body">
+    <!-- Subjects -->
+    <div class="teacher-subjects">
+      {% for subject in teacher.subjects limit:3 %}
+      <span class="subject-tag">{{ subject }}</span>
+      {% endfor %}
+      {% if teacher.subjects.size > 3 %}
+      <span class="subject-tag more">+{{ teacher.subjects.size | minus: 3 }}</span>
+      {% endif %}
+    </div>
+
+    <!-- Stats -->
+    <div class="teacher-stats">
+      {% if teacher.students_count %}
+      <div class="stat">
+        <i class="fas fa-user-graduate"></i>
+        <span>{{ teacher.students_count }} Students</span>
       </div>
+      {% endif %}
       
-      <!-- Teacher Badges -->
-      {% if teacher.badges.size > 0 %}
-      <div class="teacher-badges">
-        {% for badge in teacher.badges limit: 2 %}
-        <span class="teacher-badge">{{ badge }}</span>
-        {% endfor %}
+      {% if teacher.courses_count %}
+      <div class="stat">
+        <i class="fas fa-book"></i>
+        <span>{{ teacher.courses_count }} Courses</span>
+      </div>
+      {% endif %}
+      
+      {% if teacher.experience_years %}
+      <div class="stat">
+        <i class="fas fa-clock"></i>
+        <span>{{ teacher.experience_years }}+ Years</span>
       </div>
       {% endif %}
     </div>
-    
-    {% if show_details %}
-    <!-- Quick Stats -->
-    <div class="teacher-stats">
-      <div class="stat-item">
-        <i class="fas fa-graduation-cap"></i>
-        <span>{{ teacher.students_taught }} students</span>
-      </div>
-      <div class="stat-item">
-        <i class="fas fa-clock"></i>
-        <span>{{ teacher.experience }}+ years</span>
-      </div>
-      <div class="stat-item">
-        <i class="fas fa-map-marker-alt"></i>
-        <span>{{ teacher.location }}</span>
-      </div>
-      <div class="stat-item stat-price">
-        <i class="fas fa-dollar-sign"></i>
-        <span>${{ teacher.hourly_rate }}/hour</span>
-      </div>
+
+    <!-- Price -->
+    {% if teacher.hourly_rate %}
+    <div class="teacher-price">
+      <span class="price">${{ teacher.hourly_rate }}/hr</span>
     </div>
-    
-    <!-- Teaching Modes -->
-    <div class="teaching-modes">
-      {% for mode in teacher.teaching_mode %}
-      <span class="mode-tag mode-{{ mode | downcase }}">
-        {% if mode == "Online" %}
-          <i class="fas fa-video"></i>
-        {% elsif mode == "Offline" %}
-          <i class="fas fa-chalkboard-teacher"></i>
-        {% else %}
-          <i class="fas fa-laptop-house"></i>
-        {% endif %}
-        {{ mode }}
-      </span>
-      {% endfor %}
-    </div>
-    
-    <!-- Bio Preview -->
-    <p class="teacher-bio">{{ teacher.bio | truncate: 120 }}</p>
-    
-    <!-- Response Time -->
-    {% if teacher.contact.response_time %}
-    <div class="response-time">
-      <i class="fas fa-reply"></i>
-      <span>Responds {{ teacher.contact.response_time }}</span>
-    </div>
-    {% endif %}
     {% endif %}
   </div>
+  {% endif %}
 
-  <!-- Card Actions -->
-  <div class="teacher-card-actions">
-    <div class="primary-actions">
-      <a href="/teachers/{{ teacher.name | slugify }}/" class="btn btn-primary">
-        <i class="fas fa-user"></i>
-        <span>View Profile</span>
-      </a>
-      <button class="btn btn-secondary" onclick="contactTeacher('{{ teacher.contact.email }}', '{{ teacher.name }}')">
-        <i class="fas fa-envelope"></i>
-        <span>Contact</span>
-      </button>
-    </div>
-    
-    <div class="secondary-actions">
-      <button class="action-btn bookmark-btn" 
-              data-teacher-id="{{ teacher.id }}" 
-              title="Bookmark teacher">
-        <i class="far fa-bookmark"></i>
-      </button>
-      <button class="action-btn share-btn" 
-              data-teacher-name="{{ teacher.name }}" 
-              title="Share profile">
-        <i class="fas fa-share-alt"></i>
-      </button>
-    </div>
+  <!-- Card Footer -->
+  <div class="teacher-card-footer">
+    <a href="/teachers/{{ teacher.name | slugify }}/" class="btn btn-primary">View Profile</a>
+    {% if teacher.calendly %}
+    <a href="{{ teacher.calendly }}" class="btn btn-secondary" target="_blank">
+      <i class="fas fa-calendar"></i>
+      Book Session
+    </a>
+    {% endif %}
   </div>
 </div>
-
-{% endif %}
-<!-- End depth check -->
 
 <style>
 /* Teacher Card Styles */
@@ -202,16 +142,6 @@
 
 .teacher-card.compact {
   max-width: 300px;
-}
-
-.teacher-card-simple {
-  background: var(--gray-100);
-  border: 1px solid var(--gray-300);
-  border-radius: var(--radius-md);
-  padding: var(--space-4);
-  color: var(--gray-600);
-  text-align: center;
-  font-size: 0.875rem;
 }
 
 .teacher-card-header {
@@ -268,34 +198,8 @@
   border: 2px solid white;
 }
 
-.rating-display {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-2);
-}
-
-.stars {
-  color: #fbbf24;
-  font-size: 0.875rem;
-}
-
-.rating-number {
-  font-weight: var(--font-weight-semibold);
-  color: var(--gray-900);
-}
-
-.review-count {
-  color: var(--gray-500);
-  font-size: 0.875rem;
-}
-
-.teacher-card-content {
-  padding: var(--space-6);
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
+.teacher-info {
+  margin-top: var(--space-4);
 }
 
 .teacher-name {
@@ -314,14 +218,45 @@
   color: var(--primary-600);
 }
 
-.teacher-qualification {
+.teacher-title {
   color: var(--gray-600);
   font-size: 0.875rem;
   margin: 0 0 var(--space-3) 0;
   line-height: 1.4;
 }
 
-.subjects-tags {
+.teacher-rating {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+.stars {
+  color: #fbbf24;
+  font-size: 0.875rem;
+}
+
+.rating-value {
+  font-weight: var(--font-weight-semibold);
+  color: var(--gray-900);
+}
+
+.reviews-count {
+  color: var(--gray-500);
+  font-size: 0.875rem;
+}
+
+.teacher-card-body {
+  padding: var(--space-6);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.teacher-subjects {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-2);
@@ -351,28 +286,13 @@
   padding: var(--space-1) var(--space-2);
 }
 
-.teacher-badges {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2);
-}
-
-.teacher-badge {
-  background: linear-gradient(135deg, var(--accent-500), var(--accent-600));
-  color: white;
-  padding: var(--space-1) var(--space-2);
-  border-radius: var(--radius-md);
-  font-size: 0.75rem;
-  font-weight: var(--font-weight-semibold);
-}
-
 .teacher-stats {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--space-2);
 }
 
-.stat-item {
+.stat {
   display: flex;
   align-items: center;
   gap: var(--space-2);
@@ -380,86 +300,28 @@
   font-size: 0.875rem;
 }
 
-.stat-item i {
+.stat i {
   color: var(--primary-500);
   width: 12px;
   flex-shrink: 0;
 }
 
-.stat-price {
+.teacher-price {
+  margin-top: auto;
+  font-size: 1.125rem;
+  font-weight: var(--font-weight-bold);
   color: var(--accent-600);
-  font-weight: var(--font-weight-semibold);
 }
 
-.teaching-modes {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2);
-}
-
-.mode-tag {
-  display: flex;
-  align-items: center;
-  gap: var(--space-1);
-  padding: var(--space-1) var(--space-3);
-  border-radius: var(--radius-full);
-  font-size: 0.75rem;
-  font-weight: var(--font-weight-medium);
-}
-
-.mode-online {
-  background: var(--blue-100);
-  color: var(--blue-800);
-}
-
-.mode-offline {
-  background: var(--green-100);
-  color: var(--green-800);
-}
-
-.mode-hybrid {
-  background: var(--purple-100);
-  color: var(--purple-800);
-}
-
-.teacher-bio {
-  color: var(--gray-600);
-  font-size: 0.875rem;
-  line-height: 1.5;
-  margin: 0;
-}
-
-.response-time {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  color: var(--accent-600);
-  font-size: 0.875rem;
-  font-weight: var(--font-weight-medium);
-}
-
-.response-time i {
-  color: var(--accent-500);
-}
-
-.teacher-card-actions {
+.teacher-card-footer {
   padding: var(--space-6);
   border-top: 1px solid var(--gray-200);
   background: var(--gray-50);
+  text-align: center;
 }
 
-.primary-actions {
-  display: flex;
-  gap: var(--space-3);
-  margin-bottom: var(--space-4);
-}
-
-.primary-actions .btn {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-2);
+.btn {
+  display: inline-block;
   padding: var(--space-3) var(--space-4);
   border-radius: var(--radius-lg);
   font-weight: var(--font-weight-medium);
@@ -492,38 +354,6 @@
   transform: translateY(-1px);
 }
 
-.secondary-actions {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.action-btn {
-  width: 36px;
-  height: 36px;
-  border: 1px solid var(--gray-300);
-  background: white;
-  border-radius: var(--radius-lg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all var(--transition-fast);
-  color: var(--gray-500);
-}
-
-.action-btn:hover {
-  border-color: var(--primary-300);
-  color: var(--primary-600);
-  background: var(--primary-50);
-}
-
-.bookmark-btn.bookmarked {
-  background: var(--primary-600);
-  border-color: var(--primary-600);
-  color: white;
-}
-
 /* Mobile Responsive */
 @media (max-width: 768px) {
   .teacher-card {
@@ -545,83 +375,3 @@
   }
 }
 </style>
-
-<script>
-// Teacher card interactions (only initialize if not already defined)
-if (typeof contactTeacher === 'undefined') {
-  function contactTeacher(email, name) {
-      const subject = encodeURIComponent(`Inquiry about tutoring with ${name}`);
-      const body = encodeURIComponent(`Hi ${name},\n\nI'm interested in learning more about your tutoring services. Could we schedule a brief conversation to discuss my learning goals?\n\nThank you!`);
-      window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
-  }
-}
-
-// Initialize bookmark functionality when DOM is ready (prevent duplicate event listeners)
-document.addEventListener('DOMContentLoaded', function() {
-    const bookmarkBtns = document.querySelectorAll('.bookmark-btn:not([data-initialized])');
-    
-    bookmarkBtns.forEach(btn => {
-        btn.setAttribute('data-initialized', 'true');
-        btn.addEventListener('click', function() {
-            const teacherId = this.dataset.teacherId;
-            const isBookmarked = this.classList.contains('bookmarked');
-            
-            if (isBookmarked) {
-                this.classList.remove('bookmarked');
-                this.querySelector('i').className = 'far fa-bookmark';
-            } else {
-                this.classList.add('bookmarked');
-                this.querySelector('i').className = 'fas fa-bookmark';
-            }
-        });
-    });
-    
-    // Share functionality
-    const shareBtns = document.querySelectorAll('.share-btn:not([data-initialized])');
-    
-    shareBtns.forEach(btn => {
-        btn.setAttribute('data-initialized', 'true');
-        btn.addEventListener('click', function() {
-            const teacherName = this.dataset.teacherName;
-            const url = window.location.origin + `/teachers/${teacherName.toLowerCase().replace(/\s+/g, '-')}/`;
-            
-            if (navigator.share) {
-                navigator.share({
-                    title: `${teacherName} - Teacher Profile`,
-                    text: `Check out ${teacherName}'s teaching profile`,
-                    url: url
-                });
-            } else {
-                // Fallback to copying to clipboard
-                navigator.clipboard.writeText(url).then(() => {
-                    showNotification('Link copied to clipboard!');
-                });
-            }
-        });
-    });
-});
-
-function showNotification(message) {
-    // Simple notification - you can enhance this
-    const notification = document.createElement('div');
-    notification.textContent = message;
-    notification.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: var(--primary-600);
-        color: white;
-        padding: 12px 24px;
-        border-radius: 8px;
-        z-index: 1000;
-        font-weight: 500;
-        box-shadow: var(--shadow-lg);
-    `;
-    
-    document.body.appendChild(notification);
-    
-    setTimeout(() => {
-        notification.remove();
-    }, 3000);
-}
-</script>
