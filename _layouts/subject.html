@@ -1,0 +1,78 @@
+---
+layout: default
+---
+
+<section class="subject-header">
+  <div class="container">
+    <div class="subject-info">
+      <h1 class="subject-title">{{ page.title }}</h1>
+      {% if page.description %}
+        <p class="subject-description">{{ page.description }}</p>
+      {% endif %}
+      {% if page.category %}
+        <span class="subject-category">{{ page.category }}</span>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<section class="subject-content">
+  <div class="container">
+    <div class="content-wrapper">
+      {{ content }}
+    </div>
+  </div>
+</section>
+
+<style>
+.subject-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 4rem 0 2rem;
+  margin-bottom: 2rem;
+}
+
+.subject-info {
+  text-align: center;
+}
+
+.subject-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.subject-description {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  opacity: 0.9;
+}
+
+.subject-category {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+  font-size: 0.9rem;
+  backdrop-filter: blur(10px);
+}
+
+.subject-content {
+  padding: 2rem 0;
+}
+
+.content-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+@media (max-width: 768px) {
+  .subject-title {
+    font-size: 2rem;
+  }
+  
+  .subject-description {
+    font-size: 1.1rem;
+  }
+}
+</style>
