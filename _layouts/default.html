@@ -6,35 +6,16 @@
     <meta name="theme-color" content="{{ site.theme_color }}">
     
     <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
-    
-    <!-- Meta Description -->
-    {% capture description %}
-        {% if page.description %}
-            {{ page.description }}
-        {% elsif site.description %}
-            {{ site.description }}
-        {% else %}
-            A modern marketplace connecting teachers and students
-        {% endif %}
-    {% endcapture %}
-    <meta name="description" content="{{ description | strip | truncate: 160 }}">
+    <meta name="description" content="{{ page.description | default: site.description | default: 'A modern marketplace connecting teachers and students' }}">
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
     <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
     
-    <!-- Preload critical resources -->
-    <link rel="preload" href="/assets/css/main.css" as="style">
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" as="style">
-    
     <!-- CSS -->
     <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap">
-    
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-    <!-- Mobile CSS -->
     <link rel="stylesheet" href="{{ '/assets/css/mobile.css' | relative_url }}" media="screen and (max-width: 768px)">
     
     <!-- PWA manifest -->
