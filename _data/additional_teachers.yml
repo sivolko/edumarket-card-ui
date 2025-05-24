@@ -1,0 +1,265 @@
+# Additional Teachers Data - Expanding the Platform
+# Adding diverse teachers across multiple subjects and expertise levels
+
+- id: 7
+  name: "Prof. Maria Elena Rodriguez"
+  photo: "/assets/images/teachers/maria-rodriguez.jpg"
+  subjects: ["Spanish", "Portuguese", "Latin American Literature"]
+  experience: 15
+  qualification: "PhD in Hispanic Literature, Universidad Complutense Madrid"
+  rating: 4.9
+  students_taught: 280
+  teaching_mode: ["Online", "Offline", "Hybrid"]
+  location: "Madrid, Spain (Remote Available)"
+  hourly_rate: 65
+  bio: "Native Spanish speaker and literature professor with 15+ years of experience. Specializes in conversational Spanish, business Spanish, and Latin American cultural studies. Published researcher in contemporary Hispanic literature."
+  specializations: ["Conversational Spanish", "Business Spanish", "DELE Preparation", "Literature Analysis", "Cultural Studies", "Translation"]
+  languages: ["Spanish", "Portuguese", "English", "French", "Italian"]
+  verified: true
+  featured: true
+  availability:
+    monday: ["9:00-13:00", "15:00-19:00"]
+    tuesday: ["9:00-13:00", "15:00-19:00"]
+    wednesday: ["9:00-13:00", "15:00-19:00"]
+    thursday: ["9:00-13:00", "15:00-19:00"]
+    friday: ["9:00-13:00"]
+    saturday: ["10:00-14:00"]
+    sunday: []
+  badges: ["Native Speaker", "DELE Certified", "Cultural Expert"]
+  social:
+    linkedin: "https://linkedin.com/in/maria-elena-rodriguez-phd"
+    twitter: "@MariaEspanolProf"
+    youtube: "https://youtube.com/@SpanishWithMaria"
+  batches:
+    - name: "Intensive Spanish Conversation"
+      start_date: "2025-06-09"
+      duration: "16 weeks"
+      schedule: "Tue, Thu 16:00-17:30"
+      fee: 699
+      capacity: 12
+      enrolled: 10
+      level: "Intermediate"
+      description: "Master fluent conversation in Spanish with cultural context"
+    - name: "DELE B2 Exam Preparation"
+      start_date: "2025-07-01"
+      duration: "10 weeks"
+      schedule: "Mon, Wed 18:00-19:30"
+      fee: 549
+      capacity: 15
+      enrolled: 8
+      level: "Advanced"
+      description: "Complete preparation for DELE B2 certification exam"
+  contact:
+    email: "maria.rodriguez@email.com"
+    phone: "+34-91-555-0123"
+    response_time: "Within 3 hours"
+
+- id: 8
+  name: "Dr. Raj Patel"
+  photo: "/assets/images/teachers/raj-patel.jpg"
+  subjects: ["Statistics", "Data Science", "Machine Learning", "R Programming"]
+  experience: 9
+  qualification: "PhD in Statistics, IIT Bombay | Senior Data Scientist at Google"
+  rating: 4.8
+  students_taught: 195
+  teaching_mode: ["Online", "Hybrid"]
+  location: "Bangalore, India"
+  hourly_rate: 78
+  bio: "Senior Data Scientist at Google with extensive experience in statistical modeling and machine learning. Passionate about making complex statistical concepts accessible and practical for real-world applications."
+  specializations: ["Statistical Inference", "Machine Learning", "R Programming", "Python for Data Science", "Bayesian Statistics", "Time Series Analysis"]
+  languages: ["English", "Hindi", "Gujarati", "Marathi"]
+  verified: true
+  featured: true
+  availability:
+    monday: ["14:00-18:00", "20:00-22:00"]
+    tuesday: ["14:00-18:00", "20:00-22:00"]
+    wednesday: ["14:00-18:00", "20:00-22:00"]
+    thursday: ["14:00-18:00", "20:00-22:00"]
+    friday: ["14:00-17:00"]
+    saturday: ["10:00-16:00"]
+    sunday: ["10:00-14:00"]
+  badges: ["Industry Expert", "Google Professional", "Statistical Guru"]
+  social:
+    linkedin: "https://linkedin.com/in/raj-patel-data-scientist"
+    github: "https://github.com/rajpatel-stats"
+    kaggle: "https://kaggle.com/rajpatelstats"
+  batches:
+    - name: "Statistics for Data Science"
+      start_date: "2025-06-16"
+      duration: "14 weeks"
+      schedule: "Mon, Wed 20:30-22:00"
+      fee: 849
+      capacity: 25
+      enrolled: 20
+      level: "Beginner to Intermediate"
+      description: "Comprehensive statistics foundation for data science careers"
+    - name: "Advanced Machine Learning with R"
+      start_date: "2025-07-01"
+      duration: "12 weeks"
+      schedule: "Sat 14:00-17:00"
+      fee: 999
+      capacity: 18
+      enrolled: 12
+      level: "Advanced"
+      description: "Deep dive into ML algorithms and implementation in R"
+  contact:
+    email: "raj.patel@email.com"
+    phone: "+91-80-9876-5432"
+    response_time: "Within 2 hours"
+
+- id: 9
+  name: "Sophie Chen"
+  photo: "/assets/images/teachers/sophie-chen.jpg"
+  subjects: ["Piano", "Music Theory", "Composition"]
+  experience: 12
+  qualification: "Master of Music, Juilliard School | Concert Pianist"
+  rating: 4.9
+  students_taught: 165
+  teaching_mode: ["Online", "Offline"]
+  location: "New York, NY"
+  hourly_rate: 85
+  bio: "Concert pianist and Juilliard graduate with 12 years of teaching experience. Specializes in classical piano, music theory, and composition. Has performed at Carnegie Hall and teaches students from beginner to professional level."
+  specializations: ["Classical Piano", "Jazz Piano", "Music Theory", "Composition", "Performance Techniques", "Music History"]
+  languages: ["English", "Mandarin", "French"]
+  verified: true
+  featured: true
+  availability:
+    monday: ["9:00-17:00"]
+    tuesday: ["9:00-17:00"]
+    wednesday: ["9:00-17:00"]
+    thursday: ["9:00-17:00"]
+    friday: ["9:00-15:00"]
+    saturday: ["10:00-16:00"]
+    sunday: ["12:00-16:00"]
+  badges: ["Juilliard Graduate", "Concert Performer", "Music Master"]
+  social:
+    youtube: "https://youtube.com/@SophiePianoMaster"
+    instagram: "@sophiechenmusic"
+    spotify: "Sophie Chen Classical"
+  batches:
+    - name: "Classical Piano Masterclass"
+      start_date: "2025-06-10"
+      duration: "20 weeks"
+      schedule: "Individual lessons + group sessions Sat 14:00-16:00"
+      fee: 1599
+      capacity: 8
+      enrolled: 6
+      level: "Intermediate to Advanced"
+      description: "Intensive classical piano training with performance opportunities"
+    - name: "Music Theory Fundamentals"
+      start_date: "2025-06-15"
+      duration: "12 weeks"
+      schedule: "Wed 18:00-19:30"
+      fee: 699
+      capacity: 15
+      enrolled: 11
+      level: "Beginner"
+      description: "Complete foundation in music theory and composition"
+  contact:
+    email: "sophie.chen@email.com"
+    phone: "+1-555-0987"
+    response_time: "Within 4 hours"
+
+- id: 10
+  name: "Dr. Ahmed Hassan"
+  photo: "/assets/images/teachers/ahmed-hassan.jpg"
+  subjects: ["Arabic", "Islamic Studies", "Middle Eastern History"]
+  experience: 11
+  qualification: "PhD in Arabic Literature, Al-Azhar University | Islamic Scholar"
+  rating: 4.7
+  students_taught: 220
+  teaching_mode: ["Online", "Offline"]
+  location: "Cairo, Egypt"
+  hourly_rate: 55
+  bio: "Islamic scholar and Arabic language expert with 11 years of teaching experience. Specializes in Classical Arabic, Quranic studies, and Middle Eastern history. Fluent in multiple Arabic dialects and experienced in teaching non-native speakers."
+  specializations: ["Classical Arabic", "Modern Standard Arabic", "Quranic Arabic", "Arabic Dialects", "Islamic History", "Arabic Literature"]
+  languages: ["Arabic", "English", "French", "Turkish"]
+  verified: true
+  featured: false
+  availability:
+    monday: ["8:00-14:00", "16:00-20:00"]
+    tuesday: ["8:00-14:00", "16:00-20:00"]
+    wednesday: ["8:00-14:00", "16:00-20:00"]
+    thursday: ["8:00-14:00", "16:00-20:00"]
+    friday: ["8:00-12:00"]
+    saturday: ["9:00-15:00"]
+    sunday: ["9:00-15:00"]
+  badges: ["Islamic Scholar", "Native Speaker", "Cultural Expert"]
+  social:
+    website: "https://arabicwithahmed.com"
+    youtube: "https://youtube.com/@ArabicMastery"
+  batches:
+    - name: "Arabic for Beginners"
+      start_date: "2025-06-12"
+      duration: "16 weeks"
+      schedule: "Tue, Thu 17:00-18:30"
+      fee: 599
+      capacity: 20
+      enrolled: 15
+      level: "Beginner"
+      description: "Complete Arabic language foundation for non-native speakers"
+    - name: "Quranic Arabic Studies"
+      start_date: "2025-06-20"
+      duration: "24 weeks"
+      schedule: "Sat 10:00-12:00"
+      fee: 899
+      capacity: 12
+      enrolled: 9
+      level: "Intermediate"
+      description: "Classical Arabic through Quranic text analysis and study"
+  contact:
+    email: "ahmed.hassan@email.com"
+    phone: "+20-2-555-0147"
+    response_time: "Within 6 hours"
+
+- id: 11
+  name: "Jennifer Kim"
+  photo: "/assets/images/teachers/jennifer-kim.jpg"
+  subjects: ["Psychology", "Mental Health", "Counseling"]
+  experience: 8
+  qualification: "PhD in Clinical Psychology, Stanford | Licensed Therapist"
+  rating: 4.8
+  students_taught: 140
+  teaching_mode: ["Online", "Hybrid"]
+  location: "Los Angeles, CA"
+  hourly_rate: 90
+  bio: "Licensed clinical psychologist and educator specializing in mental health awareness, counseling techniques, and psychological research methods. Passionate about destigmatizing mental health and teaching evidence-based practices."
+  specializations: ["Clinical Psychology", "Research Methods", "Cognitive Behavioral Therapy", "Mental Health Awareness", "Statistics in Psychology", "Therapeutic Techniques"]
+  languages: ["English", "Korean", "Spanish"]
+  verified: true
+  featured: true
+  availability:
+    monday: ["10:00-18:00"]
+    tuesday: ["10:00-18:00"]
+    wednesday: ["10:00-18:00"]
+    thursday: ["10:00-18:00"]
+    friday: ["10:00-16:00"]
+    saturday: ["12:00-16:00"]
+    sunday: []
+  badges: ["Licensed Psychologist", "Research Expert", "Mental Health Advocate"]
+  social:
+    linkedin: "https://linkedin.com/in/jennifer-kim-psychology"
+    psychology_today: "https://psychologytoday.com/dr-jennifer-kim"
+  batches:
+    - name: "Introduction to Psychology"
+      start_date: "2025-06-11"
+      duration: "14 weeks"
+      schedule: "Mon, Wed 15:00-16:30"
+      fee: 799
+      capacity: 25
+      enrolled: 18
+      level: "Beginner"
+      description: "Comprehensive introduction to psychological principles and research"
+    - name: "Mental Health First Aid Certification"
+      start_date: "2025-07-05"
+      duration: "6 weeks"
+      schedule: "Sat 13:00-17:00"
+      fee: 499
+      capacity: 15
+      enrolled: 7
+      level: "All Levels"
+      description: "Learn to provide initial support for mental health challenges"
+  contact:
+    email: "jennifer.kim@email.com"
+    phone: "+1-555-0741"
+    response_time: "Within 3 hours"
