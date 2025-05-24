@@ -26,17 +26,14 @@ jobs:
         with:
           node-version: '18'
           
-      - name: Install global dependencies
+      - name: Install svgo globally
         run: npm install -g svgo
-          
+
+      # Only run npm install if package.json exists
       - name: Install project dependencies
-        run: |
-          if [ -f "package-lock.json" ]; then
-            npm ci
-          else
-            npm install
-          fi
-          
+        if: hashFiles('package.json')
+        run: npm install
+        
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
