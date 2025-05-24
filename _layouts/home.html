@@ -1,0 +1,216 @@
+---
+layout: default
+---
+
+<div class="home-page">
+  {{ content }}
+</div>
+
+<!-- Additional home-specific functionality -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Hero section interactions
+    const heroSection = document.querySelector('.hero-section');
+    const featuredCard = document.querySelector('.featured-card');
+    
+    // Add parallax effect to hero section
+    window.addEventListener('scroll', function() {
+        const scrolled = window.pageYOffset;
+        const rate = scrolled * -0.5;
+        
+        if (heroSection) {
+            heroSection.style.transform = `translate3d(0, ${rate}px, 0)`;
+        }
+    });
+    
+    // Carousel dots functionality
+    const dots = document.querySelectorAll('.carousel-dots .dot');
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', function() {
+            dots.forEach(d => d.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+    
+    // Featured card hover effect
+    if (featuredCard) {
+        featuredCard.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-8px) scale(1.02)';
+        });
+        
+        featuredCard.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+    }
+    
+    // Stats counter animation
+    const statsSection = document.querySelector('.stats-section');
+    const statNumbers = document.querySelectorAll('.stat-number');
+    let statsAnimated = false;
+    
+    const animateStats = () => {
+        if (statsAnimated) return;
+        
+        statNumbers.forEach(stat => {
+            const target = parseInt(stat.textContent.replace(/\D/g, ''));
+            const increment = target / 100;
+            let current = 0;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                
+                const suffix = stat.textContent.replace(/\d/g, '').replace(/\+/g, '');
+                stat.textContent = Math.floor(current) + suffix + (target >= 100 ? '+' : '');
+            }, 20);
+        });
+        
+        statsAnimated = true;
+    };
+    
+    // Trigger stats animation when section is visible
+    if (statsSection) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateStats();
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        observer.observe(statsSection);
+    }
+    
+    // Category card interactions with ripple effect
+    const categoryCards = document.querySelectorAll('.category-card');
+    categoryCards.forEach(card => {
+        card.addEventListener('click', function(e) {
+            // Create ripple effect
+            const ripple = document.createElement('span');
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+            
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+            ripple.classList.add('ripple');
+            
+            this.appendChild(ripple);
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        });
+    });
+    
+    // Trending cards auto-scroll on mobile
+    const trendingContainer = document.querySelector('.trending-cards');
+    if (trendingContainer && window.innerWidth <= 768) {
+        let isScrolling = false;
+        
+        trendingContainer.addEventListener('scroll', function() {
+            if (!isScrolling) {
+                window.requestAnimationFrame(function() {
+                    // Add scroll shadows
+                    const scrollLeft = trendingContainer.scrollLeft;
+                    const maxScroll = trendingContainer.scrollWidth - trendingContainer.clientWidth;
+                    
+                    trendingContainer.classList.toggle('scroll-start', scrollLeft <= 10);
+                    trendingContainer.classList.toggle('scroll-end', scrollLeft >= maxScroll - 10);
+                    
+                    isScrolling = false;
+                });
+            }
+            isScrolling = true;
+        });
+    }
+    
+    // Search input enhancements
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+        let searchTimeout;
+        
+        searchInput.addEventListener('input', function() {
+            clearTimeout(searchTimeout);
+            const query = this.value.trim();
+            
+            if (query.length > 2) {
+                searchTimeout = setTimeout(() => {
+                    performSearch(query);
+                }, 300);
+            }
+        });
+        
+        // Search suggestions
+        const suggestions = [
+            'Mathematics', 'Physics', 'Chemistry', 'Biology',
+            'Computer Science', 'English', 'History', 'Geography'
+        ];
+        
+        searchInput.addEventListener('focus', function() {
+            showSearchSuggestions(suggestions);
+        });
+    }
+});
+
+function performSearch(query) {
+    // Implement search functionality
+    console.log('Searching for:', query);
+    // Add your search logic here
+}
+
+function showSearchSuggestions(suggestions) {
+    // Implement search suggestions
+    console.log('Showing suggestions:', suggestions);
+    // Add your suggestions UI here
+}
+</script>
+
+<style>
+/* Home-specific styles */
+.home-page {
+    overflow-x: hidden;
+}
+
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(0);
+    animation: ripple-animation 0.6s ease-out;
+    pointer-events: none;
+}
+
+@keyframes ripple-animation {
+    to {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+.scroll-start::before,
+.scroll-end::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 20px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.scroll-start::before {
+    left: 0;
+    background: linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0));
+}
+
+.scroll-end::after {
+    right: 0;
+    background: linear-gradient(to left, rgba(255,255,255,1), rgba(255,255,255,0));
+}
+</style>

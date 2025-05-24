@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="{{ site.theme_color }}">
+    
+    <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+    <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="/assets/css/main.css" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" as="style">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    
+    <!-- SEO Tags -->
+    {% seo %}
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
+    <meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ page.url | absolute_url }}">
+    <meta property="og:image" content="{{ '/assets/images/og-image.jpg' | absolute_url }}">
+    <meta property="og:site_name" content="{{ site.title }}">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
+    <meta name="twitter:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+    <meta name="twitter:image" content="{{ '/assets/images/og-image.jpg' | absolute_url }}">
+    {% if site.twitter.username %}<meta name="twitter:site" content="@{{ site.twitter.username }}">{% endif %}
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    
+    <!-- Schema.org markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "{{ site.title }}",
+        "description": "{{ site.description }}",
+        "url": "{{ site.url }}",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "{{ site.url }}/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+    
+    <!-- Critical CSS for above-the-fold content -->
+    <style>
+        /* Critical CSS inlined for faster loading */
+        .hero-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            color: white;
+        }
+        
+        .hero-greeting {
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            font-weight: 300;
+            margin: 0 0 0.5rem 0;
+        }
+        
+        .user-name {
+            font-weight: 800;
+            color: #fbbf24;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            margin: 0;
+            line-height: 1.6;
+            color: #1f2937;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-to-main">Skip to main content</a>
+    
+    <!-- Header Navigation -->
+    <header class="site-header" id="site-header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-content">
+                    <!-- Logo -->
+                    <div class="nav-logo">
+                        <a href="/" class="logo-link">
+                            <div class="logo-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <span class="logo-text">{{ site.title }}</span>
+                        </a>
+                    </div>
+                    
+                    <!-- Desktop Navigation -->
+                    <div class="nav-menu" id="navMenu">
+                        <a href="/" class="nav-link {% if page.url == '/' %}active{% endif %}">
+                            <i class="fas fa-home"></i>
+                            <span>Home</span>
+                        </a>
+                        <a href="/teachers/" class="nav-link {% if page.url contains '/teachers' %}active{% endif %}">
+                            <i class="fas fa-users"></i>
+                            <span>Teachers</span>
+                        </a>
+                        <a href="/subjects/" class="nav-link {% if page.url contains '/subjects' %}active{% endif %}">
+                            <i class="fas fa-book-open"></i>
+                            <span>Subjects</span>
+                        </a>
+                        <a href="/classes/" class="nav-link {% if page.url contains '/classes' %}active{% endif %}">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Classes</span>
+                        </a>
+                        <a href="/about/" class="nav-link {% if page.url contains '/about' %}active{% endif %}">
+                            <i class="fas fa-info-circle"></i>
+                            <span>About</span>
+                        </a>
+                    </div>
+                    
+                    <!-- User Actions -->
+                    <div class="nav-actions">
+                        <button class="search-toggle" id="searchToggle">
+                            <i class="fas fa-search"></i>
+                        </button>
+                        <button class="notification-btn">
+                            <i class="fas fa-bell"></i>
+                            <span class="notification-badge">3</span>
+                        </button>
+                        <div class="user-avatar">
+                            <img src="/assets/images/default-avatar.jpg" alt="User Avatar" class="avatar-img">
+                        </div>
+                        <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                            <span class="hamburger-line"></span>
+                            <span class="hamburger-line"></span>
+                            <span class="hamburger-line"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        
+        <!-- Mobile Search Overlay -->
+        <div class="mobile-search-overlay" id="mobileSearchOverlay">
+            <div class="mobile-search-content">
+                <div class="mobile-search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search teachers, subjects..." class="mobile-search-input">
+                    <button class="mobile-search-close" id="mobileSearchClose">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="site-main" id="main-content">
+        {{ content }}
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <!-- Footer Brand -->
+                <div class="footer-section footer-brand">
+                    <div class="footer-logo">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>{{ site.title }}</span>
+                    </div>
+                    <p class="footer-description">{{ site.description }}</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Facebook">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Footer Links -->
+                <div class="footer-section">
+                    <h4 class="footer-title">For Students</h4>
+                    <ul class="footer-links">
+                        <li><a href="/teachers/">Find Teachers</a></li>
+                        <li><a href="/subjects/">Browse Subjects</a></li>
+                        <li><a href="/classes/">Join Classes</a></li>
+                        <li><a href="/pricing/">Pricing</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-title">For Teachers</h4>
+                    <ul class="footer-links">
+                        <li><a href="/teacher-signup/">Join as Teacher</a></li>
+                        <li><a href="/teacher-dashboard/">Dashboard</a></li>
+                        <li><a href="/resources/">Resources</a></li>
+                        <li><a href="/support/">Support</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-title">Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="/about/">About Us</a></li>
+                        <li><a href="/contact/">Contact</a></li>
+                        <li><a href="/careers/">Careers</a></li>
+                        <li><a href="/blog/">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-title">Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="/help/">Help Center</a></li>
+                        <li><a href="/privacy/">Privacy Policy</a></li>
+                        <li><a href="/terms/">Terms of Service</a></li>
+                        <li><a href="/cookies/">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p class="copyright">
+                        &copy; {{ 'now' | date: "%Y" }} {{ site.title }}. All rights reserved.
+                    </p>
+                    <div class="footer-bottom-links">
+                        <a href="/privacy/">Privacy</a>
+                        <a href="/terms/">Terms</a>
+                        <a href="/cookies/">Cookies</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p>Loading...</p>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Core navigation and interaction functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu functionality
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            const navMenu = document.getElementById('navMenu');
+            
+            if (mobileMenuToggle && navMenu) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    navMenu.classList.toggle('active');
+                    this.classList.toggle('active');
+                });
+            }
+            
+            // Mobile search functionality
+            const searchToggle = document.getElementById('searchToggle');
+            const mobileSearchOverlay = document.getElementById('mobileSearchOverlay');
+            const mobileSearchClose = document.getElementById('mobileSearchClose');
+            
+            if (searchToggle && mobileSearchOverlay) {
+                searchToggle.addEventListener('click', function() {
+                    mobileSearchOverlay.classList.add('active');
+                    document.body.classList.add('search-open');
+                });
+            }
+            
+            if (mobileSearchClose) {
+                mobileSearchClose.addEventListener('click', function() {
+                    mobileSearchOverlay.classList.remove('active');
+                    document.body.classList.remove('search-open');
+                });
+            }
+            
+            // Back to top functionality
+            const backToTop = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTop.classList.add('visible');
+                } else {
+                    backToTop.classList.remove('visible');
+                }
+            });
+            
+            backToTop.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Hide loading overlay
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            if (loadingOverlay) {
+                setTimeout(() => {
+                    loadingOverlay.classList.add('hidden');
+                }, 1000);
+            }
+            
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!event.target.closest('.navbar') && navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                    mobileMenuToggle.classList.remove('active');
+                }
+            });
+            
+            // Navbar scroll effect
+            let lastScrollTop = 0;
+            const navbar = document.getElementById('site-header');
+            
+            window.addEventListener('scroll', function() {
+                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (scrollTop > lastScrollTop && scrollTop > 100) {
+                    // Scrolling down
+                    navbar.classList.add('nav-hidden');
+                } else {
+                    // Scrolling up
+                    navbar.classList.remove('nav-hidden');
+                }
+                
+                // Add background on scroll
+                if (scrollTop > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+                
+                lastScrollTop = scrollTop;
+            });
+        });
+    </script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(function(registration) {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch(function(registrationError) {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
