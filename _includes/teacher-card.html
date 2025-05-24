@@ -1,15 +1,20 @@
-<!-- Modern Teacher Card Component with Depth Control -->
-<!-- Usage: {% include teacher-card.html teacher=teacher depth=0 max_depth=3 %} -->
+<!-- Modern Teacher Card Component with Recursion Prevention -->
+<!-- Usage: {% include teacher-card.html teacher=teacher depth=0 max_depth=2 %} -->
 
 {% assign teacher = include.teacher %}
 {% assign card_class = include.class | default: "teacher-card" %}
 {% assign show_details = include.show_details | default: true %}
 {% assign compact = include.compact | default: false %}
-{% assign max_depth = include.max_depth | default: 3 %}
+{% assign max_depth = include.max_depth | default: 1 %}
 {% assign current_depth = include.depth | default: 0 %}
 
 <!-- Prevent infinite recursion by checking depth -->
-{% if current_depth < max_depth %}
+{% if current_depth >= max_depth %}
+  <!-- Max depth reached - show simplified version -->
+  <div class="teacher-card-simple">
+    <p>Teacher: {{ teacher.name }} (depth limit reached)</p>
+  </div>
+{% else %}
 
 <div class="{{ card_class }}{% if compact %} compact{% endif %}" 
      data-teacher-id="{{ teacher.id }}"
@@ -172,6 +177,9 @@
   </div>
 </div>
 
+{% endif %}
+<!-- End depth check -->
+
 <style>
 /* Teacher Card Styles */
 .teacher-card {
@@ -194,6 +202,16 @@
 
 .teacher-card.compact {
   max-width: 300px;
+}
+
+.teacher-card-simple {
+  background: var(--gray-100);
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  color: var(--gray-600);
+  text-align: center;
+  font-size: 0.875rem;
 }
 
 .teacher-card-header {
@@ -607,6 +625,3 @@ function showNotification(message) {
     }, 3000);
 }
 </script>
-
-{% endif %}
-<!-- End depth check -->
