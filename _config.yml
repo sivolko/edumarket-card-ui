@@ -40,6 +40,7 @@ defaults:
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
+  - jekyll-sitemap
 
 # Exclude files from processing
 exclude:
@@ -70,6 +71,10 @@ subject_categories:
     icon: "music"
   - name: "Business"
     icon: "briefcase"
+  - name: "Science"
+    icon: "flask"
+  - name: "Sports"
+    icon: "dumbbell"
 
 # SEO settings
 twitter:
@@ -84,3 +89,47 @@ social:
 # Compression settings
 sass:
   style: compressed
+
+# Site-wide settings
+timezone: UTC
+lang: en
+author: "EduMarket Team"
+
+# Performance settings
+liquid:
+  error_mode: warn
+  strict_filters: false
+  strict_variables: false
+
+# Jekyll Environment
+environment: production
+
+# Additional configuration for better build performance
+incremental: false
+profile: false
+safe: true
+strict_front_matter: false
+
+# Feed settings
+feed:
+  categories:
+    - teachers
+    - subjects
+    - updates
+
+# Analytics (placeholder for future implementation)
+analytics:
+  google_analytics: # Add GA tracking ID when ready
+  
+# Contact information
+contact:
+  email: "support@edumarket.com"
+  phone: "+1-555-EDUMARKET"
+  address: "123 Education St, Learning City, LC 12345"
+
+# Platform statistics (for homepage)
+stats:
+  total_teachers: 500
+  total_students: 5000
+  total_subjects: 50
+  satisfaction_rate: 98
