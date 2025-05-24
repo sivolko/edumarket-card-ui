@@ -1,0 +1,462 @@
+/* Mobile-specific enhancements and optimizations */
+
+/* PWA Install Banner */
+.install-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(135deg, var(--primary-600), var(--secondary-600));
+  color: white;
+  padding: var(--space-4);
+  z-index: var(--z-modal);
+  transform: translateY(100%);
+  animation: slideUp 0.3s ease-out forwards;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.install-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.install-text h4 {
+  font-size: 1rem;
+  font-weight: var(--font-weight-semibold);
+  margin: 0 0 var(--space-1) 0;
+  color: white;
+}
+
+.install-text p {
+  font-size: 0.875rem;
+  margin: 0;
+  opacity: 0.9;
+}
+
+.install-actions {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.btn-sm {
+  padding: var(--space-2) var(--space-4);
+  font-size: 0.875rem;
+  border-radius: var(--radius-lg);
+  border: none;
+  cursor: pointer;
+  font-weight: var(--font-weight-medium);
+  transition: all var(--transition-fast);
+}
+
+.install-actions .btn-primary {
+  background: white;
+  color: var(--primary-600);
+}
+
+.install-actions .btn-secondary {
+  background: transparent;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+@keyframes slideUp {
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* Bottom Navigation */
+.bottom-navigation {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  border-top: 1px solid var(--gray-200);
+  display: flex;
+  justify-content: space-around;
+  padding: var(--space-2) 0;
+  z-index: var(--z-fixed);
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.bottom-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-2);
+  text-decoration: none;
+  color: var(--gray-500);
+  transition: color var(--transition-fast);
+  min-width: 60px;
+}
+
+.bottom-nav-item.active,
+.bottom-nav-item:hover {
+  color: var(--primary-600);
+}
+
+.bottom-nav-item i {
+  font-size: 1.25rem;
+  margin-bottom: var(--space-1);
+}
+
+.bottom-nav-item span {
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-medium);
+}
+
+/* Touch Gestures */
+.swipe-indicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-medium);
+  z-index: 10;
+  pointer-events: none;
+  animation: fadeInOut 2s ease-out;
+}
+
+.swipe-indicator.success {
+  background: var(--success);
+}
+
+.swipe-indicator.info {
+  background: var(--info);
+}
+
+@keyframes fadeInOut {
+  0%, 100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* Voice Search */
+.voice-search-btn {
+  position: absolute;
+  right: var(--space-3);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: var(--primary-100);
+  color: var(--primary-600);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.voice-search-btn:hover {
+  background: var(--primary-200);
+}
+
+.voice-search-btn.listening {
+  background: var(--error);
+  color: white;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: translateY(-50%) scale(1);
+  }
+  50% {
+    transform: translateY(-50%) scale(1.1);
+  }
+}
+
+/* App Notifications */
+.app-notification {
+  position: fixed;
+  top: var(--space-4);
+  right: var(--space-4);
+  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xl);
+  border: 1px solid var(--gray-200);
+  z-index: var(--z-tooltip);
+  min-width: 300px;
+  animation: slideInRight 0.3s ease-out;
+}
+
+.app-notification.success {
+  border-left: 4px solid var(--success);
+}
+
+.app-notification.error {
+  border-left: 4px solid var(--error);
+}
+
+.app-notification.info {
+  border-left: 4px solid var(--info);
+}
+
+.app-notification.fade-out {
+  animation: slideOutRight 0.3s ease-out;
+}
+
+.notification-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4);
+}
+
+.notification-message {
+  flex: 1;
+  font-weight: var(--font-weight-medium);
+  color: var(--gray-800);
+}
+
+.notification-close {
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: transparent;
+  color: var(--gray-400);
+  cursor: pointer;
+  border-radius: var(--radius-md);
+  transition: background var(--transition-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: var(--space-2);
+}
+
+.notification-close:hover {
+  background: var(--gray-100);
+  color: var(--gray-600);
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+/* Mobile Viewport Fix */
+.mobile-viewport-fix {
+  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
+}
+
+/* Improved Touch Targets */
+@media (max-width: 768px) {
+  .btn,
+  .nav-link,
+  .filter-btn,
+  .bookmark-btn,
+  .share-btn {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  .teacher-card,
+  .subject-card {
+    margin-bottom: var(--space-4);
+  }
+  
+  /* Ensure cards don't get too small */
+  .teachers-grid.view-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  /* Better spacing for mobile */
+  .container {
+    padding: 0 var(--space-3);
+  }
+  
+  /* Mobile-optimized search */
+  .search-box,
+  .search-input-wrapper {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+  
+  /* Hide desktop-only elements */
+  .desktop-only {
+    display: none !important;
+  }
+  
+  /* Show mobile-only elements */
+  .mobile-only {
+    display: block !important;
+  }
+}
+
+/* iPhone X and newer - safe area handling */
+@supports (padding: max(0px)) {
+  .site-header,
+  .bottom-navigation {
+    padding-left: max(var(--space-4), env(safe-area-inset-left));
+    padding-right: max(var(--space-4), env(safe-area-inset-right));
+  }
+  
+  .bottom-navigation {
+    padding-bottom: max(var(--space-2), env(safe-area-inset-bottom));
+  }
+}
+
+/* Dark mode support for PWA */
+@media (prefers-color-scheme: dark) {
+  .install-banner {
+    background: var(--gray-900);
+    border-top: 1px solid var(--gray-700);
+  }
+  
+  .bottom-navigation {
+    background: var(--gray-900);
+    border-top: 1px solid var(--gray-700);
+  }
+  
+  .bottom-nav-item {
+    color: var(--gray-400);
+  }
+  
+  .bottom-nav-item.active,
+  .bottom-nav-item:hover {
+    color: var(--primary-400);
+  }
+  
+  .app-notification {
+    background: var(--gray-800);
+    border-color: var(--gray-700);
+  }
+  
+  .notification-message {
+    color: var(--gray-200);
+  }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .floating-element,
+  .bg-shape {
+    animation: none !important;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .teacher-card,
+  .subject-card,
+  .btn {
+    border: 2px solid currentColor;
+  }
+  
+  .btn-primary {
+    background: black;
+    color: white;
+  }
+  
+  .btn-secondary {
+    background: white;
+    color: black;
+  }
+}
+
+/* Print styles */
+@media print {
+  .install-banner,
+  .bottom-navigation,
+  .app-notification,
+  .floating-element,
+  .bg-shape,
+  .voice-search-btn {
+    display: none !important;
+  }
+  
+  .teacher-card,
+  .subject-card {
+    break-inside: avoid;
+    margin-bottom: var(--space-4);
+  }
+}
+
+/* Loading states */
+.loading-skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Focus management for accessibility */
+.skip-to-main:focus {
+  position: absolute;
+  top: var(--space-2);
+  left: var(--space-2);
+  background: var(--primary-600);
+  color: white;
+  padding: var(--space-2) var(--space-4);
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  z-index: var(--z-tooltip);
+}
+
+/* Improved form controls for mobile */
+select,
+input[type="text"],
+input[type="email"],
+input[type="search"],
+textarea {
+  font-size: 16px; /* Prevents zoom on iOS */
+  border-radius: var(--radius-lg);
+}
+
+/* Better button states for touch */
+.btn:active {
+  transform: scale(0.98);
+}
+
+.teacher-card:active,
+.subject-card:active {
+  transform: scale(0.99);
+}

@@ -1,0 +1,78 @@
+{
+  "name": "edumarket-card-ui",
+  "version": "1.0.0",
+  "description": "Modern card-based teacher-student marketplace with Jekyll",
+  "main": "index.js",
+  "scripts": {
+    "dev": "bundle exec jekyll serve --livereload --host 0.0.0.0",
+    "build": "bundle exec jekyll build",
+    "build:prod": "JEKYLL_ENV=production bundle exec jekyll build",
+    "clean": "bundle exec jekyll clean",
+    "test": "bundle exec jekyll build && npm run test:html",
+    "test:html": "htmlproofer ./_site --disable-external",
+    "lighthouse": "lighthouse http://localhost:4000 --output=html --output-path=./lighthouse-report.html",
+    "optimize:images": "imagemin assets/images/**/*.{jpg,png} --out-dir=assets/images/optimized",
+    "pwa:generate-icons": "pwa-asset-generator assets/images/logo.svg assets/images/icons --manifest manifest.json",
+    "deploy:github": "gh-pages -d _site",
+    "deploy:netlify": "netlify deploy --prod --dir _site"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sivolko/edumarket-card-ui.git"
+  },
+  "keywords": [
+    "jekyll",
+    "education",
+    "teachers",
+    "students",
+    "marketplace",
+    "pwa",
+    "mobile-first",
+    "cards",
+    "modern-ui"
+  ],
+  "author": "EduMarket Team",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sivolko/edumarket-card-ui/issues"
+  },
+  "homepage": "https://github.com/sivolko/edumarket-card-ui#readme",
+  "devDependencies": {
+    "@babel/core": "^7.22.0",
+    "@babel/preset-env": "^7.22.0",
+    "autoprefixer": "^10.4.14",
+    "cssnano": "^6.0.1",
+    "gh-pages": "^5.0.0",
+    "html-proofer": "^4.4.0",
+    "htmlproofer": "^3.19.4",
+    "imagemin": "^8.0.1",
+    "imagemin-mozjpeg": "^10.0.0",
+    "imagemin-pngquant": "^9.0.2",
+    "lighthouse": "^10.4.0",
+    "netlify-cli": "^15.8.0",
+    "postcss": "^8.4.24",
+    "postcss-cli": "^10.1.0",
+    "pwa-asset-generator": "^6.3.1",
+    "sass": "^1.63.6",
+    "terser": "^5.19.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "iOS >= 12",
+    "Android >= 8"
+  ],
+  "pwa": {
+    "name": "EduMarket",
+    "short_name": "EduMarket",
+    "theme_color": "#6366f1",
+    "background_color": "#667eea",
+    "display": "standalone",
+    "start_url": "/"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  }
+}
