@@ -6,7 +6,6 @@ layout: default
 {% assign teacher = site.data.teachers | where: "name", teacher_name | first %}
 
 {% unless teacher %}
-  {% comment %} Fallback if teacher not found {% endcomment %}
   <div class="error-page">
     <div class="container">
       <h1>Teacher Not Found</h1>
@@ -14,82 +13,73 @@ layout: default
       <a href="/teachers/" class="btn btn-primary">Browse All Teachers</a>
     </div>
   </div>
-  {% assign teacher_found = false %}
 {% else %}
-  {% assign teacher_found = true %}
-{% endunless %}
-
-{% if teacher_found %}
 <div class="teacher-profile-page">
-  <!-- Teacher Hero Section -->
   <section class="teacher-hero">
-    <div class="hero-background">
-      <div class="hero-pattern"></div>
-    </div>
-    
     <div class="container">
       <div class="teacher-hero-content">
-        <!-- Teacher Main Info -->
         <div class="teacher-main-card">
           <div class="teacher-photo-section">
             <div class="teacher-photo-large">
               <img src="{{ teacher.photo }}" alt="{{ teacher.name }}" class="teacher-avatar" />
-              
               {% if teacher.verified %}
               <div class="verification-badge">
                 <i class="fas fa-check-circle"></i>
                 <span>Verified</span>
               </div>
               {% endif %}
-              
-              {% if teacher.featured %}
-              <div class="featured-ribbon">
-                <span>Featured Teacher</span>
-              </div>
-              {% endif %}
             </div>
             
-            <!-- Quick Actions -->
             <div class="quick-actions-hero">
               <button class="action-btn primary" onclick="contactTeacher('{{ teacher.contact.email }}', '{{ teacher.name }}')">
                 <i class="fas fa-envelope"></i>
                 <span>Contact</span>
               </button>
-              <button class="action-btn secondary save-teacher" data-teacher-id="{{ teacher.id }}">
+              <button class="action-btn secondary">
                 <i class="fas fa-bookmark"></i>
                 <span>Save</span>
               </button>
-              {% if teacher.social.calendly %}
-              <button class="action-btn secondary" onclick="window.open('{{ teacher.social.calendly }}', '_blank')">
-                <i class="fas fa-calendar-alt"></i>
-                <span>Schedule</span>
-              </button>
-              {% endif %}
             </div>
           </div>
-
+          
           <div class="teacher-info-section">
             <h1 class="teacher-name">{{ teacher.name }}</h1>
-            {% if teacher.title %}
-            <h2 class="teacher-title">{{ teacher.title }}</h2>
-            {% endif %}
+            <p class="teacher-qualification">{{ teacher.qualification }}</p>
             
-            <div class="teacher-stats">
-              <div class="stat">
-                <i class="fas fa-star"></i>
-                <span>{{ teacher.rating | default: "New" }}</span>
+            <div class="teacher-rating-large">
+              <div class="stars-large">
+                {% assign rating = teacher.rating %}
+                {% for i in (1..5) %}
+                  {% if i <= rating %}
+                    <i class="fas fa-star"></i>
+                  {% else %}
+                    <i class="far fa-star"></i>
+                  {% endif %}
+                {% endfor %}
               </div>
-              <div class="stat">
-                <i class="fas fa-user-graduate"></i>
-                <span>{{ teacher.students_count | default: 0 }} Students</span>
+              <span class="rating-number">{{ teacher.rating }}</span>
+              <span class="rating-count">({{ teacher.students_taught }} reviews)</span>
+            </div>
+            
+            <div class="teacher-stats-grid">
+              <div class="stat-item">
+                <i class="fas fa-graduation-cap"></i>
+                <span class="stat-number">{{ teacher.students_taught }}</span>
+                <span class="stat-label">Students</span>
               </div>
-              <div class="stat">
-                <i class="fas fa-book"></i>
-                <span>{{ teacher.courses_count | default: 0 }} Courses</span>
+              <div class="stat-item">
+                <i class="fas fa-clock"></i>
+                <span class="stat-number">{{ teacher.experience }}+</span>
+                <span class="stat-label">Years</span>
+              </div>
+              <div class="stat-item">
+                <i class="fas fa-dollar-sign"></i>
+                <span class="stat-number">${{ teacher.hourly_rate }}</span>
+                <span class="stat-label">Per Hour</span>
               </div>
             </div>
-
-            <div class="teacher-subjects">
+            
+            <div class="subjects-taught">
               {% for subject in teacher.subjects %}
               <span class="subject-tag">{{ subject }}</span>
               {% endfor %}
@@ -99,151 +89,318 @@ layout: default
       </div>
     </div>
   </section>
-
-  <!-- Teacher Details Section -->
+  
   <section class="teacher-details">
     <div class="container">
       <div class="details-grid">
-        <!-- Left Column -->
         <div class="main-content">
-          <!-- About -->
-          <div class="content-card">
-            <h3>About</h3>
-            <div class="about-content">
-              {{ content }}
-            </div>
-          </div>
-
-          <!-- Experience -->
-          {% if teacher.experience %}
-          <div class="content-card">
-            <h3>Experience</h3>
-            <div class="experience-list">
-              {% for exp in teacher.experience %}
-              <div class="experience-item">
-                <div class="exp-header">
-                  <h4>{{ exp.title }}</h4>
-                  <span class="exp-duration">{{ exp.duration }}</span>
-                </div>
-                <p class="exp-company">{{ exp.company }}</p>
-                <p class="exp-description">{{ exp.description }}</p>
+          <div class="about-section">
+            <h2>About {{ teacher.name }}</h2>
+            <p>{{ teacher.bio }}</p>
+            
+            <div class="specializations">
+              <h3>Specializations</h3>
+              <div class="spec-tags">
+                {% for spec in teacher.specializations %}
+                <span class="spec-tag">{{ spec }}</span>
+                {% endfor %}
               </div>
-              {% endfor %}
             </div>
           </div>
-          {% endif %}
-
-          <!-- Reviews -->
-          {% if teacher.reviews %}
-          <div class="content-card">
-            <h3>Student Reviews</h3>
-            <div class="reviews-list">
-              {% for review in teacher.reviews %}
-              <div class="review-item">
-                <div class="review-header">
-                  <img src="{{ review.student_photo }}" alt="{{ review.student_name }}" class="student-avatar" />
-                  <div class="review-meta">
-                    <h4>{{ review.student_name }}</h4>
-                    <div class="rating">
-                      {% for i in (1..5) %}
-                        {% if i <= review.rating %}
-                        <i class="fas fa-star"></i>
-                        {% else %}
-                        <i class="far fa-star"></i>
-                        {% endif %}
-                      {% endfor %}
-                    </div>
-                  </div>
-                  <span class="review-date">{{ review.date }}</span>
+          
+          {% if teacher.batches.size > 0 %}
+          <div class="batches-section">
+            <h2>Available Batches</h2>
+            <div class="batches-grid">
+              {% for batch in teacher.batches %}
+              <div class="batch-card">
+                <h4>{{ batch.name }}</h4>
+                <p>{{ batch.description }}</p>
+                <div class="batch-meta">
+                  <span><i class="fas fa-calendar"></i> {{ batch.start_date | date: "%b %d, %Y" }}</span>
+                  <span><i class="fas fa-clock"></i> {{ batch.duration }}</span>
+                  <span><i class="fas fa-dollar-sign"></i> ${{ batch.fee }}</span>
                 </div>
-                <p class="review-content">{{ review.content }}</p>
+                <button class="btn btn-primary">Enroll Now</button>
               </div>
               {% endfor %}
             </div>
           </div>
           {% endif %}
         </div>
-
-        <!-- Right Column -->
-        <div class="side-content">
-          <!-- Availability -->
-          <div class="content-card">
-            <h3>Availability</h3>
-            <div class="availability-calendar">
-              <!-- Calendar integration placeholder -->
-              {% if teacher.social.calendly %}
-              <button class="btn btn-primary full-width" onclick="window.open('{{ teacher.social.calendly }}', '_blank')">
-                <i class="fas fa-calendar-alt"></i>
-                Schedule a Session
-              </button>
-              {% else %}
-              <p class="text-center">Contact teacher for availability</p>
-              {% endif %}
-            </div>
-          </div>
-
-          <!-- Contact Information -->
-          <div class="content-card">
-            <h3>Contact Information</h3>
+        
+        <div class="sidebar">
+          <div class="contact-card">
+            <h3>Get in Touch</h3>
             <div class="contact-info">
-              {% if teacher.contact.email %}
-              <div class="contact-item">
-                <i class="fas fa-envelope"></i>
-                <a href="mailto:{{ teacher.contact.email }}">{{ teacher.contact.email }}</a>
-              </div>
+              <p><i class="fas fa-envelope"></i> {{ teacher.contact.email }}</p>
+              <p><i class="fas fa-phone"></i> {{ teacher.contact.phone }}</p>
+              {% if teacher.contact.response_time %}
+              <p><i class="fas fa-clock"></i> Responds {{ teacher.contact.response_time }}</p>
               {% endif %}
-              
-              {% if teacher.contact.phone %}
-              <div class="contact-item">
-                <i class="fas fa-phone"></i>
-                <a href="tel:{{ teacher.contact.phone }}">{{ teacher.contact.phone }}</a>
-              </div>
-              {% endif %}
-
-              <!-- Social Links -->
-              <div class="social-links">
-                {% if teacher.social.linkedin %}
-                <a href="{{ teacher.social.linkedin }}" target="_blank" class="social-link">
-                  <i class="fab fa-linkedin"></i>
-                </a>
-                {% endif %}
-                
-                {% if teacher.social.twitter %}
-                <a href="{{ teacher.social.twitter }}" target="_blank" class="social-link">
-                  <i class="fab fa-twitter"></i>
-                </a>
-                {% endif %}
-                
-                {% if teacher.social.website %}
-                <a href="{{ teacher.social.website }}" target="_blank" class="social-link">
-                  <i class="fas fa-globe"></i>
-                </a>
-                {% endif %}
-              </div>
             </div>
+            <button class="btn btn-primary btn-full" onclick="contactTeacher('{{ teacher.contact.email }}', '{{ teacher.name }}')">
+              Send Message
+            </button>
           </div>
-
-          <!-- Certifications -->
-          {% if teacher.certifications %}
-          <div class="content-card">
-            <h3>Certifications</h3>
-            <div class="certifications-list">
-              {% for cert in teacher.certifications %}
-              <div class="certification-item">
-                <img src="{{ cert.logo }}" alt="{{ cert.name }}" class="cert-logo" />
-                <div class="cert-info">
-                  <h4>{{ cert.name }}</h4>
-                  <p>{{ cert.issuer }}</p>
-                  <span class="cert-date">{{ cert.date }}</span>
-                </div>
-              </div>
-              {% endfor %}
-            </div>
-          </div>
-          {% endif %}
         </div>
       </div>
     </div>
   </section>
 </div>
+
+<style>
+.teacher-profile-page {
+  padding-top: 80px;
+}
+
+.teacher-hero {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: var(--space-16) 0;
+}
+
+.teacher-main-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-8);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-8);
+  align-items: center;
+}
+
+.teacher-photo-large {
+  position: relative;
+}
+
+.teacher-avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: var(--radius-full);
+  object-fit: cover;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+}
+
+.verification-badge {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: var(--success);
+  color: white;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.quick-actions-hero {
+  display: flex;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+.action-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-3);
+  border: none;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  min-width: 80px;
+}
+
+.action-btn.primary {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.action-btn.secondary {
+  background: transparent;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.teacher-name {
+  font-size: 2.5rem;
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--space-2);
+  color: white;
+}
+
+.teacher-qualification {
+  font-size: 1.25rem;
+  opacity: 0.9;
+  margin-bottom: var(--space-4);
+}
+
+.teacher-rating-large {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+}
+
+.stars-large {
+  color: #fbbf24;
+  font-size: 1.5rem;
+}
+
+.rating-number {
+  font-size: 1.5rem;
+  font-weight: var(--font-weight-bold);
+}
+
+.teacher-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+  margin-bottom: var(--space-6);
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-item i {
+  font-size: 1.5rem;
+  margin-bottom: var(--space-2);
+  opacity: 0.8;
+}
+
+.stat-number {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--space-1);
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  opacity: 0.8;
+}
+
+.subjects-taught {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.subject-tag {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-medium);
+}
+
+.teacher-details {
+  padding: var(--space-16) 0;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: var(--space-8);
+}
+
+.about-section,
+.batches-section {
+  background: white;
+  padding: var(--space-8);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  margin-bottom: var(--space-6);
+}
+
+.spec-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+.spec-tag {
+  background: var(--primary-50);
+  color: var(--primary-700);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: 0.875rem;
+}
+
+.batches-grid {
+  display: grid;
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+}
+
+.batch-card {
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+}
+
+.batch-meta {
+  display: flex;
+  gap: var(--space-4);
+  margin: var(--space-4) 0;
+  color: var(--gray-600);
+  font-size: 0.875rem;
+}
+
+.contact-card {
+  background: white;
+  padding: var(--space-6);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  position: sticky;
+  top: 100px;
+}
+
+.contact-info {
+  margin: var(--space-4) 0;
+}
+
+.contact-info p {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-2);
+}
+
+.btn-full {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .teacher-main-card {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  .details-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .teacher-stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
+<script>
+function contactTeacher(email, name) {
+    const subject = encodeURIComponent(`Inquiry about tutoring with ${name}`);
+    const body = encodeURIComponent(`Hi ${name},\n\nI'm interested in learning more about your tutoring services.\n\nBest regards`);
+    window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+}
+</script>
 {% endif %}
