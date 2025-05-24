@@ -1,0 +1,805 @@
+<!-- Modern Teacher Card Component -->
+<!-- Usage: {% include teacher-card.html teacher=teacher %} -->
+
+{% assign teacher = include.teacher %}
+{% assign card_class = include.class | default: "teacher-card" %}
+{% assign show_details = include.show_details | default: true %}
+{% assign compact = include.compact | default: false %}
+
+<div class="{{ card_class }}{% if compact %} compact{% endif %}" 
+     data-teacher-id="{{ teacher.id }}"
+     data-subjects="{{ teacher.subjects | join: ',' }}"
+     data-modes="{{ teacher.teaching_mode | join: ',' }}"
+     data-experience="{{ teacher.experience }}"
+     data-rating="{{ teacher.rating }}"
+     data-price="{{ teacher.hourly_rate }}"
+     data-students="{{ teacher.students_taught }}"
+     data-location="{{ teacher.location }}"
+     data-search="{{ teacher.name | downcase }} {{ teacher.subjects | join: ' ' | downcase }} {{ teacher.specializations | join: ' ' | downcase }}">
+
+  <!-- Card Header with Photo and Rating -->
+  <div class="teacher-card-header">
+    <div class="teacher-photo-container">
+      <img src="{{ teacher.photo }}" 
+           alt="{{ teacher.name }}" 
+           class="teacher-photo"
+           loading="lazy" />
+      
+      <!-- Verification Badge -->
+      {% if teacher.verified %}
+      <div class="verification-badge">
+        <i class="fas fa-check-circle"></i>
+      </div>
+      {% endif %}
+      
+      <!-- Featured Badge -->
+      {% if teacher.featured %}
+      <div class="featured-badge">
+        <i class="fas fa-star"></i>
+        <span>Featured</span>
+      </div>
+      {% endif %}
+    </div>
+    
+    <!-- Rating Display -->
+    <div class="rating-display">
+      <div class="stars">
+        {% assign rating = teacher.rating %}
+        {% for i in (1..5) %}
+          {% if i <= rating %}
+            <i class="fas fa-star"></i>
+          {% elsif i <= rating + 0.5 %}
+            <i class="fas fa-star-half-alt"></i>
+          {% else %}
+            <i class="far fa-star"></i>
+          {% endif %}
+        {% endfor %}
+      </div>
+      <span class="rating-number">{{ teacher.rating }}</span>
+      <span class="review-count">({{ teacher.students_taught }})</span>
+    </div>
+  </div>
+
+  <!-- Card Content -->
+  <div class="teacher-card-content">
+    <!-- Teacher Info -->
+    <div class="teacher-info">
+      <h3 class="teacher-name">
+        <a href="/teachers/{{ teacher.name | slugify }}/">{{ teacher.name }}</a>
+      </h3>
+      <p class="teacher-qualification">{{ teacher.qualification }}</p>
+      
+      <!-- Subjects Tags -->
+      <div class="subjects-tags">
+        {% for subject in teacher.subjects limit: 3 %}
+        <span class="subject-tag" data-subject="{{ subject | slugify }}">{{ subject }}</span>
+        {% endfor %}
+        {% if teacher.subjects.size > 3 %}
+        <span class="more-subjects">+{{ teacher.subjects.size | minus: 3 }} more</span>
+        {% endif %}
+      </div>
+      
+      <!-- Teacher Badges -->
+      {% if teacher.badges.size > 0 %}
+      <div class="teacher-badges">
+        {% for badge in teacher.badges limit: 2 %}
+        <span class="teacher-badge">{{ badge }}</span>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+    
+    {% if show_details %}
+    <!-- Quick Stats -->
+    <div class="teacher-stats">
+      <div class="stat-item">
+        <i class="fas fa-graduation-cap"></i>
+        <span>{{ teacher.students_taught }} students</span>
+      </div>
+      <div class="stat-item">
+        <i class="fas fa-clock"></i>
+        <span>{{ teacher.experience }}+ years</span>
+      </div>
+      <div class="stat-item">
+        <i class="fas fa-map-marker-alt"></i>
+        <span>{{ teacher.location }}</span>
+      </div>
+      <div class="stat-item stat-price">
+        <i class="fas fa-dollar-sign"></i>
+        <span>${{ teacher.hourly_rate }}/hour</span>
+      </div>
+    </div>
+    
+    <!-- Teaching Modes -->
+    <div class="teaching-modes">
+      {% for mode in teacher.teaching_mode %}
+      <span class="mode-tag mode-{{ mode | downcase }}">
+        {% if mode == "Online" %}
+          <i class="fas fa-video"></i>
+        {% elsif mode == "Offline" %}
+          <i class="fas fa-chalkboard-teacher"></i>
+        {% else %}
+          <i class="fas fa-laptop-house"></i>
+        {% endif %}
+        {{ mode }}
+      </span>
+      {% endfor %}
+    </div>
+    
+    <!-- Bio Preview -->
+    <p class="teacher-bio">{{ teacher.bio | truncate: 120 }}</p>
+    
+    <!-- Response Time -->
+    {% if teacher.contact.response_time %}
+    <div class="response-time">
+      <i class="fas fa-reply"></i>
+      <span>Responds {{ teacher.contact.response_time }}</span>
+    </div>
+    {% endif %}
+    
+    <!-- Current Batches Preview -->
+    {% if teacher.batches.size > 0 %}
+    <div class="upcoming-batches">
+      <h4>Upcoming Batches</h4>
+      {% for batch in teacher.batches limit: 2 %}
+      <div class="batch-preview">
+        <div class="batch-info">
+          <strong class="batch-name">{{ batch.name }}</strong>
+          <div class="batch-details">
+            <span class="batch-date">
+              <i class="fas fa-calendar"></i>
+              {{ batch.start_date | date: "%b %d" }}
+            </span>
+            <span class="batch-duration">
+              <i class="fas fa-clock"></i>
+              {{ batch.duration }}
+            </span>
+            <span class="batch-price">
+              <i class="fas fa-tag"></i>
+              ${{ batch.fee }}
+            </span>
+          </div>
+          <div class="batch-enrollment">
+            {% assign spots_left = batch.capacity | minus: batch.enrolled %}
+            <span class="enrollment-status {% if spots_left <= 3 %}limited{% elsif spots_left == 0 %}full{% else %}available{% endif %}">
+              {% if spots_left > 0 %}
+                {{ spots_left }} spots left
+              {% else %}
+                Batch Full
+              {% endif %}
+            </span>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      
+      {% if teacher.batches.size > 2 %}
+      <div class="view-all-batches">
+        <a href="/teachers/{{ teacher.name | slugify }}/#batches">View all {{ teacher.batches.size }} batches</a>
+      </div>
+      {% endif %}
+    </div>
+    {% endif %}
+    {% endif %}
+  </div>
+
+  <!-- Card Actions -->
+  <div class="teacher-card-actions">
+    <div class="primary-actions">
+      <a href="/teachers/{{ teacher.name | slugify }}/" class="btn btn-primary">
+        <i class="fas fa-user"></i>
+        <span>View Profile</span>
+      </a>
+      <button class="btn btn-secondary" onclick="contactTeacher('{{ teacher.contact.email }}', '{{ teacher.name }}')">
+        <i class="fas fa-envelope"></i>
+        <span>Contact</span>
+      </button>
+    </div>
+    
+    <div class="secondary-actions">
+      <button class="action-btn bookmark-btn" 
+              data-teacher-id="{{ teacher.id }}" 
+              title="Bookmark teacher">
+        <i class="far fa-bookmark"></i>
+      </button>
+      <button class="action-btn share-btn" 
+              data-teacher-name="{{ teacher.name }}" 
+              title="Share profile">
+        <i class="fas fa-share-alt"></i>
+      </button>
+      {% if teacher.social.website or teacher.social.linkedin %}
+      <div class="social-links">
+        {% if teacher.social.website %}
+        <a href="{{ teacher.social.website }}" 
+           target="_blank" 
+           rel="noopener" 
+           class="social-link" 
+           title="Visit website">
+          <i class="fas fa-globe"></i>
+        </a>
+        {% endif %}
+        {% if teacher.social.linkedin %}
+        <a href="{{ teacher.social.linkedin }}" 
+           target="_blank" 
+           rel="noopener" 
+           class="social-link" 
+           title="LinkedIn profile">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        {% endif %}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<style>
+/* Teacher Card Styles */
+.teacher-card {
+  background: white;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--gray-200);
+  transition: all var(--transition-normal);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.teacher-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
+}
+
+.teacher-card.compact {
+  max-width: 300px;
+}
+
+.teacher-card-header {
+  position: relative;
+  padding: var(--space-6);
+  text-align: center;
+  background: linear-gradient(135deg, var(--gray-50), var(--gray-100));
+}
+
+.teacher-photo-container {
+  position: relative;
+  display: inline-block;
+  margin-bottom: var(--space-4);
+}
+
+.teacher-photo {
+  width: 80px;
+  height: 80px;
+  border-radius: var(--radius-full);
+  object-fit: cover;
+  border: 4px solid white;
+  box-shadow: var(--shadow-lg);
+}
+
+.verification-badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 24px;
+  height: 24px;
+  background: var(--success);
+  color: white;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  border: 2px solid white;
+}
+
+.featured-badge {
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: white;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-lg);
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-semibold);
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  border: 2px solid white;
+}
+
+.rating-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+}
+
+.stars {
+  color: #fbbf24;
+  font-size: 0.875rem;
+}
+
+.rating-number {
+  font-weight: var(--font-weight-semibold);
+  color: var(--gray-900);
+}
+
+.review-count {
+  color: var(--gray-500);
+  font-size: 0.875rem;
+}
+
+.teacher-card-content {
+  padding: var(--space-6);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.teacher-name {
+  font-size: 1.25rem;
+  font-weight: var(--font-weight-bold);
+  margin: 0 0 var(--space-1) 0;
+}
+
+.teacher-name a {
+  color: var(--gray-900);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.teacher-name a:hover {
+  color: var(--primary-600);
+}
+
+.teacher-qualification {
+  color: var(--gray-600);
+  font-size: 0.875rem;
+  margin: 0 0 var(--space-3) 0;
+  line-height: 1.4;
+}
+
+.subjects-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+
+.subject-tag {
+  background: var(--primary-50);
+  color: var(--primary-700);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.subject-tag:hover {
+  background: var(--primary-100);
+  transform: translateY(-1px);
+}
+
+.more-subjects {
+  color: var(--gray-500);
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-medium);
+  padding: var(--space-1) var(--space-2);
+}
+
+.teacher-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.teacher-badge {
+  background: linear-gradient(135deg, var(--accent-500), var(--accent-600));
+  color: white;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-md);
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-semibold);
+}
+
+.teacher-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2);
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--gray-600);
+  font-size: 0.875rem;
+}
+
+.stat-item i {
+  color: var(--primary-500);
+  width: 12px;
+  flex-shrink: 0;
+}
+
+.stat-price {
+  color: var(--accent-600);
+  font-weight: var(--font-weight-semibold);
+}
+
+.teaching-modes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.mode-tag {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-medium);
+}
+
+.mode-online {
+  background: var(--blue-100);
+  color: var(--blue-800);
+}
+
+.mode-offline {
+  background: var(--green-100);
+  color: var(--green-800);
+}
+
+.mode-hybrid {
+  background: var(--purple-100);
+  color: var(--purple-800);
+}
+
+.teacher-bio {
+  color: var(--gray-600);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.response-time {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--accent-600);
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-medium);
+}
+
+.response-time i {
+  color: var(--accent-500);
+}
+
+.upcoming-batches {
+  background: var(--gray-50);
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  margin-top: auto;
+}
+
+.upcoming-batches h4 {
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-semibold);
+  color: var(--gray-900);
+  margin: 0 0 var(--space-3) 0;
+}
+
+.batch-preview {
+  margin-bottom: var(--space-3);
+}
+
+.batch-preview:last-of-type {
+  margin-bottom: 0;
+}
+
+.batch-name {
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-medium);
+  color: var(--gray-900);
+  display: block;
+  margin-bottom: var(--space-1);
+}
+
+.batch-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-bottom: var(--space-2);
+}
+
+.batch-details span {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: 0.75rem;
+  color: var(--gray-600);
+}
+
+.batch-details i {
+  color: var(--primary-500);
+  width: 10px;
+}
+
+.batch-price {
+  color: var(--accent-600) !important;
+  font-weight: var(--font-weight-semibold);
+}
+
+.enrollment-status {
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-medium);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-md);
+}
+
+.enrollment-status.available {
+  background: var(--green-100);
+  color: var(--green-800);
+}
+
+.enrollment-status.limited {
+  background: var(--yellow-100);
+  color: var(--yellow-800);
+}
+
+.enrollment-status.full {
+  background: var(--red-100);
+  color: var(--red-800);
+}
+
+.view-all-batches {
+  text-align: center;
+  margin-top: var(--space-2);
+}
+
+.view-all-batches a {
+  color: var(--primary-600);
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-medium);
+  text-decoration: none;
+}
+
+.view-all-batches a:hover {
+  text-decoration: underline;
+}
+
+.teacher-card-actions {
+  padding: var(--space-6);
+  border-top: 1px solid var(--gray-200);
+  background: var(--gray-50);
+}
+
+.primary-actions {
+  display: flex;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.primary-actions .btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-lg);
+  font-weight: var(--font-weight-medium);
+  font-size: 0.875rem;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-primary {
+  background: var(--primary-600);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: var(--primary-700);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: white;
+  color: var(--gray-700);
+  border: 1px solid var(--gray-300);
+}
+
+.btn-secondary:hover {
+  background: var(--gray-50);
+  border-color: var(--gray-400);
+  transform: translateY(-1px);
+}
+
+.secondary-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.action-btn {
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--gray-300);
+  background: white;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  color: var(--gray-500);
+}
+
+.action-btn:hover {
+  border-color: var(--primary-300);
+  color: var(--primary-600);
+  background: var(--primary-50);
+}
+
+.bookmark-btn.bookmarked {
+  background: var(--primary-600);
+  border-color: var(--primary-600);
+  color: white;
+}
+
+.social-links {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.social-link {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-lg);
+  background: var(--gray-200);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gray-600);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.social-link:hover {
+  background: var(--primary-100);
+  color: var(--primary-600);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .teacher-card {
+    margin-bottom: var(--space-4);
+  }
+  
+  .teacher-stats {
+    grid-template-columns: 1fr;
+    gap: var(--space-1);
+  }
+  
+  .batch-details {
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+  
+  .primary-actions {
+    flex-direction: column;
+  }
+  
+  .secondary-actions {
+    justify-content: center;
+    gap: var(--space-3);
+  }
+}
+</style>
+
+<script>
+// Teacher card interactions
+function contactTeacher(email, name) {
+    const subject = encodeURIComponent(`Inquiry about tutoring with ${name}`);
+    const body = encodeURIComponent(`Hi ${name},\n\nI'm interested in learning more about your tutoring services. Could we schedule a brief conversation to discuss my learning goals?\n\nThank you!`);
+    window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+}
+
+// Bookmark functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const bookmarkBtns = document.querySelectorAll('.bookmark-btn');
+    
+    bookmarkBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const teacherId = this.dataset.teacherId;
+            const isBookmarked = this.classList.contains('bookmarked');
+            
+            if (isBookmarked) {
+                removeBookmark(teacherId);
+                this.classList.remove('bookmarked');
+                this.querySelector('i').className = 'far fa-bookmark';
+            } else {
+                addBookmark(teacherId);
+                this.classList.add('bookmarked');
+                this.querySelector('i').className = 'fas fa-bookmark';
+            }
+        });
+    });
+    
+    // Share functionality
+    const shareBtns = document.querySelectorAll('.share-btn');
+    
+    shareBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const teacherName = this.dataset.teacherName;
+            const url = window.location.origin + `/teachers/${teacherName.toLowerCase().replace(/\s+/g, '-')}/`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: `${teacherName} - Teacher Profile`,
+                    text: `Check out ${teacherName}'s teaching profile`,
+                    url: url
+                });
+            } else {
+                // Fallback to copying to clipboard
+                navigator.clipboard.writeText(url).then(() => {
+                    showNotification('Link copied to clipboard!');
+                });
+            }
+        });
+    });
+});
+
+function addBookmark(teacherId) {
+    let bookmarks = JSON.parse(localStorage.getItem('teacherBookmarks') || '[]');
+    if (!bookmarks.includes(teacherId)) {
+        bookmarks.push(teacherId);
+        localStorage.setItem('teacherBookmarks', JSON.stringify(bookmarks));
+        showNotification('Teacher bookmarked!');
+    }
+}
+
+function removeBookmark(teacherId) {
+    let bookmarks = JSON.parse(localStorage.getItem('teacherBookmarks') || '[]');
+    bookmarks = bookmarks.filter(id => id !== teacherId);
+    localStorage.setItem('teacherBookmarks', JSON.stringify(bookmarks));
+    showNotification('Bookmark removed');
+}
+
+function showNotification(message) {
+    // Simple notification - you can enhance this
+    const notification = document.createElement('div');
+    notification.textContent = message;
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: var(--primary-600);
+        color: white;
+        padding: 12px 24px;
+        border-radius: 8px;
+        z-index: 1000;
+        font-weight: 500;
+        box-shadow: var(--shadow-lg);
+    `;
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.remove();
+    }, 3000);
+}
+</script>

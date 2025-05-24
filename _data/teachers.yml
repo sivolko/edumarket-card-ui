@@ -1,0 +1,327 @@
+# Modern Teacher Database - Card-based UI
+# Each teacher has enhanced data for rich card displays
+
+- id: 1
+  name: "Dr. Sarah Johnson"
+  photo: "/assets/images/teachers/sarah-johnson.jpg"
+  subjects: ["Mathematics", "Physics"]
+  experience: 8
+  qualification: "PhD in Mathematics, MIT"
+  rating: 4.8
+  students_taught: 150
+  teaching_mode: ["Online", "Offline"]
+  location: "New York, NY"
+  hourly_rate: 75
+  bio: "Passionate mathematics educator with 8+ years of experience making complex concepts accessible. Former researcher at MIT with expertise in applied mathematics."
+  specializations: ["Calculus", "Linear Algebra", "Quantum Physics", "Mathematical Modeling"]
+  languages: ["English", "Spanish", "French"]
+  verified: true
+  featured: true
+  availability:
+    monday: ["9:00-12:00", "14:00-17:00"]
+    tuesday: ["10:00-13:00", "15:00-18:00"]
+    wednesday: ["9:00-12:00", "14:00-17:00"]
+    thursday: ["10:00-13:00", "15:00-18:00"]
+    friday: ["9:00-12:00", "14:00-16:00"]
+    saturday: ["10:00-12:00"]
+    sunday: []
+  badges: ["Top Rated", "Quick Responder", "Expert"]
+  social:
+    linkedin: "https://linkedin.com/in/sarah-johnson-math"
+    twitter: "@SarahMathProf"
+    website: "https://sarahmath.com"
+  batches:
+    - name: "Advanced Calculus Mastery"
+      start_date: "2025-06-01"
+      duration: "12 weeks"
+      schedule: "Mon, Wed, Fri 10:00-11:30"
+      fee: 599
+      capacity: 20
+      enrolled: 15
+      level: "Advanced"
+      description: "Master calculus concepts with real-world applications"
+    - name: "Physics for Engineers"
+      start_date: "2025-06-15"
+      duration: "16 weeks"
+      schedule: "Tue, Thu 14:00-15:30"
+      fee: 799
+      capacity: 25
+      enrolled: 18
+      level: "Intermediate"
+      description: "Applied physics concepts for engineering students"
+  contact:
+    email: "sarah.johnson@email.com"
+    phone: "+1-555-0123"
+    response_time: "Within 2 hours"
+
+- id: 2
+  name: "Prof. Michael Chen"
+  photo: "/assets/images/teachers/michael-chen.jpg"
+  subjects: ["Computer Science", "Programming", "Data Science"]
+  experience: 12
+  qualification: "MS Computer Science, Stanford | Ex-Google Engineer"
+  rating: 4.9
+  students_taught: 300
+  teaching_mode: ["Online", "Hybrid"]
+  location: "San Francisco, CA"
+  hourly_rate: 95
+  bio: "Former Google Senior Engineer turned passionate educator. Specializing in modern programming languages, algorithms, and machine learning with industry experience."
+  specializations: ["Python", "JavaScript", "Machine Learning", "Data Structures", "System Design", "Cloud Computing"]
+  languages: ["English", "Mandarin", "Cantonese"]
+  verified: true
+  featured: true
+  availability:
+    monday: ["14:00-18:00", "19:00-21:00"]
+    tuesday: ["14:00-18:00", "19:00-21:00"]
+    wednesday: ["14:00-18:00", "19:00-21:00"]
+    thursday: ["14:00-18:00", "19:00-21:00"]
+    friday: ["14:00-17:00"]
+    saturday: ["10:00-14:00"]
+    sunday: ["10:00-12:00"]
+  badges: ["Industry Expert", "Top Rated", "Coding Mentor"]
+  social:
+    linkedin: "https://linkedin.com/in/michael-chen-dev"
+    github: "https://github.com/michaelchen"
+    website: "https://michaelchen.dev"
+  batches:
+    - name: "Python Full Stack Development"
+      start_date: "2025-06-08"
+      duration: "20 weeks"
+      schedule: "Mon, Wed, Fri 19:00-21:00"
+      fee: 1299
+      capacity: 30
+      enrolled: 25
+      level: "Beginner to Advanced"
+      description: "Complete Python development from basics to deployment"
+    - name: "Machine Learning Fundamentals"
+      start_date: "2025-07-01"
+      duration: "16 weeks"
+      schedule: "Tue, Thu 19:00-21:00"
+      fee: 999
+      capacity: 20
+      enrolled: 12
+      level: "Intermediate"
+      description: "Hands-on ML with Python and real projects"
+    - name: "Data Structures & Algorithms"
+      start_date: "2025-06-20"
+      duration: "12 weeks"
+      schedule: "Sat 10:00-13:00"
+      fee: 699
+      capacity: 25
+      enrolled: 20
+      level: "Intermediate"
+      description: "Master DSA for coding interviews and problem solving"
+  contact:
+    email: "michael.chen@email.com"
+    phone: "+1-555-0456"
+    response_time: "Within 1 hour"
+
+- id: 3
+  name: "Dr. Emily Rodriguez"
+  photo: "/assets/images/teachers/emily-rodriguez.jpg"
+  subjects: ["Chemistry", "Biology", "Environmental Science"]
+  experience: 6
+  qualification: "PhD in Biochemistry, Harvard | Research Scientist"
+  rating: 4.7
+  students_taught: 120
+  teaching_mode: ["Offline", "Hybrid"]
+  location: "Boston, MA"
+  hourly_rate: 68
+  bio: "Research scientist and passionate educator with expertise in biochemistry and environmental science. Focuses on hands-on laboratory experiences and real-world applications."
+  specializations: ["Organic Chemistry", "Molecular Biology", "Environmental Chemistry", "Lab Techniques", "Research Methods"]
+  languages: ["English", "Spanish", "Portuguese"]
+  verified: true
+  featured: false
+  availability:
+    monday: ["9:00-17:00"]
+    tuesday: ["9:00-17:00"]
+    wednesday: ["9:00-17:00"]
+    thursday: ["9:00-17:00"]
+    friday: ["9:00-15:00"]
+    saturday: ["10:00-14:00"]
+    sunday: []
+  badges: ["Lab Expert", "Research Mentor", "Hands-on Learning"]
+  social:
+    linkedin: "https://linkedin.com/in/emily-rodriguez-phd"
+    researchgate: "https://researchgate.net/profile/Emily-Rodriguez"
+  batches:
+    - name: "Organic Chemistry Intensive"
+      start_date: "2025-06-10"
+      duration: "14 weeks"
+      schedule: "Mon, Wed, Fri 10:00-12:00"
+      fee: 899
+      capacity: 15
+      enrolled: 8
+      level: "Advanced"
+      description: "Comprehensive organic chemistry with lab work"
+    - name: "Environmental Science Lab"
+      start_date: "2025-06-20"
+      duration: "10 weeks"
+      schedule: "Tue, Thu 14:00-17:00"
+      fee: 699
+      capacity: 12
+      enrolled: 9
+      level: "Intermediate"
+      description: "Hands-on environmental analysis and field work"
+  contact:
+    email: "emily.rodriguez@email.com"
+    phone: "+1-555-0789"
+    response_time: "Within 4 hours"
+
+- id: 4
+  name: "James Wilson"
+  photo: "/assets/images/teachers/james-wilson.jpg"
+  subjects: ["English", "Literature", "Creative Writing"]
+  experience: 10
+  qualification: "MA English Literature, Yale | Published Author"
+  rating: 4.6
+  students_taught: 200
+  teaching_mode: ["Online", "Offline"]
+  location: "New Haven, CT"
+  hourly_rate: 58
+  bio: "Published author and literature enthusiast with 10 years of teaching experience. Specializes in creative writing, literary analysis, and helping students find their unique voice."
+  specializations: ["Creative Writing", "Literary Analysis", "Essay Writing", "Poetry", "Publishing", "Editorial Skills"]
+  languages: ["English", "French", "German"]
+  verified: true
+  featured: false
+  availability:
+    monday: ["10:00-16:00"]
+    tuesday: ["10:00-16:00"]
+    wednesday: ["10:00-16:00"]
+    thursday: ["10:00-16:00"]
+    friday: ["10:00-14:00"]
+    saturday: ["9:00-13:00"]
+    sunday: ["14:00-17:00"]
+  badges: ["Published Author", "Writing Mentor", "Literary Expert"]
+  social:
+    website: "https://jameswilsonwrites.com"
+    goodreads: "https://goodreads.com/author/james-wilson"
+    medium: "@jameswilsonwriter"
+  batches:
+    - name: "Creative Writing Workshop"
+      start_date: "2025-06-05"
+      duration: "12 weeks"
+      schedule: "Sat 10:00-12:00"
+      fee: 499
+      capacity: 20
+      enrolled: 16
+      level: "All Levels"
+      description: "Develop your creative writing skills across genres"
+    - name: "Advanced Essay Writing"
+      start_date: "2025-06-12"
+      duration: "8 weeks"
+      schedule: "Wed, Fri 15:00-16:30"
+      fee: 399
+      capacity: 15
+      enrolled: 12
+      level: "Intermediate"
+      description: "Master academic and persuasive essay writing"
+  contact:
+    email: "james.wilson@email.com"
+    phone: "+1-555-0321"
+    response_time: "Within 3 hours"
+
+- id: 5
+  name: "Dr. Priya Sharma"
+  photo: "/assets/images/teachers/priya-sharma.jpg"
+  subjects: ["Economics", "Business", "Finance"]
+  experience: 7
+  qualification: "PhD Economics, London School of Economics"
+  rating: 4.8
+  students_taught: 180
+  teaching_mode: ["Online", "Hybrid"]
+  location: "London, UK (Remote)"
+  hourly_rate: 82
+  bio: "International economics expert with experience in academia and consulting. Specializes in making economic concepts practical and relevant to modern business challenges."
+  specializations: ["Microeconomics", "Macroeconomics", "Financial Markets", "Business Strategy", "Economic Policy", "Data Analysis"]
+  languages: ["English", "Hindi", "French"]
+  verified: true
+  featured: true
+  availability:
+    monday: ["8:00-12:00", "14:00-18:00"]
+    tuesday: ["8:00-12:00", "14:00-18:00"]
+    wednesday: ["8:00-12:00", "14:00-18:00"]
+    thursday: ["8:00-12:00", "14:00-18:00"]
+    friday: ["8:00-12:00"]
+    saturday: []
+    sunday: ["10:00-14:00"]
+  badges: ["Global Expert", "Business Mentor", "Top Rated"]
+  social:
+    linkedin: "https://linkedin.com/in/priya-sharma-econ"
+    twitter: "@PriyaEconProf"
+  batches:
+    - name: "Business Economics Fundamentals"
+      start_date: "2025-06-07"
+      duration: "14 weeks"
+      schedule: "Mon, Wed 15:00-16:30"
+      fee: 749
+      capacity: 25
+      enrolled: 22
+      level: "Beginner"
+      description: "Essential economics for business professionals"
+    - name: "Financial Markets Analysis"
+      start_date: "2025-06-21"
+      duration: "10 weeks"
+      schedule: "Tue, Thu 16:00-17:30"
+      fee: 599
+      capacity: 20
+      enrolled: 14
+      level: "Advanced"
+      description: "Deep dive into financial markets and investment analysis"
+  contact:
+    email: "priya.sharma@email.com"
+    phone: "+44-20-7946-0958"
+    response_time: "Within 2 hours"
+
+- id: 6
+  name: "Alex Thompson"
+  photo: "/assets/images/teachers/alex-thompson.jpg"
+  subjects: ["Graphic Design", "UI/UX Design", "Digital Art"]
+  experience: 5
+  qualification: "BFA Digital Design | Senior Designer at Adobe"
+  rating: 4.9
+  students_taught: 95
+  teaching_mode: ["Online"]
+  location: "Seattle, WA"
+  hourly_rate: 72
+  bio: "Senior designer at Adobe with passion for teaching modern design principles. Focuses on practical, industry-relevant skills and portfolio development."
+  specializations: ["Adobe Creative Suite", "Figma", "UI/UX Design", "Brand Design", "Motion Graphics", "Portfolio Development"]
+  languages: ["English"]
+  verified: true
+  featured: true
+  availability:
+    monday: ["18:00-22:00"]
+    tuesday: ["18:00-22:00"]
+    wednesday: ["18:00-22:00"]
+    thursday: ["18:00-22:00"]
+    friday: ["18:00-21:00"]
+    saturday: ["10:00-16:00"]
+    sunday: ["12:00-18:00"]
+  badges: ["Industry Professional", "Portfolio Mentor", "Design Expert"]
+  social:
+    dribbble: "https://dribbble.com/alexthompson"
+    behance: "https://behance.net/alexthompson"
+    instagram: "@alexdesigns"
+  batches:
+    - name: "Complete UI/UX Design Bootcamp"
+      start_date: "2025-06-14"
+      duration: "18 weeks"
+      schedule: "Sat, Sun 13:00-16:00"
+      fee: 1199
+      capacity: 15
+      enrolled: 10
+      level: "Beginner to Intermediate"
+      description: "From wireframes to working prototypes"
+    - name: "Brand Identity Design"
+      start_date: "2025-07-05"
+      duration: "8 weeks"
+      schedule: "Wed, Fri 19:00-20:30"
+      fee: 499
+      capacity: 20
+      enrolled: 8
+      level: "Intermediate"
+      description: "Create compelling brand identities from concept to completion"
+  contact:
+    email: "alex.thompson@email.com"
+    phone: "+1-555-0654"
+    response_time: "Within 1 hour"
