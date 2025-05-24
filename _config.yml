@@ -61,20 +61,52 @@ svgo: false  # Disable svgo to prevent build issues
 subject_categories:
   - name: "Academic"
     icon: "graduation-cap"
+    slug: "academic"
+    color: "from-blue-500 to-blue-600"
+    subjects:
+      size: 12
   - name: "Arts"
     icon: "palette"
+    slug: "arts"
+    color: "from-purple-500 to-purple-600"
+    subjects:
+      size: 8
   - name: "Technology"
     icon: "laptop-code"
+    slug: "technology"
+    color: "from-green-500 to-green-600"
+    subjects:
+      size: 15
   - name: "Languages"
     icon: "language"
+    slug: "languages"
+    color: "from-red-500 to-red-600"
+    subjects:
+      size: 20
   - name: "Music"
     icon: "music"
+    slug: "music"
+    color: "from-yellow-500 to-yellow-600"
+    subjects:
+      size: 6
   - name: "Business"
     icon: "briefcase"
+    slug: "business"
+    color: "from-indigo-500 to-indigo-600"
+    subjects:
+      size: 10
   - name: "Science"
     icon: "flask"
+    slug: "science"
+    color: "from-teal-500 to-teal-600"
+    subjects:
+      size: 14
   - name: "Sports"
     icon: "dumbbell"
+    slug: "sports"
+    color: "from-orange-500 to-orange-600"
+    subjects:
+      size: 9
 
 # SEO settings
 twitter:
