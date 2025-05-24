@@ -1,0 +1,1135 @@
+---
+layout: default
+---
+
+{% assign teacher_id = page.teacher_id | default: 1 %}
+{% assign teacher = site.data.teachers | where: "id", teacher_id | first %}
+
+<div class="teacher-profile-page">
+  <!-- Profile Header -->
+  <section class="profile-header">
+    <div class="container">
+      <div class="profile-header-content">
+        <!-- Back Button -->
+        <div class="back-navigation">
+          <a href="/teachers/" class="back-btn">
+            <i class="fas fa-arrow-left"></i>
+            <span>Back to Teachers</span>
+          </a>
+        </div>
+        
+        <!-- Teacher Info -->
+        <div class="teacher-profile-info">
+          <div class="profile-photo-section">
+            <div class="profile-photo-container">
+              <img src="{{ teacher.photo }}" alt="{{ teacher.name }}" class="profile-photo" />
+              
+              <!-- Status Indicators -->
+              <div class="status-indicators">
+                {% if teacher.verified %}
+                <div class="status-badge verified">
+                  <i class="fas fa-check-circle"></i>
+                  <span>Verified</span>
+                </div>
+                {% endif %}
+                
+                {% if teacher.featured %}
+                <div class="status-badge featured">
+                  <i class="fas fa-star"></i>
+                  <span>Featured</span>
+                </div>
+                {% endif %}
+                
+                <div class="status-badge online">
+                  <i class="fas fa-circle"></i>
+                  <span>Online</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+              <button class="action-btn primary" onclick="contactTeacher('{{ teacher.contact.email }}', '{{ teacher.name }}')">
+                <i class="fas fa-envelope"></i>
+                <span>Contact</span>
+              </button>
+              <button class="action-btn secondary bookmark-btn" data-teacher-id="{{ teacher.id }}">
+                <i class="far fa-bookmark"></i>
+                <span>Save</span>
+              </button>
+              <button class="action-btn secondary share-btn" data-teacher-name="{{ teacher.name }}">
+                <i class="fas fa-share-alt"></i>
+                <span>Share</span>
+              </button>
+            </div>
+          </div>
+          
+          <div class="profile-details">
+            <div class="name-section">
+              <h1 class="teacher-name">{{ teacher.name }}</h1>
+              <p class="teacher-qualification">{{ teacher.qualification }}</p>
+            </div>
+            
+            <!-- Rating and Reviews -->
+            <div class="rating-section">
+              <div class="rating-display">
+                <div class="stars-large">
+                  {% assign rating = teacher.rating %}
+                  {% for i in (1..5) %}
+                    {% if i <= rating %}
+                      <i class="fas fa-star"></i>
+                    {% elsif i <= rating + 0.5 %}
+                      <i class="fas fa-star-half-alt"></i>
+                    {% else %}
+                      <i class="far fa-star"></i>
+                    {% endif %}
+                  {% endfor %}
+                </div>
+                <span class="rating-number">{{ teacher.rating }}</span>
+                <span class="rating-text">({{ teacher.students_taught }} reviews)</span>
+              </div>
+              
+              <div class="rating-breakdown">
+                <div class="rating-bar">
+                  <span class="star-count">5★</span>
+                  <div class="bar"><div class="fill" style="width: 75%"></div></div>
+                  <span class="percentage">75%</span>
+                </div>
+                <div class="rating-bar">
+                  <span class="star-count">4★</span>
+                  <div class="bar"><div class="fill" style="width: 20%"></div></div>
+                  <span class="percentage">20%</span>
+                </div>
+                <div class="rating-bar">
+                  <span class="star-count">3★</span>
+                  <div class="bar"><div class="fill" style="width: 3%"></div></div>
+                  <span class="percentage">3%</span>
+                </div>
+                <div class="rating-bar">
+                  <span class="star-count">2★</span>
+                  <div class="bar"><div class="fill" style="width: 1%"></div></div>
+                  <span class="percentage">1%</span>
+                </div>
+                <div class="rating-bar">
+                  <span class="star-count">1★</span>
+                  <div class="bar"><div class="fill" style="width: 1%"></div></div>
+                  <span class="percentage">1%</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Key Stats -->
+            <div class="key-stats">
+              <div class="stat-item">
+                <div class="stat-icon">
+                  <i class="fas fa-graduation-cap"></i>
+                </div>
+                <div class="stat-content">
+                  <span class="stat-number">{{ teacher.students_taught }}+</span>
+                  <span class="stat-label">Students Taught</span>
+                </div>
+              </div>
+              
+              <div class="stat-item">
+                <div class="stat-icon">
+                  <i class="fas fa-calendar-alt"></i>
+                </div>
+                <div class="stat-content">
+                  <span class="stat-number">{{ teacher.experience }}+</span>
+                  <span class="stat-label">Years Experience</span>
+                </div>
+              </div>
+              
+              <div class="stat-item">
+                <div class="stat-icon">
+                  <i class="fas fa-clock"></i>
+                </div>
+                <div class="stat-content">
+                  <span class="stat-number">{{ teacher.contact.response_time | default: "2 hours" }}</span>
+                  <span class="stat-label">Response Time</span>
+                </div>
+              </div>
+              
+              <div class="stat-item">
+                <div class="stat-icon">
+                  <i class="fas fa-dollar-sign"></i>
+                </div>
+                <div class="stat-content">
+                  <span class="stat-number">${{ teacher.hourly_rate }}</span>
+                  <span class="stat-label">Per Hour</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Navigation Tabs -->
+  <section class="profile-navigation">
+    <div class="container">
+      <nav class="profile-tabs">
+        <button class="tab-btn active" data-tab="overview">
+          <i class="fas fa-user"></i>
+          <span>Overview</span>
+        </button>
+        <button class="tab-btn" data-tab="subjects">
+          <i class="fas fa-book"></i>
+          <span>Subjects</span>
+        </button>
+        <button class="tab-btn" data-tab="schedule">
+          <i class="fas fa-calendar"></i>
+          <span>Schedule</span>
+        </button>
+        <button class="tab-btn" data-tab="reviews">
+          <i class="fas fa-star"></i>
+          <span>Reviews</span>
+        </button>
+        <button class="tab-btn" data-tab="batches">
+          <i class="fas fa-users"></i>
+          <span>Batches</span>
+        </button>
+      </nav>
+    </div>
+  </section>
+
+  <!-- Tab Content -->
+  <section class="profile-content">
+    <div class="container">
+      <!-- Overview Tab -->
+      <div class="tab-content active" id="overview">
+        <div class="overview-grid">
+          <!-- About Section -->
+          <div class="about-section">
+            <h2>About {{ teacher.name }}</h2>
+            <p class="bio">{{ teacher.bio }}</p>
+            
+            <!-- Specializations -->
+            <div class="specializations">
+              <h3>Specializations</h3>
+              <div class="spec-tags">
+                {% for spec in teacher.specializations %}
+                <span class="spec-tag">{{ spec }}</span>
+                {% endfor %}
+              </div>
+            </div>
+            
+            <!-- Languages -->
+            <div class="languages">
+              <h3>Languages</h3>
+              <div class="lang-list">
+                {% for lang in teacher.languages %}
+                <div class="lang-item">
+                  <i class="fas fa-globe"></i>
+                  <span>{{ lang }}</span>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+            
+            <!-- Teaching Modes -->
+            <div class="teaching-modes">
+              <h3>Teaching Methods</h3>
+              <div class="modes-grid">
+                {% for mode in teacher.teaching_mode %}
+                <div class="mode-card">
+                  <div class="mode-icon">
+                    {% if mode == "Online" %}
+                      <i class="fas fa-video"></i>
+                    {% elsif mode == "Offline" %}
+                      <i class="fas fa-chalkboard-teacher"></i>
+                    {% else %}
+                      <i class="fas fa-laptop-house"></i>
+                    {% endif %}
+                  </div>
+                  <span class="mode-name">{{ mode }}</span>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+          
+          <!-- Sidebar Info -->
+          <div class="sidebar-info">
+            <!-- Contact Card -->
+            <div class="info-card contact-card">
+              <h3>Contact Information</h3>
+              <div class="contact-methods">
+                <div class="contact-method">
+                  <i class="fas fa-envelope"></i>
+                  <div class="method-info">
+                    <span class="method-label">Email</span>
+                    <span class="method-value">{{ teacher.contact.email }}</span>
+                  </div>
+                </div>
+                {% if teacher.contact.phone %}
+                <div class="contact-method">
+                  <i class="fas fa-phone"></i>
+                  <div class="method-info">
+                    <span class="method-label">Phone</span>
+                    <span class="method-value">{{ teacher.contact.phone }}</span>
+                  </div>
+                </div>
+                {% endif %}
+                {% if teacher.social.website %}
+                <div class="contact-method">
+                  <i class="fas fa-globe"></i>
+                  <div class="method-info">
+                    <span class="method-label">Website</span>
+                    <a href="{{ teacher.social.website }}" target="_blank" class="method-value">Visit Site</a>
+                  </div>
+                </div>
+                {% endif %}
+              </div>
+            </div>
+            
+            <!-- Badges -->
+            {% if teacher.badges.size > 0 %}
+            <div class="info-card badges-card">
+              <h3>Achievements</h3>
+              <div class="badges-grid">
+                {% for badge in teacher.badges %}
+                <div class="badge-item">
+                  <i class="fas fa-award"></i>
+                  <span>{{ badge }}</span>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+            {% endif %}
+            
+            <!-- Similar Teachers -->
+            <div class="info-card similar-teachers">
+              <h3>Similar Teachers</h3>
+              <div class="similar-list">
+                {% assign similar_teachers = site.data.teachers | where_exp: "t", "t.id != teacher.id" | slice: 0, 3 %}
+                {% for similar in similar_teachers %}
+                <div class="similar-teacher">
+                  <img src="{{ similar.photo }}" alt="{{ similar.name }}" class="similar-photo" />
+                  <div class="similar-info">
+                    <h4>{{ similar.name }}</h4>
+                    <p>{{ similar.subjects | join: ", " }}</p>
+                    <div class="similar-rating">
+                      <i class="fas fa-star"></i>
+                      <span>{{ similar.rating }}</span>
+                    </div>
+                  </div>
+                  <a href="/teachers/{{ similar.name | slugify }}/" class="similar-link">
+                    <i class="fas fa-arrow-right"></i>
+                  </a>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Subjects Tab -->
+      <div class="tab-content" id="subjects">
+        <div class="subjects-content">
+          <h2>Subjects & Expertise</h2>
+          <div class="subjects-grid">
+            {% for subject in teacher.subjects %}
+            <div class="subject-card-detailed">
+              <div class="subject-header">
+                <h3>{{ subject }}</h3>
+                <div class="subject-level">
+                  <span class="level-indicator expert">Expert</span>
+                </div>
+              </div>
+              <p class="subject-description">Comprehensive {{ subject | downcase }} instruction with practical applications and real-world examples.</p>
+              <div class="subject-features">
+                <span class="feature">✓ Beginner to Advanced</span>
+                <span class="feature">✓ Practical Projects</span>
+                <span class="feature">✓ Exam Preparation</span>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      
+      <!-- Schedule Tab -->
+      <div class="tab-content" id="schedule">
+        <div class="schedule-content">
+          <h2>Weekly Availability</h2>
+          <div class="schedule-grid">
+            {% assign days = "monday,tuesday,wednesday,thursday,friday,saturday,sunday" | split: "," %}
+            {% for day in days %}
+              {% assign day_schedule = teacher.availability[day] %}
+              <div class="day-column">
+                <h3 class="day-name">{{ day | capitalize }}</h3>
+                <div class="time-slots">
+                  {% if day_schedule.size > 0 %}
+                    {% for slot in day_schedule %}
+                    <div class="time-slot available">
+                      <span class="time">{{ slot }}</span>
+                      <button class="book-slot">Book</button>
+                    </div>
+                    {% endfor %}
+                  {% else %}
+                    <div class="time-slot unavailable">
+                      <span class="no-availability">Not Available</span>
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      
+      <!-- Reviews Tab -->
+      <div class="tab-content" id="reviews">
+        <div class="reviews-content">
+          <h2>Student Reviews</h2>
+          <div class="reviews-list">
+            <!-- Sample reviews - in real implementation, these would come from data -->
+            <div class="review-item">
+              <div class="review-header">
+                <div class="reviewer-avatar">JD</div>
+                <div class="reviewer-details">
+                  <h4>John Doe</h4>
+                  <div class="review-meta">
+                    <div class="review-rating">
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                    </div>
+                    <span class="review-date">2 weeks ago</span>
+                  </div>
+                </div>
+              </div>
+              <div class="review-content">
+                <p>Excellent teacher! {{ teacher.name }} made complex concepts easy to understand. Highly recommend for anyone serious about learning.</p>
+              </div>
+            </div>
+            
+            <div class="review-item">
+              <div class="review-header">
+                <div class="reviewer-avatar">SM</div>
+                <div class="reviewer-details">
+                  <h4>Sarah Miller</h4>
+                  <div class="review-meta">
+                    <div class="review-rating">
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                    </div>
+                    <span class="review-date">1 month ago</span>
+                  </div>
+                </div>
+              </div>
+              <div class="review-content">
+                <p>Great teaching style and very patient. My understanding improved significantly after joining the classes.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Batches Tab -->
+      <div class="tab-content" id="batches">
+        <div class="batches-content">
+          <h2>Current & Upcoming Batches</h2>
+          <div class="batches-grid">
+            {% for batch in teacher.batches %}
+            <div class="batch-card-detailed">
+              <div class="batch-header">
+                <h3>{{ batch.name }}</h3>
+                <div class="batch-status">
+                  {% assign spots_left = batch.capacity | minus: batch.enrolled %}
+                  {% if spots_left > 5 %}
+                    <span class="status available">{{ spots_left }} spots available</span>
+                  {% elsif spots_left > 0 %}
+                    <span class="status limited">Only {{ spots_left }} spots left</span>
+                  {% else %}
+                    <span class="status full">Batch Full - Join Waitlist</span>
+                  {% endif %}
+                </div>
+              </div>
+              
+              <div class="batch-details">
+                <div class="detail-row">
+                  <i class="fas fa-calendar-start"></i>
+                  <span><strong>Start Date:</strong> {{ batch.start_date | date: "%B %d, %Y" }}</span>
+                </div>
+                <div class="detail-row">
+                  <i class="fas fa-clock"></i>
+                  <span><strong>Schedule:</strong> {{ batch.schedule }}</span>
+                </div>
+                <div class="detail-row">
+                  <i class="fas fa-hourglass-half"></i>
+                  <span><strong>Duration:</strong> {{ batch.duration }}</span>
+                </div>
+                <div class="detail-row">
+                  <i class="fas fa-users"></i>
+                  <span><strong>Students:</strong> {{ batch.enrolled }}/{{ batch.capacity }}</span>
+                </div>
+                <div class="detail-row">
+                  <i class="fas fa-signal"></i>
+                  <span><strong>Level:</strong> {{ batch.level }}</span>
+                </div>
+              </div>
+              
+              <p class="batch-description">{{ batch.description }}</p>
+              
+              <div class="batch-footer">
+                <div class="batch-price">
+                  <span class="price">${{ batch.fee }}</span>
+                  <span class="price-period">for {{ batch.duration }}</span>
+                </div>
+                <button class="btn btn-primary" {% if spots_left == 0 %}disabled{% endif %}>
+                  {% if spots_left > 0 %}
+                    Enroll Now
+                  {% else %}
+                    Join Waitlist
+                  {% endif %}
+                </button>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<style>
+/* Teacher Profile Page Styles */
+.teacher-profile-page {
+  padding-top: 80px;
+  min-height: 100vh;
+}
+
+/* Profile Header */
+.profile-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: var(--space-8) 0 var(--space-12) 0;
+  position: relative;
+}
+
+.profile-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="%23ffffff" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
+}
+
+.profile-header-content {
+  position: relative;
+  z-index: 2;
+}
+
+.back-navigation {
+  margin-bottom: var(--space-6);
+}
+
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  font-weight: var(--font-weight-medium);
+  transition: color var(--transition-fast);
+}
+
+.back-btn:hover {
+  color: white;
+}
+
+.teacher-profile-info {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-8);
+  align-items: start;
+}
+
+.profile-photo-section {
+  text-align: center;
+}
+
+.profile-photo-container {
+  position: relative;
+  margin-bottom: var(--space-6);
+}
+
+.profile-photo {
+  width: 200px;
+  height: 200px;
+  border-radius: var(--radius-full);
+  object-fit: cover;
+  border: 6px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.status-indicators {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.status-badge {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-semibold);
+  backdrop-filter: blur(10px);
+}
+
+.status-badge.verified {
+  background: rgba(34, 197, 94, 0.9);
+  color: white;
+}
+
+.status-badge.featured {
+  background: rgba(245, 158, 11, 0.9);
+  color: white;
+}
+
+.status-badge.online {
+  background: rgba(59, 130, 246, 0.9);
+  color: white;
+}
+
+.quick-actions {
+  display: flex;
+  gap: var(--space-3);
+  justify-content: center;
+}
+
+.action-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-3);
+  border: none;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  min-width: 70px;
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-medium);
+}
+
+.action-btn.primary {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.action-btn.secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.action-btn:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.profile-details {
+  padding-left: var(--space-6);
+}
+
+.teacher-name {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: var(--font-weight-black);
+  margin-bottom: var(--space-2);
+  color: white;
+}
+
+.teacher-qualification {
+  font-size: 1.25rem;
+  opacity: 0.9;
+  margin-bottom: var(--space-8);
+}
+
+.rating-section {
+  margin-bottom: var(--space-8);
+}
+
+.rating-display {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+.stars-large {
+  color: #fbbf24;
+  font-size: 1.5rem;
+}
+
+.rating-number {
+  font-size: 2rem;
+  font-weight: var(--font-weight-bold);
+}
+
+.rating-text {
+  opacity: 0.8;
+}
+
+.rating-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  max-width: 300px;
+}
+
+.rating-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 0.875rem;
+}
+
+.star-count {
+  width: 25px;
+}
+
+.bar {
+  flex: 1;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.fill {
+  height: 100%;
+  background: #fbbf24;
+  transition: width var(--transition-normal);
+}
+
+.percentage {
+  width: 30px;
+  text-align: right;
+  opacity: 0.8;
+}
+
+.key-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--space-4);
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.stat-icon {
+  width: 48px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+}
+
+.stat-number {
+  font-size: 1.5rem;
+  font-weight: var(--font-weight-bold);
+  display: block;
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  opacity: 0.8;
+}
+
+/* Profile Navigation */
+.profile-navigation {
+  background: white;
+  border-bottom: 1px solid var(--gray-200);
+  position: sticky;
+  top: 80px;
+  z-index: 100;
+}
+
+.profile-tabs {
+  display: flex;
+  gap: var(--space-2);
+  overflow-x: auto;
+  padding: var(--space-4) 0;
+}
+
+.tab-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-6);
+  border: none;
+  background: transparent;
+  color: var(--gray-600);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+  font-weight: var(--font-weight-medium);
+}
+
+.tab-btn:hover,
+.tab-btn.active {
+  background: var(--primary-50);
+  color: var(--primary-600);
+}
+
+/* Tab Content */
+.profile-content {
+  padding: var(--space-8) 0;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.overview-grid {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: var(--space-8);
+}
+
+.about-section h2 {
+  font-size: 1.875rem;
+  color: var(--gray-900);
+  margin-bottom: var(--space-6);
+}
+
+.bio {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--gray-700);
+  margin-bottom: var(--space-8);
+}
+
+.specializations,
+.languages,
+.teaching-modes {
+  margin-bottom: var(--space-8);
+}
+
+.specializations h3,
+.languages h3,
+.teaching-modes h3 {
+  font-size: 1.25rem;
+  color: var(--gray-900);
+  margin-bottom: var(--space-4);
+}
+
+.spec-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.spec-tag {
+  background: var(--primary-50);
+  color: var(--primary-700);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+  font-weight: var(--font-weight-medium);
+}
+
+.lang-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.lang-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--gray-700);
+}
+
+.modes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: var(--space-4);
+}
+
+.mode-card {
+  text-align: center;
+  padding: var(--space-4);
+  background: var(--gray-50);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--gray-200);
+}
+
+.mode-icon {
+  font-size: 2rem;
+  color: var(--primary-600);
+  margin-bottom: var(--space-2);
+}
+
+.mode-name {
+  font-weight: var(--font-weight-medium);
+  color: var(--gray-800);
+}
+
+/* Sidebar Info */
+.sidebar-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.info-card {
+  background: white;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-sm);
+}
+
+.info-card h3 {
+  font-size: 1.125rem;
+  color: var(--gray-900);
+  margin-bottom: var(--space-4);
+}
+
+.contact-methods {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.contact-method {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.contact-method i {
+  width: 20px;
+  color: var(--primary-600);
+}
+
+.method-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.method-label {
+  font-size: 0.875rem;
+  color: var(--gray-500);
+}
+
+.method-value {
+  font-weight: var(--font-weight-medium);
+  color: var(--gray-800);
+}
+
+.badges-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.badge-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2);
+  background: var(--amber-50);
+  border-radius: var(--radius-md);
+  color: var(--amber-700);
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-medium);
+}
+
+.similar-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.similar-teacher {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border-radius: var(--radius-lg);
+  transition: background var(--transition-fast);
+}
+
+.similar-teacher:hover {
+  background: var(--gray-50);
+}
+
+.similar-photo {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-full);
+  object-fit: cover;
+}
+
+.similar-info {
+  flex: 1;
+}
+
+.similar-info h4 {
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--space-1);
+}
+
+.similar-info p {
+  font-size: 0.75rem;
+  color: var(--gray-500);
+  margin: 0;
+}
+
+.similar-rating {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: 0.75rem;
+  color: var(--amber-600);
+  margin-top: var(--space-1);
+}
+
+.similar-link {
+  color: var(--gray-400);
+  transition: color var(--transition-fast);
+}
+
+.similar-teacher:hover .similar-link {
+  color: var(--primary-600);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .teacher-profile-info {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  .profile-details {
+    padding-left: 0;
+  }
+  
+  .profile-tabs {
+    justify-content: flex-start;
+    padding: var(--space-3) 0;
+  }
+  
+  .tab-btn {
+    padding: var(--space-2) var(--space-4);
+    font-size: 0.875rem;
+  }
+  
+  .overview-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .key-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .profile-photo {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .key-stats {
+    grid-template-columns: 1fr;
+  }
+  
+  .quick-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .action-btn {
+    flex-direction: row;
+    min-width: 120px;
+    justify-content: center;
+  }
+}
+</style>
+
+<script>
+// Teacher profile page functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+    
+    // Tab switching
+    tabButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const targetTab = this.dataset.tab;
+            
+            // Remove active class from all tabs and contents
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('active'));
+            
+            // Add active class to clicked tab and corresponding content
+            this.classList.add('active');
+            document.getElementById(targetTab).classList.add('active');
+            
+            // Update URL hash
+            window.location.hash = targetTab;
+        });
+    });
+    
+    // Check URL hash on load
+    const hash = window.location.hash.substring(1);
+    if (hash && document.getElementById(hash)) {
+        document.querySelector(`[data-tab="${hash}"]`).click();
+    }
+    
+    // Booking functionality
+    document.querySelectorAll('.book-slot').forEach(button => {
+        button.addEventListener('click', function() {
+            // Implement booking logic
+            this.textContent = 'Booked';
+            this.disabled = true;
+            this.style.background = 'var(--success)';
+        });
+    });
+});
+
+// Contact teacher function
+function contactTeacher(email, name) {
+    const subject = encodeURIComponent(`Inquiry about tutoring with ${name}`);
+    const body = encodeURIComponent(`Hi ${name},\n\nI'm interested in learning more about your tutoring services. Could we schedule a brief conversation to discuss my learning goals?\n\nThank you!`);
+    window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+}
+</script>
