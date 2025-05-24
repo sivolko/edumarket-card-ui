@@ -1,0 +1,114 @@
+<div class="search-filters">
+  <!-- Subject Categories Filter -->
+  <div class="filter-group">
+    <h4 class="filter-title">Subject Categories</h4>
+    <div class="filter-options">
+      {% for category in site.subject_categories %}
+      <label class="filter-option">
+        <input type="checkbox" name="category" value="{{ category.name | slugify }}">
+        <i class="fas fa-{{ category.icon }}"></i>
+        <span>{{ category.name }}</span>
+        <span class="count"></span>
+      </label>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- Experience Level Filter -->
+  <div class="filter-group">
+    <h4 class="filter-title">Experience Level</h4>
+    <div class="filter-options">
+      <label class="filter-option">
+        <input type="checkbox" name="level" value="beginner">
+        <i class="fas fa-seedling"></i>
+        <span>Beginner</span>
+      </label>
+      <label class="filter-option">
+        <input type="checkbox" name="level" value="intermediate">
+        <i class="fas fa-star-half-alt"></i>
+        <span>Intermediate</span>
+      </label>
+      <label class="filter-option">
+        <input type="checkbox" name="level" value="advanced">
+        <i class="fas fa-star"></i>
+        <span>Advanced</span>
+      </label>
+    </div>
+  </div>
+
+  <!-- Availability Filter -->
+  <div class="filter-group">
+    <h4 class="filter-title">Availability</h4>
+    <div class="filter-options">
+      <label class="filter-option">
+        <input type="checkbox" name="availability" value="weekdays">
+        <i class="fas fa-calendar-week"></i>
+        <span>Weekdays</span>
+      </label>
+      <label class="filter-option">
+        <input type="checkbox" name="availability" value="weekends">
+        <i class="fas fa-calendar"></i>
+        <span>Weekends</span>
+      </label>
+      <label class="filter-option">
+        <input type="checkbox" name="availability" value="flexible">
+        <i class="fas fa-clock"></i>
+        <span>Flexible Hours</span>
+      </label>
+    </div>
+  </div>
+
+  <!-- Teaching Mode Filter -->
+  <div class="filter-group">
+    <h4 class="filter-title">Teaching Mode</h4>
+    <div class="filter-options">
+      <label class="filter-option">
+        <input type="checkbox" name="mode" value="online">
+        <i class="fas fa-laptop"></i>
+        <span>Online</span>
+      </label>
+      <label class="filter-option">
+        <input type="checkbox" name="mode" value="in-person">
+        <i class="fas fa-chalkboard-teacher"></i>
+        <span>In-Person</span>
+      </label>
+      <label class="filter-option">
+        <input type="checkbox" name="mode" value="hybrid">
+        <i class="fas fa-laptop-house"></i>
+        <span>Hybrid</span>
+      </label>
+    </div>
+  </div>
+
+  <!-- Price Range Filter -->
+  <div class="filter-group">
+    <h4 class="filter-title">Price Range</h4>
+    <div class="filter-options price-range">
+      <div class="range-slider">
+        <input type="range" min="0" max="200" value="100" class="price-slider" id="priceRange">
+      </div>
+      <div class="price-inputs">
+        <div class="price-input">
+          <label for="minPrice">Min</label>
+          <input type="number" id="minPrice" value="0" min="0" max="200">
+        </div>
+        <div class="price-input">
+          <label for="maxPrice">Max</label>
+          <input type="number" id="maxPrice" value="200" min="0" max="200">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filter Actions -->
+  <div class="filter-actions">
+    <button class="btn btn-primary apply-filters">
+      <i class="fas fa-filter"></i>
+      Apply Filters
+    </button>
+    <button class="btn btn-secondary reset-filters">
+      <i class="fas fa-undo"></i>
+      Reset
+    </button>
+  </div>
+</div>

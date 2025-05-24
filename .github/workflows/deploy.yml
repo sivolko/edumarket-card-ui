@@ -25,11 +25,18 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '16'
+          cache: 'npm'
           
-      - name: Install Dependencies
+      - name: Install global dependencies
+        run: npm install -g svgo
+          
+      - name: Install project dependencies
         run: |
-          npm install -g svgo
-          npm ci
+          if [ -f "package-lock.json" ]; then
+            npm ci
+          else
+            npm install
+          fi
           
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
