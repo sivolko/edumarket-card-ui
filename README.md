@@ -1,4 +1,4 @@
-# 🎓 EduMarket Card UI
+# 🏫 EduMarket Card UI
 
 > A modern, card-based teacher-student marketplace built with Jekyll and inspired by contemporary mobile app design.
 
@@ -8,7 +8,7 @@
 
 ## 🚀 Live Demo
 
-**[View Live Site →](https://sivolko.github.io/edumarket-card-ui/)**
+**[View Live Site ↗](https://sivolko.github.io/edumarket-card-ui/)**
 
 ## ✨ Features
 
@@ -83,28 +83,28 @@ npm run deploy:github
 
 ```
 edumarket-card-ui/
-├── 📁 _data/              # YAML data files
-│   ├── teachers.yml       # Teacher database
-│   └── subjects.yml       # Subject information
-├── 📁 _includes/          # Reusable components
-│   ├── teacher-card.html  # Teacher card component
-│   ├── subject-card.html  # Subject category card
-│   └── search-filters.html # Search & filter component
-├── 📁 _layouts/           # Page layouts
-│   ├── default.html       # Base layout
-│   ├── home.html          # Homepage layout
-│   └── teacher.html       # Teacher profile layout
-├── 📁 assets/             # Static assets
-│   ├── css/main.css       # Main stylesheet
-│   ├── js/main.js         # JavaScript functionality
-│   └── images/            # Images and icons
-├── 📁 .github/workflows/  # GitHub Actions
-│   └── deploy.yml         # Auto-deployment workflow
-├── index.html             # Homepage
-├── teachers.html          # Teachers listing
-├── subjects.html          # Subjects listing
-├── manifest.json          # PWA manifest
-└── sw.js                  # Service Worker
+├── 📁 _data/                # YAML data files
+│   ├── teachers.yml         # Teacher database
+│   └── subjects.yml         # Subject information
+├── 📁 _includes/            # Reusable components
+│   ├── teacher-card.html    # Teacher card component
+│   ├── subject-card.html    # Subject category card
+│   └── search-filters.html  # Search & filter component
+├── 📁 _layouts/             # Page layouts
+│   ├── default.html         # Base layout
+│   ├── home.html            # Homepage layout
+│   └── teacher.html         # Teacher profile layout
+├── 📁 assets/               # Static assets
+│   ├── css/main.css         # Main stylesheet
+│   ├── js/main.js           # JavaScript functionality
+│   └── images/              # Images and icons
+├── 📁 .github/workflows/    # GitHub Actions
+│   └── deploy.yml           # Auto-deployment workflow
+├── index.html               # Homepage
+├── teachers.html            # Teachers listing
+├── subjects.html            # Subjects listing
+├── manifest.json            # PWA manifest
+└── sw.js                    # Service Worker
 ```
 
 ## 🎨 Customization
@@ -138,7 +138,7 @@ Update CSS custom properties in `assets/css/main.css`:
 
 ```css
 :root {
-  --primary-600: #3b82f6;  /* Main brand color */
+  --primary-600: #3b82f6;   /* Main brand color */
   --secondary-600: #8b5cf6; /* Secondary color */
   /* ... other variables */
 }
@@ -171,6 +171,16 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Jekyll community for excellent documentation
 - Font Awesome for icons
 - Inter font family by Rasmus Andersson
+
+## 🔧 Recent Updates
+
+- **GitHub Pages Compatibility**: Updated Gemfile and configuration for full GitHub Pages compatibility
+- **Simplified Deployment**: Streamlined GitHub Actions workflow for reliable deployment  
+- **Jekyll Optimization**: Improved Jekyll configuration for better build performance
+
+---
+
+**Site Status**: [![Deploy Status](https://github.com/sivolko/edumarket-card-ui/actions/workflows/deploy.yml/badge.svg)](https://github.com/sivolko/edumarket-card-ui/actions/workflows/deploy.yml) | **Live Site**: [edumarket-card-ui](https://sivolko.github.io/edumarket-card-ui/)
 
 ---
 
