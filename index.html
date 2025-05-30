@@ -19,7 +19,7 @@ description: "Discover amazing teachers and join the best learning experiences w
       <i class="fas fa-search"></i>
     </button>
     <div class="profile-avatar">
-      <img src="/assets/images/profile-avatar.jpg" alt="Profile" />
+      <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face&auto=format" alt="Profile" />
     </div>
   </div>
 </header>
@@ -140,7 +140,7 @@ description: "Discover amazing teachers and join the best learning experiences w
     <div class="trending-card">
       <div class="card-content">
         <div class="card-avatar">
-          <img src="/assets/images/azure-avatar.jpg" alt="Azure Community" />
+          <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face&auto=format" alt="Azure Community" />
         </div>
         <div class="card-info">
           <h3 class="card-title">Live Azure session by Azure Dev Community</h3>
@@ -181,7 +181,7 @@ description: "Discover amazing teachers and join the best learning experiences w
     <div class="trending-card">
       <div class="card-content">
         <div class="card-avatar">
-          <img src="{{ teacher.photo }}" alt="{{ teacher.name }}" />
+          <img src="https://images.unsplash.com/photo-{{ forloop.index | plus: 1550000000000 }}-1?w=100&h=100&fit=crop&crop=face&auto=format" alt="{{ teacher.name }}" />
         </div>
         <div class="card-info">
           <h3 class="card-title">{{ teacher.name }} - {{ teacher.subjects[0] }} Expert</h3>
@@ -202,48 +202,69 @@ description: "Discover amazing teachers and join the best learning experiences w
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  // Hamburger menu functionality
-  const hamburgerBtn = document.querySelector('.hamburger-btn');
-  hamburgerBtn.addEventListener('click', function() {
-    this.classList.toggle('active');
-    // Add mobile menu toggle logic here
-  });
-  
-  // Popular items click functionality
-  const popularItems = document.querySelectorAll('.popular-item');
-  popularItems.forEach(item => {
-    item.addEventListener('click', function() {
-      const category = this.dataset.category;
-      // Handle category navigation
-      console.log('Navigate to:', category);
+  // Check if mobile.js is loaded, if not fall back to basic functionality
+  if (typeof MobileApp === 'undefined') {
+    // Basic fallback functionality
+    console.log('Mobile app JavaScript loaded');
+    
+    // Hamburger menu functionality
+    const hamburgerBtn = document.querySelector('.hamburger-btn');
+    if (hamburgerBtn) {
+      hamburgerBtn.addEventListener('click', function() {
+        this.classList.toggle('active');
+      });
+    }
+    
+    // Popular items click functionality
+    const popularItems = document.querySelectorAll('.popular-item');
+    popularItems.forEach(item => {
+      item.addEventListener('click', function() {
+        const category = this.dataset.category;
+        console.log('Navigate to:', category);
+      });
     });
-  });
-  
-  // Join button functionality
-  const joinBtns = document.querySelectorAll('.join-btn, .join-now-btn');
-  joinBtns.forEach(btn => {
-    btn.addEventListener('click', function(e) {
-      e.stopPropagation();
-      this.classList.add('joining');
-      setTimeout(() => {
-        this.innerHTML = '<i class="fas fa-check"></i> Joined';
-      }, 300);
+    
+    // Join button functionality
+    const joinBtns = document.querySelectorAll('.join-btn, .join-now-btn');
+    joinBtns.forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        if (this.classList.contains('joining')) return;
+        
+        this.classList.add('joining');
+        setTimeout(() => {
+          this.innerHTML = '<i class="fas fa-check"></i> Joined';
+          this.style.background = '#10b981';
+          this.style.color = 'white';
+        }, 500);
+      });
     });
-  });
-  
-  // Add button functionality
-  const addBtns = document.querySelectorAll('.add-btn');
-  addBtns.forEach(btn => {
-    btn.addEventListener('click', function(e) {
-      e.stopPropagation();
-      this.classList.toggle('added');
-      const icon = this.querySelector('i');
-      if (this.classList.contains('added')) {
-        icon.className = 'fas fa-check';
-      } else {
-        icon.className = 'fas fa-plus';
-      }
+    
+    // Add button functionality
+    const addBtns = document.querySelectorAll('.add-btn');
+    addBtns.forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        this.classList.toggle('added');
+        const icon = this.querySelector('i');
+        if (this.classList.contains('added')) {
+          icon.className = 'fas fa-check';
+          this.style.color = '#10b981';
+        } else {
+          icon.className = 'fas fa-plus';
+          this.style.color = '';
+        }
+      });
     });
-  });
+    
+    // Carousel dots functionality
+    const dots = document.querySelectorAll('.dot');
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', function() {
+        dots.forEach(d => d.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+  }
 });
 </script>
