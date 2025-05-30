@@ -10,13 +10,6 @@ highlighter: rouge
 permalink: pretty
 theme_color: "#6366f1"
 
-# Liquid rendering settings
-liquid:
-  error_mode: strict
-  strict_filters: true
-  strict_variables: true
-  render_depth: 10
-
 # Collections
 collections:
   teachers:
@@ -43,10 +36,11 @@ defaults:
     values:
       layout: "default"
 
-# Plugin Settings
+# Plugin Settings (GitHub Pages compatible)
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
+  - jekyll-sitemap
 
 # Exclude files from processing
 exclude:
@@ -59,9 +53,6 @@ exclude:
   - README.md
   - package.json
   - package-lock.json
-
-# Image optimization settings
-svgo: false  # Disable svgo to prevent build issues
 
 # Custom settings
 subject_categories:
