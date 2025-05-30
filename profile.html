@@ -1,0 +1,625 @@
+---
+layout: mobile
+title: "Profile"
+description: "Your learning profile and achievements"
+---
+
+<!-- Mobile Header -->
+<header class="mobile-header">
+  <div class="header-left">
+    <button class="hamburger-btn">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+  
+  <div class="header-center">
+    <h1 class="page-title">Profile</h1>
+  </div>
+  
+  <div class="header-right">
+    <button class="settings-btn">
+      <i class="fas fa-cog"></i>
+    </button>
+  </div>
+</header>
+
+<!-- Profile Header -->
+<section class="profile-header">
+  <div class="profile-avatar-large">
+    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face&auto=format" alt="Shubhendu" />
+    <button class="edit-avatar-btn">
+      <i class="fas fa-camera"></i>
+    </button>
+  </div>
+  
+  <div class="profile-info">
+    <h2 class="profile-name">Shubhendu</h2>
+    <p class="profile-email">shubhendu@edumarket.com</p>
+    <div class="profile-stats">
+      <div class="stat">
+        <span class="stat-number">12</span>
+        <span class="stat-label">Courses</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number">85%</span>
+        <span class="stat-label">Progress</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number">24</span>
+        <span class="stat-label">Hours</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Quick Actions -->
+<section class="quick-actions">
+  <div class="action-cards">
+    <div class="action-card" data-action="edit-profile">
+      <i class="fas fa-user-edit"></i>
+      <span>Edit Profile</span>
+    </div>
+    <div class="action-card" data-action="my-courses">
+      <i class="fas fa-book-open"></i>
+      <span>My Courses</span>
+    </div>
+    <div class="action-card" data-action="achievements">
+      <i class="fas fa-trophy"></i>
+      <span>Achievements</span>
+    </div>
+    <div class="action-card" data-action="favorites">
+      <i class="fas fa-heart"></i>
+      <span>Favorites</span>
+    </div>
+  </div>
+</section>
+
+<!-- Recent Activity -->
+<section class="recent-activity">
+  <h3 class="section-title">Recent Activity</h3>
+  
+  <div class="activity-list">
+    <div class="activity-item">
+      <div class="activity-icon completed">
+        <i class="fas fa-check"></i>
+      </div>
+      <div class="activity-content">
+        <h4 class="activity-title">Completed Python Basics</h4>
+        <p class="activity-time">2 hours ago</p>
+      </div>
+      <div class="activity-badge">
+        <span class="progress-badge">100%</span>
+      </div>
+    </div>
+    
+    <div class="activity-item">
+      <div class="activity-icon in-progress">
+        <i class="fas fa-play"></i>
+      </div>
+      <div class="activity-content">
+        <h4 class="activity-title">Started Calculus Advanced</h4>
+        <p class="activity-time">1 day ago</p>
+      </div>
+      <div class="activity-badge">
+        <span class="progress-badge">25%</span>
+      </div>
+    </div>
+    
+    <div class="activity-item">
+      <div class="activity-icon joined">
+        <i class="fas fa-users"></i>
+      </div>
+      <div class="activity-content">
+        <h4 class="activity-title">Joined Azure Dev Community</h4>
+        <p class="activity-time">3 days ago</p>
+      </div>
+      <div class="activity-badge">
+        <span class="new-badge">New</span>
+      </div>
+    </div>
+    
+    <div class="activity-item">
+      <div class="activity-icon achievement">
+        <i class="fas fa-star"></i>
+      </div>
+      <div class="activity-content">
+        <h4 class="activity-title">Earned "Quick Learner" badge</h4>
+        <p class="activity-time">1 week ago</p>
+      </div>
+      <div class="activity-badge">
+        <span class="achievement-badge">🏆</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Learning Streak -->
+<section class="learning-streak">
+  <div class="streak-card">
+    <div class="streak-icon">
+      <i class="fas fa-fire"></i>
+    </div>
+    <div class="streak-content">
+      <h3 class="streak-title">Learning Streak</h3>
+      <div class="streak-counter">
+        <span class="streak-number">7</span>
+        <span class="streak-unit">days</span>
+      </div>
+      <p class="streak-description">Keep learning to maintain your streak!</p>
+    </div>
+    <div class="streak-calendar">
+      <div class="calendar-day active"></div>
+      <div class="calendar-day active"></div>
+      <div class="calendar-day active"></div>
+      <div class="calendar-day active"></div>
+      <div class="calendar-day active"></div>
+      <div class="calendar-day active"></div>
+      <div class="calendar-day active"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Settings Menu -->
+<section class="settings-menu">
+  <h3 class="section-title">Settings</h3>
+  
+  <div class="settings-list">
+    <div class="setting-item" data-setting="notifications">
+      <div class="setting-icon">
+        <i class="fas fa-bell"></i>
+      </div>
+      <div class="setting-content">
+        <h4 class="setting-title">Notifications</h4>
+        <p class="setting-description">Manage your notification preferences</p>
+      </div>
+      <div class="setting-action">
+        <i class="fas fa-chevron-right"></i>
+      </div>
+    </div>
+    
+    <div class="setting-item" data-setting="privacy">
+      <div class="setting-icon">
+        <i class="fas fa-shield-alt"></i>
+      </div>
+      <div class="setting-content">
+        <h4 class="setting-title">Privacy</h4>
+        <p class="setting-description">Control your privacy settings</p>
+      </div>
+      <div class="setting-action">
+        <i class="fas fa-chevron-right"></i>
+      </div>
+    </div>
+    
+    <div class="setting-item" data-setting="language">
+      <div class="setting-icon">
+        <i class="fas fa-language"></i>
+      </div>
+      <div class="setting-content">
+        <h4 class="setting-title">Language</h4>
+        <p class="setting-description">Change app language</p>
+      </div>
+      <div class="setting-action">
+        <span class="current-language">English</span>
+        <i class="fas fa-chevron-right"></i>
+      </div>
+    </div>
+    
+    <div class="setting-item" data-setting="help">
+      <div class="setting-icon">
+        <i class="fas fa-question-circle"></i>
+      </div>
+      <div class="setting-content">
+        <h4 class="setting-title">Help & Support</h4>
+        <p class="setting-description">Get help and contact support</p>
+      </div>
+      <div class="setting-action">
+        <i class="fas fa-chevron-right"></i>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+/* Profile Page Specific Styles */
+.profile-header {
+  background: linear-gradient(135deg, var(--primary-purple) 0%, var(--primary-purple-light) 100%);
+  padding: var(--spacing-6) var(--spacing-5);
+  text-align: center;
+  color: var(--white);
+}
+
+.profile-avatar-large {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto var(--spacing-4);
+}
+
+.profile-avatar-large img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+}
+
+.edit-avatar-btn {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--white);
+  color: var(--primary-purple);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+}
+
+.profile-name {
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  margin-bottom: var(--spacing-1);
+}
+
+.profile-email {
+  opacity: 0.8;
+  margin-bottom: var(--spacing-4);
+  font-size: var(--font-size-sm);
+}
+
+.profile-stats {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-8);
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat-number {
+  display: block;
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+}
+
+.stat-label {
+  font-size: var(--font-size-xs);
+  opacity: 0.8;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.quick-actions {
+  padding: var(--spacing-6) var(--spacing-5);
+}
+
+.action-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-4);
+}
+
+.action-card {
+  background: var(--white);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-5);
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.action-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.action-card i {
+  font-size: var(--font-size-2xl);
+  color: var(--primary-purple);
+  margin-bottom: var(--spacing-2);
+}
+
+.action-card span {
+  display: block;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.recent-activity,
+.learning-streak,
+.settings-menu {
+  padding: 0 var(--spacing-5) var(--spacing-6);
+}
+
+.activity-list,
+.settings-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+}
+
+.activity-item,
+.setting-item {
+  background: var(--white);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-4);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.activity-item:hover,
+.setting-item:hover {
+  transform: translateX(2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.activity-icon,
+.setting-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-base);
+  flex-shrink: 0;
+}
+
+.activity-icon.completed {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.activity-icon.in-progress {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.activity-icon.joined {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.activity-icon.achievement {
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+.setting-icon {
+  background: #f8fafc;
+  color: var(--primary-purple);
+}
+
+.activity-content,
+.setting-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.activity-title,
+.setting-title {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  margin-bottom: var(--spacing-1);
+  color: var(--text-primary);
+}
+
+.activity-time,
+.setting-description {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+}
+
+.activity-badge {
+  flex-shrink: 0;
+}
+
+.progress-badge {
+  background: var(--primary-purple);
+  color: var(--white);
+  padding: var(--spacing-1) var(--spacing-2);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+}
+
+.new-badge {
+  background: var(--success-green);
+  color: var(--white);
+  padding: var(--spacing-1) var(--spacing-2);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+}
+
+.achievement-badge {
+  font-size: var(--font-size-lg);
+}
+
+.setting-action {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  color: var(--text-secondary);
+}
+
+.current-language {
+  font-size: var(--font-size-sm);
+  color: var(--text-primary);
+}
+
+.streak-card {
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-6);
+  color: var(--white);
+  text-align: center;
+}
+
+.streak-icon {
+  font-size: var(--font-size-3xl);
+  margin-bottom: var(--spacing-3);
+}
+
+.streak-title {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  margin-bottom: var(--spacing-2);
+}
+
+.streak-counter {
+  margin-bottom: var(--spacing-3);
+}
+
+.streak-number {
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+}
+
+.streak-unit {
+  font-size: var(--font-size-base);
+  opacity: 0.8;
+  margin-left: var(--spacing-1);
+}
+
+.streak-description {
+  opacity: 0.9;
+  margin-bottom: var(--spacing-4);
+  font-size: var(--font-size-sm);
+}
+
+.streak-calendar {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-1);
+}
+
+.calendar-day {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.calendar-day.active {
+  background: var(--white);
+}
+
+@media (max-width: 768px) {
+  .profile-stats {
+    gap: var(--spacing-6);
+  }
+  
+  .action-cards {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Action cards functionality
+  const actionCards = document.querySelectorAll('.action-card');
+  actionCards.forEach(card => {
+    card.addEventListener('click', function() {
+      const action = this.dataset.action;
+      
+      // Add visual feedback
+      this.style.transform = 'scale(0.98)';
+      setTimeout(() => {
+        this.style.transform = '';
+      }, 150);
+      
+      // Handle action
+      handleAction(action);
+    });
+  });
+  
+  // Settings items functionality
+  const settingItems = document.querySelectorAll('.setting-item');
+  settingItems.forEach(item => {
+    item.addEventListener('click', function() {
+      const setting = this.dataset.setting;
+      
+      // Add visual feedback
+      this.style.transform = 'translateX(4px)';
+      setTimeout(() => {
+        this.style.transform = '';
+      }, 150);
+      
+      // Handle setting
+      handleSetting(setting);
+    });
+  });
+  
+  // Edit avatar functionality
+  const editAvatarBtn = document.querySelector('.edit-avatar-btn');
+  if (editAvatarBtn) {
+    editAvatarBtn.addEventListener('click', function() {
+      console.log('Edit avatar clicked');
+      // TODO: Implement avatar editing
+    });
+  }
+  
+  // Settings button functionality
+  const settingsBtn = document.querySelector('.settings-btn');
+  if (settingsBtn) {
+    settingsBtn.addEventListener('click', function() {
+      console.log('Settings clicked');
+      // TODO: Implement settings modal
+    });
+  }
+  
+  function handleAction(action) {
+    switch(action) {
+      case 'edit-profile':
+        console.log('Navigate to edit profile');
+        break;
+      case 'my-courses':
+        console.log('Navigate to my courses');
+        break;
+      case 'achievements':
+        console.log('Navigate to achievements');
+        break;
+      case 'favorites':
+        console.log('Navigate to favorites');
+        break;
+      default:
+        console.log('Unknown action:', action);
+    }
+  }
+  
+  function handleSetting(setting) {
+    switch(setting) {
+      case 'notifications':
+        console.log('Open notifications settings');
+        break;
+      case 'privacy':
+        console.log('Open privacy settings');
+        break;
+      case 'language':
+        console.log('Open language settings');
+        break;
+      case 'help':
+        console.log('Open help & support');
+        break;
+      default:
+        console.log('Unknown setting:', setting);
+    }
+  }
+});
+</script>
