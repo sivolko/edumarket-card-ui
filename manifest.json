@@ -1,74 +1,57 @@
 {
   "name": "EduMarket - Find Your Perfect Teacher",
   "short_name": "EduMarket",
-  "description": "Discover amazing teachers and join the best learning experiences with our modern card-based platform",
+  "description": "Discover amazing teachers and join the best learning experiences with our modern platform",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#667eea",
-  "theme_color": "#6366f1",
   "orientation": "portrait-primary",
+  "theme_color": "#a855f7",
+  "background_color": "#ffffff",
+  "categories": ["education", "learning", "teachers"],
+  "lang": "en-US",
   "scope": "/",
-  "lang": "en",
-  "categories": ["education", "learning", "teaching"],
   "icons": [
     {
-      "src": "/assets/images/icons/icon-72x72.png",
-      "sizes": "72x72",
-      "type": "image/png",
-      "purpose": "maskable any"
-    },
-    {
-      "src": "/assets/images/icons/icon-96x96.png",
-      "sizes": "96x96",
-      "type": "image/png",
-      "purpose": "maskable any"
-    },
-    {
-      "src": "/assets/images/icons/icon-128x128.png",
-      "sizes": "128x128",
-      "type": "image/png",
-      "purpose": "maskable any"
-    },
-    {
-      "src": "/assets/images/icons/icon-144x144.png",
-      "sizes": "144x144",
-      "type": "image/png",
-      "purpose": "maskable any"
-    },
-    {
-      "src": "/assets/images/icons/icon-152x152.png",
-      "sizes": "152x152",
-      "type": "image/png",
-      "purpose": "maskable any"
-    },
-    {
-      "src": "/assets/images/icons/icon-192x192.png",
+      "src": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=192&h=192&fit=crop&auto=format",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "maskable any"
+      "purpose": "any maskable"
     },
     {
-      "src": "/assets/images/icons/icon-384x384.png",
-      "sizes": "384x384",
-      "type": "image/png",
-      "purpose": "maskable any"
-    },
-    {
-      "src": "/assets/images/icons/icon-512x512.png",
+      "src": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=512&h=512&fit=crop&auto=format",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "maskable any"
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=256&h=256&fit=crop&auto=format",
+      "sizes": "256x256",
+      "type": "image/png"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=540&h=720&fit=crop&auto=format",
+      "sizes": "540x720",
+      "type": "image/png",
+      "label": "Home screen showing teacher cards and trending courses"
+    },
+    {
+      "src": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=540&h=720&fit=crop&auto=format",
+      "sizes": "540x720",
+      "type": "image/png",
+      "label": "Teachers listing with filters and profiles"
     }
   ],
   "shortcuts": [
     {
       "name": "Find Teachers",
       "short_name": "Teachers",
-      "description": "Browse and find expert teachers",
+      "description": "Browse and find amazing teachers",
       "url": "/teachers/",
       "icons": [
         {
-          "src": "/assets/images/icons/shortcut-teachers.png",
+          "src": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=96&h=96&fit=crop&crop=face&auto=format",
           "sizes": "96x96"
         }
       ]
@@ -76,23 +59,23 @@
     {
       "name": "Browse Subjects",
       "short_name": "Subjects",
-      "description": "Explore subject categories",
+      "description": "Explore subjects by category",
       "url": "/subjects/",
       "icons": [
         {
-          "src": "/assets/images/icons/shortcut-subjects.png",
+          "src": "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=96&h=96&fit=crop&auto=format",
           "sizes": "96x96"
         }
       ]
     },
     {
-      "name": "My Bookmarks",
-      "short_name": "Bookmarks",
-      "description": "View saved teachers",
-      "url": "/bookmarks/",
+      "name": "My Profile",
+      "short_name": "Profile",
+      "description": "View your learning progress",
+      "url": "/profile/",
       "icons": [
         {
-          "src": "/assets/images/icons/shortcut-bookmarks.png",
+          "src": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=96&h=96&fit=crop&crop=face&auto=format",
           "sizes": "96x96"
         }
       ]
@@ -100,9 +83,13 @@
   ],
   "related_applications": [],
   "prefer_related_applications": false,
-  "features": [
-    "Cross Platform",
-    "fast",
-    "simple"
-  ]
+  "display_override": ["window-controls-overlay", "standalone"],
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
+  "protocol_handlers": [],
+  "file_handlers": [],
+  "launch_handler": {
+    "client_mode": ["focus-existing", "auto"]
+  }
 }
