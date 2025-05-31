@@ -32,36 +32,105 @@ description: "Discover amazing teachers and join the best learning experiences w
   </h1>
 </section>
 
-<!-- Hero Card -->
+<!-- Hero Card Swiper -->
 <section class="hero-card-section">
-  <div class="hero-card">
-    <div class="hero-content">
-      <div class="hero-text">
-        <h2>Platform for<br>Students &<br>Mentors</h2>
-        <button class="join-now-btn">Join Now</button>
-      </div>
-      <div class="hero-illustration">
-        <div class="classroom-scene">
-          <div class="teacher-figure"></div>
-          <div class="student-figures">
-            <div class="student"></div>
-            <div class="student"></div>
-            <div class="student"></div>
-            <div class="student"></div>
+  <div class="hero-swiper">
+    <div class="swiper-container">
+      {% for card in site.data.hero_cards %}
+      <div class="hero-card swiper-slide" data-background="{{ card.background }}" data-action="{{ card.button_action }}">
+        <div class="hero-content">
+          <div class="hero-text">
+            <h2>{{ card.title | replace: '&', '<br>' }}</h2>
+            <p class="hero-description">{{ card.description }}</p>
+            <button class="hero-cta-btn" data-action="{{ card.button_action }}">{{ card.button_text }}</button>
+          </div>
+          <div class="hero-illustration">
+            <div class="illustration-container" data-type="{{ card.illustration }}">
+              {% if card.illustration == 'classroom' %}
+                <div class="classroom-scene">
+                  <div class="teacher-figure"></div>
+                  <div class="student-figures">
+                    <div class="student"></div>
+                    <div class="student"></div>
+                    <div class="student"></div>
+                    <div class="student"></div>
+                  </div>
+                </div>
+              {% elsif card.illustration == 'study' %}
+                <div class="study-scene">
+                  <div class="book-stack"></div>
+                  <div class="laptop"></div>
+                  <div class="notes"></div>
+                </div>
+              {% elsif card.illustration == 'global' %}
+                <div class="global-scene">
+                  <div class="globe"></div>
+                  <div class="connection-dots">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                  </div>
+                </div>
+              {% elsif card.illustration == 'video' %}
+                <div class="video-scene">
+                  <div class="screen"></div>
+                  <div class="camera-icon"></div>
+                  <div class="participants">
+                    <div class="participant"></div>
+                    <div class="participant"></div>
+                  </div>
+                </div>
+              {% elsif card.illustration == 'chart' %}
+                <div class="chart-scene">
+                  <div class="chart-bars">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                  </div>
+                  <div class="trend-line"></div>
+                </div>
+              {% elsif card.illustration == 'community' %}
+                <div class="community-scene">
+                  <div class="people-circle">
+                    <div class="person"></div>
+                    <div class="person"></div>
+                    <div class="person"></div>
+                    <div class="person"></div>
+                  </div>
+                </div>
+              {% elsif card.illustration == 'certificate' %}
+                <div class="certificate-scene">
+                  <div class="certificate"></div>
+                  <div class="medal"></div>
+                  <div class="stars">
+                    <div class="star"></div>
+                    <div class="star"></div>
+                    <div class="star"></div>
+                  </div>
+                </div>
+              {% endif %}
+            </div>
           </div>
         </div>
       </div>
+      {% endfor %}
     </div>
     
     <!-- Carousel Dots -->
     <div class="carousel-dots">
-      <span class="dot"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-      <span class="dot active"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
+      {% for card in site.data.hero_cards %}
+      <span class="dot{% if forloop.first %} active{% endif %}" data-slide="{{ forloop.index0 }}"></span>
+      {% endfor %}
+    </div>
+    
+    <!-- Swipe Indicators -->
+    <div class="swipe-indicators">
+      <div class="swipe-left">
+        <i class="fas fa-chevron-left"></i>
+      </div>
+      <div class="swipe-right">
+        <i class="fas fa-chevron-right"></i>
+      </div>
     </div>
   </div>
 </section>
@@ -181,7 +250,7 @@ description: "Discover amazing teachers and join the best learning experiences w
     <div class="trending-card">
       <div class="card-content">
         <div class="card-avatar">
-          <img src="https://images.unsplash.com/photo-{{ forloop.index | plus: 1550000000000 }}-1?w=100&h=100&fit=crop&crop=face&auto=format" alt="{{ teacher.name }}" />
+          <img src="https://images.unsplash.com/photo-{{ forloop.index | plus: 1550000000 }}-{{ forloop.index }}?w=100&h=100&fit=crop&crop=face&auto=format" alt="{{ teacher.name }}" />
         </div>
         <div class="card-info">
           <h3 class="card-title">{{ teacher.name }} - {{ teacher.subjects[0] }} Expert</h3>
@@ -200,71 +269,595 @@ description: "Discover amazing teachers and join the best learning experiences w
   </div>
 </section>
 
+<!-- Hero Card Swiper Styles -->
+<style>
+/* Swiper Container */
+.hero-swiper {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-2xl);
+}
+
+.swiper-container {
+  display: flex;
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+}
+
+.swiper-slide {
+  min-width: 100%;
+  flex-shrink: 0;
+}
+
+/* Dynamic Backgrounds */
+.hero-card[data-background="purple"] {
+  background: linear-gradient(135deg, var(--primary-purple) 0%, var(--primary-purple-light) 100%);
+}
+
+.hero-card[data-background="blue"] {
+  background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+}
+
+.hero-card[data-background="green"] {
+  background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+}
+
+.hero-card[data-background="orange"] {
+  background: linear-gradient(135deg, #f97316 0%, #fb923c 100%);
+}
+
+.hero-card[data-background="pink"] {
+  background: linear-gradient(135deg, #ec4899 0%, #f472b6 100%);
+}
+
+.hero-card[data-background="teal"] {
+  background: linear-gradient(135deg, #14b8a6 0%, #5eead4 100%);
+}
+
+.hero-card[data-background="red"] {
+  background: linear-gradient(135deg, #ef4444 0%, #f87171 100%);
+}
+
+/* Hero Content Updates */
+.hero-description {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--spacing-4);
+  line-height: 1.4;
+}
+
+.hero-cta-btn {
+  background: linear-gradient(135deg, var(--accent-orange) 0%, var(--accent-pink) 100%);
+  color: var(--white);
+  border: none;
+  padding: var(--spacing-3) var(--spacing-6);
+  border-radius: var(--radius-xl);
+  font-weight: 600;
+  font-size: var(--font-size-base);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.hero-cta-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.hero-cta-btn:active {
+  transform: translateY(0);
+}
+
+/* Illustration Styles */
+.illustration-container {
+  position: absolute;
+  inset: var(--spacing-2);
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Study Scene */
+.study-scene {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.book-stack, .laptop, .notes {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 2px;
+}
+
+.book-stack {
+  width: 16px;
+  height: 8px;
+}
+
+.laptop {
+  width: 18px;
+  height: 12px;
+  margin: 2px 0;
+}
+
+.notes {
+  width: 12px;
+  height: 8px;
+}
+
+/* Global Scene */
+.global-scene {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.globe {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.8);
+  position: relative;
+}
+
+.connection-dots {
+  position: absolute;
+  inset: 0;
+}
+
+.connection-dots .dot {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+}
+
+.connection-dots .dot:nth-child(1) { top: 2px; left: 8px; }
+.connection-dots .dot:nth-child(2) { top: 12px; right: 3px; }
+.connection-dots .dot:nth-child(3) { bottom: 3px; left: 6px; }
+
+/* Video Scene */
+.video-scene {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.screen {
+  width: 20px;
+  height: 14px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 2px;
+}
+
+.camera-icon {
+  width: 6px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+}
+
+.participants {
+  display: flex;
+  gap: 2px;
+}
+
+.participant {
+  width: 4px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+}
+
+/* Chart Scene */
+.chart-scene {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.chart-bars {
+  display: flex;
+  align-items: end;
+  gap: 2px;
+}
+
+.bar {
+  width: 4px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 1px;
+}
+
+.bar:nth-child(1) { height: 8px; }
+.bar:nth-child(2) { height: 12px; }
+.bar:nth-child(3) { height: 6px; }
+
+.trend-line {
+  width: 16px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+/* Community Scene */
+.people-circle {
+  position: relative;
+  width: 20px;
+  height: 20px;
+}
+
+.person {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+}
+
+.person:nth-child(1) { top: 0; left: 8px; }
+.person:nth-child(2) { top: 8px; right: 0; }
+.person:nth-child(3) { bottom: 0; left: 8px; }
+.person:nth-child(4) { top: 8px; left: 0; }
+
+/* Certificate Scene */
+.certificate-scene {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.certificate {
+  width: 18px;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 2px;
+}
+
+.medal {
+  width: 8px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+}
+
+.stars {
+  display: flex;
+  gap: 1px;
+}
+
+.star {
+  width: 3px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.6);
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+
+/* Swipe Indicators */
+.swipe-indicators {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 var(--spacing-2);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.hero-swiper:hover .swipe-indicators {
+  opacity: 1;
+}
+
+.swipe-left,
+.swipe-right {
+  width: 32px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  cursor: pointer;
+  pointer-events: auto;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(10px);
+}
+
+.swipe-left:hover,
+.swipe-right:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 375px) {
+  .hero-content {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--spacing-3);
+  }
+  
+  .hero-illustration {
+    width: 100px;
+    height: 60px;
+  }
+}
+</style>
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  // Check if mobile.js is loaded, if not fall back to basic functionality
-  if (typeof MobileApp === 'undefined') {
-    // Basic fallback functionality
-    console.log('Mobile app JavaScript loaded');
+  // Hero Swiper Implementation
+  class HeroSwiper {
+    constructor() {
+      this.container = document.querySelector('.swiper-container');
+      this.slides = document.querySelectorAll('.swiper-slide');
+      this.dots = document.querySelectorAll('.carousel-dots .dot');
+      this.leftBtn = document.querySelector('.swipe-left');
+      this.rightBtn = document.querySelector('.swipe-right');
+      
+      this.currentSlide = 0;
+      this.totalSlides = this.slides.length;
+      this.isTransitioning = false;
+      this.autoPlayInterval = null;
+      this.autoPlayDelay = 5000; // 5 seconds
+      
+      this.init();
+    }
     
-    // Hamburger menu functionality
-    const hamburgerBtn = document.querySelector('.hamburger-btn');
-    if (hamburgerBtn) {
-      hamburgerBtn.addEventListener('click', function() {
-        this.classList.toggle('active');
+    init() {
+      this.setupEventListeners();
+      this.updateDots();
+      this.startAutoPlay();
+      this.addTouchSupport();
+    }
+    
+    setupEventListeners() {
+      // Dot navigation
+      this.dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+          this.goToSlide(index);
+        });
+      });
+      
+      // Arrow navigation
+      if (this.leftBtn) {
+        this.leftBtn.addEventListener('click', () => {
+          this.previousSlide();
+        });
+      }
+      
+      if (this.rightBtn) {
+        this.rightBtn.addEventListener('click', () => {
+          this.nextSlide();
+        });
+      }
+      
+      // CTA buttons
+      const ctaButtons = document.querySelectorAll('.hero-cta-btn');
+      ctaButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const action = e.target.dataset.action;
+          this.handleCTAClick(action);
+        });
+      });
+      
+      // Pause auto-play on hover
+      const heroSwiper = document.querySelector('.hero-swiper');
+      heroSwiper.addEventListener('mouseenter', () => {
+        this.pauseAutoPlay();
+      });
+      
+      heroSwiper.addEventListener('mouseleave', () => {
+        this.startAutoPlay();
       });
     }
     
-    // Popular items click functionality
-    const popularItems = document.querySelectorAll('.popular-item');
-    popularItems.forEach(item => {
-      item.addEventListener('click', function() {
-        const category = this.dataset.category;
-        console.log('Navigate to:', category);
+    addTouchSupport() {
+      let startX = 0;
+      let startY = 0;
+      let isScrolling = false;
+      
+      this.container.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+        isScrolling = false;
+        this.pauseAutoPlay();
       });
-    });
-    
-    // Join button functionality
-    const joinBtns = document.querySelectorAll('.join-btn, .join-now-btn');
-    joinBtns.forEach(btn => {
-      btn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        if (this.classList.contains('joining')) return;
+      
+      this.container.addEventListener('touchmove', (e) => {
+        if (isScrolling) return;
         
-        this.classList.add('joining');
-        setTimeout(() => {
-          this.innerHTML = '<i class="fas fa-check"></i> Joined';
-          this.style.background = '#10b981';
-          this.style.color = 'white';
-        }, 500);
-      });
-    });
-    
-    // Add button functionality
-    const addBtns = document.querySelectorAll('.add-btn');
-    addBtns.forEach(btn => {
-      btn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        this.classList.toggle('added');
-        const icon = this.querySelector('i');
-        if (this.classList.contains('added')) {
-          icon.className = 'fas fa-check';
-          this.style.color = '#10b981';
-        } else {
-          icon.className = 'fas fa-plus';
-          this.style.color = '';
+        const currentX = e.touches[0].clientX;
+        const currentY = e.touches[0].clientY;
+        const deltaX = Math.abs(currentX - startX);
+        const deltaY = Math.abs(currentY - startY);
+        
+        if (deltaY > deltaX) {
+          isScrolling = true;
+          return;
+        }
+        
+        if (deltaX > 10) {
+          e.preventDefault();
         }
       });
-    });
-    
-    // Carousel dots functionality
-    const dots = document.querySelectorAll('.dot');
-    dots.forEach((dot, index) => {
-      dot.addEventListener('click', function() {
-        dots.forEach(d => d.classList.remove('active'));
-        this.classList.add('active');
+      
+      this.container.addEventListener('touchend', (e) => {
+        if (isScrolling) {
+          this.startAutoPlay();
+          return;
+        }
+        
+        const endX = e.changedTouches[0].clientX;
+        const deltaX = endX - startX;
+        
+        if (Math.abs(deltaX) > 50) {
+          if (deltaX > 0) {
+            this.previousSlide();
+          } else {
+            this.nextSlide();
+          }
+          
+          // Haptic feedback
+          if (navigator.vibrate) {
+            navigator.vibrate(10);
+          }
+        }
+        
+        this.startAutoPlay();
       });
-    });
+    }
+    
+    goToSlide(index) {
+      if (this.isTransitioning || index === this.currentSlide) return;
+      
+      this.isTransitioning = true;
+      this.currentSlide = index;
+      
+      const translateX = -index * 100;
+      this.container.style.transform = `translateX(${translateX}%)`;
+      
+      this.updateDots();
+      
+      setTimeout(() => {
+        this.isTransitioning = false;
+      }, 300);
+      
+      // Reset auto-play
+      this.pauseAutoPlay();
+      this.startAutoPlay();
+    }
+    
+    nextSlide() {
+      const nextIndex = (this.currentSlide + 1) % this.totalSlides;
+      this.goToSlide(nextIndex);
+    }
+    
+    previousSlide() {
+      const prevIndex = (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
+      this.goToSlide(prevIndex);
+    }
+    
+    updateDots() {
+      this.dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === this.currentSlide);
+      });
+    }
+    
+    startAutoPlay() {
+      this.pauseAutoPlay();
+      this.autoPlayInterval = setInterval(() => {
+        this.nextSlide();
+      }, this.autoPlayDelay);
+    }
+    
+    pauseAutoPlay() {
+      if (this.autoPlayInterval) {
+        clearInterval(this.autoPlayInterval);
+        this.autoPlayInterval = null;
+      }
+    }
+    
+    handleCTAClick(action) {
+      console.log('CTA clicked:', action);
+      
+      // Add visual feedback
+      const currentSlide = this.slides[this.currentSlide];
+      const btn = currentSlide.querySelector('.hero-cta-btn');
+      
+      btn.style.transform = 'scale(0.95)';
+      setTimeout(() => {
+        btn.style.transform = '';
+      }, 150);
+      
+      // Handle different actions
+      switch(action) {
+        case 'join':
+          console.log('Redirecting to join page');
+          break;
+        case 'start_learning':
+          console.log('Starting learning journey');
+          break;
+        case 'find_teachers':
+          window.location.href = '/teachers/';
+          break;
+        case 'join_class':
+          console.log('Joining live class');
+          break;
+        case 'view_progress':
+          window.location.href = '/profile/';
+          break;
+        case 'join_community':
+          console.log('Joining community');
+          break;
+        case 'certificates':
+          console.log('Viewing certificates');
+          break;
+        default:
+          console.log('Unknown action:', action);
+      }
+      
+      // Haptic feedback
+      if (navigator.vibrate) {
+        navigator.vibrate([10, 50, 10]);
+      }
+    }
   }
+  
+  // Initialize Hero Swiper
+  new HeroSwiper();
+  
+  // Fallback functionality for other elements
+  // Popular items click functionality
+  const popularItems = document.querySelectorAll('.popular-item');
+  popularItems.forEach(item => {
+    item.addEventListener('click', function() {
+      const category = this.dataset.category;
+      console.log('Navigate to:', category);
+    });
+  });
+  
+  // Join button functionality
+  const joinBtns = document.querySelectorAll('.join-btn');
+  joinBtns.forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      if (this.classList.contains('joining')) return;
+      
+      this.classList.add('joining');
+      setTimeout(() => {
+        this.innerHTML = '<i class="fas fa-check"></i> Joined';
+        this.style.background = '#10b981';
+        this.style.color = 'white';
+      }, 500);
+    });
+  });
+  
+  // Add button functionality
+  const addBtns = document.querySelectorAll('.add-btn');
+  addBtns.forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      this.classList.toggle('added');
+      const icon = this.querySelector('i');
+      if (this.classList.contains('added')) {
+        icon.className = 'fas fa-check';
+        this.style.color = '#10b981';
+      } else {
+        icon.className = 'fas fa-plus';
+        this.style.color = '';
+      }
+    });
+  });
 });
 </script>
