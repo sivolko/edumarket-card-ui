@@ -1,0 +1,210 @@
+---
+layout: mobile
+title: "Meetups"
+description: "Join local meetups and networking events"
+---
+
+<header class="mobile-header">
+  <div class="header-left">
+    <button class="back-btn" onclick="history.back()">
+      <i class="fas fa-arrow-left"></i>
+    </button>
+  </div>
+  
+  <div class="header-center">
+    <h1 class="page-title">Meetups</h1>
+  </div>
+  
+  <div class="header-right">
+    <button class="search-btn">
+      <i class="fas fa-search"></i>
+    </button>
+  </div>
+</header>
+
+<section class="featured-section">
+  <h2 class="section-title">Upcoming Meetups</h2>
+  
+  <div class="meetups-grid">
+    <div class="meetup-card">
+      <div class="meetup-image">
+        <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?w=400&h=200&fit=crop&auto=format" alt="Tech Meetup" />
+        <div class="meetup-type">Tech</div>
+      </div>
+      <div class="meetup-content">
+        <h3 class="meetup-title">AI & Machine Learning Meetup</h3>
+        <p class="meetup-description">Discuss latest trends in AI and machine learning with fellow enthusiasts.</p>
+        <div class="meetup-details">
+          <div class="detail">
+            <i class="fas fa-calendar"></i>
+            <span>June 20, 2024</span>
+          </div>
+          <div class="detail">
+            <i class="fas fa-clock"></i>
+            <span>6:00 PM</span>
+          </div>
+          <div class="detail">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Tech Hub, Downtown</span>
+          </div>
+        </div>
+        <div class="meetup-attendees">
+          <span><i class="fas fa-users"></i> 45 attending</span>
+        </div>
+      </div>
+      <button class="join-meetup-btn">Join Meetup</button>
+    </div>
+    
+    <div class="meetup-card">
+      <div class="meetup-image">
+        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=400&h=200&fit=crop&auto=format" alt="Business Meetup" />
+        <div class="meetup-type">Business</div>
+      </div>
+      <div class="meetup-content">
+        <h3 class="meetup-title">Startup Networking Event</h3>
+        <p class="meetup-description">Connect with entrepreneurs and learn about startup ecosystem.</p>
+        <div class="meetup-details">
+          <div class="detail">
+            <i class="fas fa-calendar"></i>
+            <span>June 25, 2024</span>
+          </div>
+          <div class="detail">
+            <i class="fas fa-clock"></i>
+            <span>7:00 PM</span>
+          </div>
+          <div class="detail">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Business Center</span>
+          </div>
+        </div>
+        <div class="meetup-attendees">
+          <span><i class="fas fa-users"></i> 32 attending</span>
+        </div>
+      </div>
+      <button class="join-meetup-btn">Join Meetup</button>
+    </div>
+  </div>
+</section>
+
+<style>
+.back-btn {
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  font-size: var(--font-size-lg);
+  cursor: pointer;
+  padding: var(--spacing-2);
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.featured-section {
+  padding: var(--spacing-6) var(--spacing-5);
+}
+
+.meetups-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-5);
+}
+
+.meetup-card {
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+}
+
+.meetup-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.meetup-image {
+  position: relative;
+  height: 150px;
+  overflow: hidden;
+}
+
+.meetup-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.meetup-type {
+  position: absolute;
+  top: var(--spacing-3);
+  right: var(--spacing-3);
+  background: rgba(220, 38, 38, 0.9);
+  color: var(--white);
+  padding: var(--spacing-1) var(--spacing-2);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  backdrop-filter: blur(10px);
+}
+
+.meetup-content {
+  padding: var(--spacing-4);
+}
+
+.meetup-title {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  margin-bottom: var(--spacing-2);
+  color: var(--text-primary);
+}
+
+.meetup-description {
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  line-height: 1.5;
+  margin-bottom: var(--spacing-4);
+}
+
+.meetup-details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+  margin-bottom: var(--spacing-3);
+}
+
+.detail {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+.detail i {
+  color: var(--primary-purple);
+  width: 16px;
+}
+
+.meetup-attendees {
+  color: var(--success-green);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  margin-bottom: var(--spacing-4);
+}
+
+.join-meetup-btn {
+  background: #dc2626;
+  color: var(--white);
+  border: none;
+  padding: var(--spacing-3) var(--spacing-6);
+  border-radius: var(--radius-lg);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.join-meetup-btn:hover {
+  background: #b91c1c;
+}
+</style>

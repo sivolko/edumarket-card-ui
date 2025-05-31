@@ -1,0 +1,185 @@
+---
+layout: mobile
+title: "Exams"
+description: "Upcoming exams and test schedules"
+---
+
+<header class="mobile-header">
+  <div class="header-left">
+    <button class="back-btn" onclick="history.back()">
+      <i class="fas fa-arrow-left"></i>
+    </button>
+  </div>
+  
+  <div class="header-center">
+    <h1 class="page-title">Exams</h1>
+  </div>
+  
+  <div class="header-right">
+    <button class="search-btn">
+      <i class="fas fa-search"></i>
+    </button>
+  </div>
+</header>
+
+<section class="featured-section">
+  <h2 class="section-title">Upcoming Exams</h2>
+  
+  <div class="exams-grid">
+    <div class="exam-card">
+      <div class="exam-date">
+        <div class="date-number">15</div>
+        <div class="date-month">Jun</div>
+      </div>
+      <div class="exam-content">
+        <h3 class="exam-title">Mathematics Final</h3>
+        <p class="exam-description">Comprehensive final exam covering all topics</p>
+        <div class="exam-meta">
+          <span class="exam-time"><i class="fas fa-clock"></i> 2:00 PM</span>
+          <span class="exam-duration"><i class="fas fa-hourglass"></i> 3 hours</span>
+        </div>
+      </div>
+      <button class="prepare-btn">Prepare</button>
+    </div>
+    
+    <div class="exam-card">
+      <div class="exam-date">
+        <div class="date-number">18</div>
+        <div class="date-month">Jun</div>
+      </div>
+      <div class="exam-content">
+        <h3 class="exam-title">Physics Midterm</h3>
+        <p class="exam-description">Midterm examination for Physics course</p>
+        <div class="exam-meta">
+          <span class="exam-time"><i class="fas fa-clock"></i> 10:00 AM</span>
+          <span class="exam-duration"><i class="fas fa-hourglass"></i> 2 hours</span>
+        </div>
+      </div>
+      <button class="prepare-btn">Prepare</button>
+    </div>
+    
+    <div class="exam-card">
+      <div class="exam-date">
+        <div class="date-number">22</div>
+        <div class="date-month">Jun</div>
+      </div>
+      <div class="exam-content">
+        <h3 class="exam-title">Chemistry Quiz</h3>
+        <p class="exam-description">Weekly chemistry knowledge assessment</p>
+        <div class="exam-meta">
+          <span class="exam-time"><i class="fas fa-clock"></i> 1:00 PM</span>
+          <span class="exam-duration"><i class="fas fa-hourglass"></i> 1 hour</span>
+        </div>
+      </div>
+      <button class="prepare-btn">Prepare</button>
+    </div>
+  </div>
+</section>
+
+<style>
+.back-btn {
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  font-size: var(--font-size-lg);
+  cursor: pointer;
+  padding: var(--spacing-2);
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.featured-section {
+  padding: var(--spacing-6) var(--spacing-5);
+}
+
+.exams-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.exam-card {
+  background: var(--white);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-4);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4);
+  transition: all 0.2s ease;
+}
+
+.exam-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.exam-date {
+  background: linear-gradient(135deg, var(--primary-purple) 0%, var(--primary-purple-light) 100%);
+  color: var(--white);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-3);
+  text-align: center;
+  min-width: 60px;
+  flex-shrink: 0;
+}
+
+.date-number {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.date-month {
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.exam-content {
+  flex: 1;
+}
+
+.exam-title {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  margin-bottom: var(--spacing-1);
+  color: var(--text-primary);
+}
+
+.exam-description {
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--spacing-2);
+}
+
+.exam-meta {
+  display: flex;
+  gap: var(--spacing-3);
+}
+
+.exam-time,
+.exam-duration {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+}
+
+.prepare-btn {
+  background: var(--primary-purple);
+  color: var(--white);
+  border: none;
+  padding: var(--spacing-2) var(--spacing-4);
+  border-radius: var(--radius-lg);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.prepare-btn:hover {
+  background: var(--primary-purple-light);
+}
+</style>

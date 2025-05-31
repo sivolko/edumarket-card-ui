@@ -1,0 +1,223 @@
+---
+layout: mobile
+title: "Bootcamps"
+description: "Intensive learning bootcamps and workshops"
+---
+
+<header class="mobile-header">
+  <div class="header-left">
+    <button class="back-btn" onclick="history.back()">
+      <i class="fas fa-arrow-left"></i>
+    </button>
+  </div>
+  
+  <div class="header-center">
+    <h1 class="page-title">Bootcamps</h1>
+  </div>
+  
+  <div class="header-right">
+    <button class="search-btn">
+      <i class="fas fa-search"></i>
+    </button>
+  </div>
+</header>
+
+<section class="featured-section">
+  <h2 class="section-title">Featured Bootcamps</h2>
+  
+  <div class="bootcamps-grid">
+    <div class="bootcamp-card">
+      <div class="bootcamp-header">
+        <div class="bootcamp-badge">12 weeks</div>
+        <div class="bootcamp-level">Beginner</div>
+      </div>
+      <div class="bootcamp-content">
+        <h3 class="bootcamp-title">Full Stack Web Development</h3>
+        <p class="bootcamp-description">Learn modern web development from frontend to backend with hands-on projects.</p>
+        <div class="bootcamp-skills">
+          <span class="skill-tag">React</span>
+          <span class="skill-tag">Node.js</span>
+          <span class="skill-tag">MongoDB</span>
+          <span class="skill-tag">JavaScript</span>
+        </div>
+        <div class="bootcamp-details">
+          <div class="detail">
+            <i class="fas fa-calendar"></i>
+            <span>Starts July 1</span>
+          </div>
+          <div class="detail">
+            <i class="fas fa-clock"></i>
+            <span>40 hours/week</span>
+          </div>
+          <div class="detail">
+            <i class="fas fa-dollar-sign"></i>
+            <span>$2,999</span>
+          </div>
+        </div>
+      </div>
+      <button class="enroll-btn">Enroll Now</button>
+    </div>
+    
+    <div class="bootcamp-card">
+      <div class="bootcamp-header">
+        <div class="bootcamp-badge">8 weeks</div>
+        <div class="bootcamp-level">Intermediate</div>
+      </div>
+      <div class="bootcamp-content">
+        <h3 class="bootcamp-title">Data Science & Analytics</h3>
+        <p class="bootcamp-description">Master data analysis, machine learning, and visualization techniques.</p>
+        <div class="bootcamp-skills">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">Pandas</span>
+          <span class="skill-tag">Scikit-learn</span>
+          <span class="skill-tag">Tableau</span>
+        </div>
+        <div class="bootcamp-details">
+          <div class="detail">
+            <i class="fas fa-calendar"></i>
+            <span>Starts July 15</span>
+          </div>
+          <div class="detail">
+            <i class="fas fa-clock"></i>
+            <span>30 hours/week</span>
+          </div>
+          <div class="detail">
+            <i class="fas fa-dollar-sign"></i>
+            <span>$2,499</span>
+          </div>
+        </div>
+      </div>
+      <button class="enroll-btn">Enroll Now</button>
+    </div>
+  </div>
+</section>
+
+<style>
+.back-btn {
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  font-size: var(--font-size-lg);
+  cursor: pointer;
+  padding: var(--spacing-2);
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.featured-section {
+  padding: var(--spacing-6) var(--spacing-5);
+}
+
+.bootcamps-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-5);
+}
+
+.bootcamp-card {
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+}
+
+.bootcamp-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.bootcamp-header {
+  background: linear-gradient(135deg, var(--primary-purple) 0%, var(--primary-purple-light) 100%);
+  padding: var(--spacing-4);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bootcamp-badge {
+  background: rgba(255, 255, 255, 0.2);
+  color: var(--white);
+  padding: var(--spacing-1) var(--spacing-3);
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+}
+
+.bootcamp-level {
+  color: var(--white);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+}
+
+.bootcamp-content {
+  padding: var(--spacing-4);
+}
+
+.bootcamp-title {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  margin-bottom: var(--spacing-2);
+  color: var(--text-primary);
+}
+
+.bootcamp-description {
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  line-height: 1.5;
+  margin-bottom: var(--spacing-4);
+}
+
+.bootcamp-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-2);
+  margin-bottom: var(--spacing-4);
+}
+
+.skill-tag {
+  background: #f0f9ff;
+  color: #0369a1;
+  padding: var(--spacing-1) var(--spacing-2);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+}
+
+.bootcamp-details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+  margin-bottom: var(--spacing-4);
+}
+
+.detail {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+.detail i {
+  color: var(--primary-purple);
+  width: 16px;
+}
+
+.enroll-btn {
+  background: var(--primary-purple);
+  color: var(--white);
+  border: none;
+  padding: var(--spacing-3) var(--spacing-6);
+  border-radius: var(--radius-lg);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.enroll-btn:hover {
+  background: var(--primary-purple-light);
+}
+</style>

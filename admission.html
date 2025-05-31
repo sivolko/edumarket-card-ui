@@ -1,0 +1,175 @@
+---
+layout: mobile
+title: "Admission"
+description: "Admission information and applications"
+---
+
+<header class="mobile-header">
+  <div class="header-left">
+    <button class="back-btn" onclick="history.back()">
+      <i class="fas fa-arrow-left"></i>
+    </button>
+  </div>
+  
+  <div class="header-center">
+    <h1 class="page-title">Admission</h1>
+  </div>
+  
+  <div class="header-right">
+    <button class="search-btn">
+      <i class="fas fa-search"></i>
+    </button>
+  </div>
+</header>
+
+<section class="featured-section">
+  <h2 class="section-title">Open Admissions</h2>
+  
+  <div class="admission-grid">
+    <div class="admission-card">
+      <div class="institution-logo">
+        <img src="https://images.unsplash.com/photo-1562774053-701939374585?w=100&h=100&fit=crop&auto=format" alt="University" />
+      </div>
+      <div class="admission-content">
+        <h3 class="institution-name">Tech University</h3>
+        <p class="program-name">Computer Science Program</p>
+        <div class="admission-meta">
+          <span class="deadline"><i class="fas fa-calendar"></i> Deadline: July 15</span>
+          <span class="fee"><i class="fas fa-dollar-sign"></i> $50 application fee</span>
+        </div>
+      </div>
+      <button class="apply-btn">Apply Now</button>
+    </div>
+    
+    <div class="admission-card">
+      <div class="institution-logo">
+        <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=100&h=100&fit=crop&auto=format" alt="College" />
+      </div>
+      <div class="admission-content">
+        <h3 class="institution-name">Arts College</h3>
+        <p class="program-name">Fine Arts Program</p>
+        <div class="admission-meta">
+          <span class="deadline"><i class="fas fa-calendar"></i> Deadline: August 1</span>
+          <span class="fee"><i class="fas fa-dollar-sign"></i> $75 application fee</span>
+        </div>
+      </div>
+      <button class="apply-btn">Apply Now</button>
+    </div>
+    
+    <div class="admission-card">
+      <div class="institution-logo">
+        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=100&h=100&fit=crop&auto=format" alt="Business School" />
+      </div>
+      <div class="admission-content">
+        <h3 class="institution-name">Business School</h3>
+        <p class="program-name">MBA Program</p>
+        <div class="admission-meta">
+          <span class="deadline"><i class="fas fa-calendar"></i> Deadline: June 30</span>
+          <span class="fee"><i class="fas fa-dollar-sign"></i> $100 application fee</span>
+        </div>
+      </div>
+      <button class="apply-btn">Apply Now</button>
+    </div>
+  </div>
+</section>
+
+<style>
+.back-btn {
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  font-size: var(--font-size-lg);
+  cursor: pointer;
+  padding: var(--spacing-2);
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.featured-section {
+  padding: var(--spacing-6) var(--spacing-5);
+}
+
+.admission-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.admission-card {
+  background: var(--white);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-4);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4);
+  transition: all 0.2s ease;
+}
+
+.admission-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.institution-logo {
+  width: 60px;
+  height: 60px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.institution-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.admission-content {
+  flex: 1;
+}
+
+.institution-name {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  margin-bottom: var(--spacing-1);
+  color: var(--text-primary);
+}
+
+.program-name {
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--spacing-2);
+}
+
+.admission-meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+}
+
+.deadline,
+.fee {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+}
+
+.apply-btn {
+  background: var(--primary-purple);
+  color: var(--white);
+  border: none;
+  padding: var(--spacing-2) var(--spacing-4);
+  border-radius: var(--radius-lg);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.apply-btn:hover {
+  background: var(--primary-purple-light);
+}
+</style>

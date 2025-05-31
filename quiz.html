@@ -1,0 +1,218 @@
+---
+layout: mobile
+title: "Quiz"
+description: "Test your knowledge with interactive quizzes"
+---
+
+<header class="mobile-header">
+  <div class="header-left">
+    <button class="back-btn" onclick="history.back()">
+      <i class="fas fa-arrow-left"></i>
+    </button>
+  </div>
+  
+  <div class="header-center">
+    <h1 class="page-title">Quiz</h1>
+  </div>
+  
+  <div class="header-right">
+    <button class="search-btn">
+      <i class="fas fa-search"></i>
+    </button>
+  </div>
+</header>
+
+<section class="featured-section">
+  <h2 class="section-title">Popular Quizzes</h2>
+  
+  <div class="quiz-grid">
+    <div class="quiz-card">
+      <div class="quiz-icon">
+        <i class="fas fa-calculator"></i>
+      </div>
+      <div class="quiz-content">
+        <h3 class="quiz-title">Mathematics Challenge</h3>
+        <p class="quiz-description">Test your math skills with these challenging problems</p>
+        <div class="quiz-meta">
+          <span class="quiz-questions"><i class="fas fa-question-circle"></i> 20 questions</span>
+          <span class="quiz-time"><i class="fas fa-clock"></i> 30 minutes</span>
+          <span class="quiz-difficulty easy">Easy</span>
+        </div>
+        <div class="quiz-stats">
+          <span class="attempts">1,247 attempts</span>
+          <span class="average">Avg: 78%</span>
+        </div>
+      </div>
+      <button class="start-quiz-btn">Start Quiz</button>
+    </div>
+    
+    <div class="quiz-card">
+      <div class="quiz-icon">
+        <i class="fas fa-atom"></i>
+      </div>
+      <div class="quiz-content">
+        <h3 class="quiz-title">Science Fundamentals</h3>
+        <p class="quiz-description">Basic science concepts and principles quiz</p>
+        <div class="quiz-meta">
+          <span class="quiz-questions"><i class="fas fa-question-circle"></i> 15 questions</span>
+          <span class="quiz-time"><i class="fas fa-clock"></i> 25 minutes</span>
+          <span class="quiz-difficulty medium">Medium</span>
+        </div>
+        <div class="quiz-stats">
+          <span class="attempts">892 attempts</span>
+          <span class="average">Avg: 65%</span>
+        </div>
+      </div>
+      <button class="start-quiz-btn">Start Quiz</button>
+    </div>
+    
+    <div class="quiz-card">
+      <div class="quiz-icon">
+        <i class="fas fa-history"></i>
+      </div>
+      <div class="quiz-content">
+        <h3 class="quiz-title">World History</h3>
+        <p class="quiz-description">Major events and figures in world history</p>
+        <div class="quiz-meta">
+          <span class="quiz-questions"><i class="fas fa-question-circle"></i> 25 questions</span>
+          <span class="quiz-time"><i class="fas fa-clock"></i> 35 minutes</span>
+          <span class="quiz-difficulty hard">Hard</span>
+        </div>
+        <div class="quiz-stats">
+          <span class="attempts">634 attempts</span>
+          <span class="average">Avg: 52%</span>
+        </div>
+      </div>
+      <button class="start-quiz-btn">Start Quiz</button>
+    </div>
+  </div>
+</section>
+
+<style>
+.back-btn {
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  font-size: var(--font-size-lg);
+  cursor: pointer;
+  padding: var(--spacing-2);
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.featured-section {
+  padding: var(--spacing-6) var(--spacing-5);
+}
+
+.quiz-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.quiz-card {
+  background: var(--white);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-4);
+  transition: all 0.2s ease;
+}
+
+.quiz-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.quiz-icon {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, var(--primary-purple) 0%, var(--primary-purple-light) 100%);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  font-size: var(--font-size-lg);
+  margin-bottom: var(--spacing-3);
+}
+
+.quiz-title {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  margin-bottom: var(--spacing-2);
+  color: var(--text-primary);
+}
+
+.quiz-description {
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--spacing-3);
+}
+
+.quiz-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-3);
+  margin-bottom: var(--spacing-3);
+}
+
+.quiz-questions,
+.quiz-time {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+}
+
+.quiz-difficulty {
+  padding: var(--spacing-1) var(--spacing-2);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.quiz-difficulty.easy {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.quiz-difficulty.medium {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.quiz-difficulty.hard {
+  background: #fecaca;
+  color: #991b1b;
+}
+
+.quiz-stats {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-4);
+}
+
+.attempts,
+.average {
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+}
+
+.start-quiz-btn {
+  background: var(--primary-purple);
+  color: var(--white);
+  border: none;
+  padding: var(--spacing-3) var(--spacing-6);
+  border-radius: var(--radius-lg);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.start-quiz-btn:hover {
+  background: var(--primary-purple-light);
+}
+</style>
