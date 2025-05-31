@@ -1,14 +1,15 @@
 ---
 layout: mobile
 title: "Exams"
-description: "Upcoming exams and test schedules"
+description: "Take practice tests and mock exams"
 ---
 
+<!-- Mobile Header -->
 <header class="mobile-header">
   <div class="header-left">
-    <button class="back-btn" onclick="history.back()">
+    <a href="/" class="back-btn">
       <i class="fas fa-arrow-left"></i>
-    </button>
+    </a>
   </div>
   
   <div class="header-center">
@@ -22,77 +23,182 @@ description: "Upcoming exams and test schedules"
   </div>
 </header>
 
-<section class="featured-section">
-  <h2 class="section-title">Upcoming Exams</h2>
+<!-- Exam Categories -->
+<section class="exam-categories-section">
+  <h2 class="section-title">Exam Types</h2>
   
-  <div class="exams-grid">
+  <div class="exam-types-grid">
+    <div class="exam-type-card">
+      <div class="exam-icon">
+        <i class="fas fa-clock"></i>
+      </div>
+      <h3>Mock Tests</h3>
+      <p>Timed practice exams</p>
+    </div>
+    
+    <div class="exam-type-card">
+      <div class="exam-icon">
+        <i class="fas fa-tasks"></i>
+      </div>
+      <h3>Practice Sets</h3>
+      <p>Subject-wise questions</p>
+    </div>
+    
+    <div class="exam-type-card">
+      <div class="exam-icon">
+        <i class="fas fa-trophy"></i>
+      </div>
+      <h3>Competitions</h3>
+      <p>Challenge other students</p>
+    </div>
+    
+    <div class="exam-type-card">
+      <div class="exam-icon">
+        <i class="fas fa-chart-line"></i>
+      </div>
+      <h3>Analytics</h3>
+      <p>Performance tracking</p>
+    </div>
+  </div>
+</section>
+
+<!-- Available Exams -->
+<section class="available-exams-section">
+  <h2 class="section-title">Available Exams</h2>
+  
+  <div class="exams-list">
     <div class="exam-card">
-      <div class="exam-date">
-        <div class="date-number">15</div>
-        <div class="date-month">Jun</div>
-      </div>
-      <div class="exam-content">
-        <h3 class="exam-title">Mathematics Final</h3>
-        <p class="exam-description">Comprehensive final exam covering all topics</p>
-        <div class="exam-meta">
-          <span class="exam-time"><i class="fas fa-clock"></i> 2:00 PM</span>
-          <span class="exam-duration"><i class="fas fa-hourglass"></i> 3 hours</span>
+      <div class="exam-header">
+        <div class="exam-subject">
+          <i class="fas fa-calculator"></i>
+          <span>Mathematics</span>
         </div>
+        <div class="exam-difficulty easy">Easy</div>
       </div>
-      <button class="prepare-btn">Prepare</button>
+      <h3 class="exam-title">Algebra Fundamentals Test</h3>
+      <div class="exam-meta">
+        <span class="exam-questions">
+          <i class="fas fa-question-circle"></i>
+          25 questions
+        </span>
+        <span class="exam-duration">
+          <i class="fas fa-clock"></i>
+          30 minutes
+        </span>
+        <span class="exam-attempts">
+          <i class="fas fa-users"></i>
+          1.2k attempts
+        </span>
+      </div>
+      <button class="start-exam-btn">Start Exam</button>
     </div>
     
     <div class="exam-card">
-      <div class="exam-date">
-        <div class="date-number">18</div>
-        <div class="date-month">Jun</div>
-      </div>
-      <div class="exam-content">
-        <h3 class="exam-title">Physics Midterm</h3>
-        <p class="exam-description">Midterm examination for Physics course</p>
-        <div class="exam-meta">
-          <span class="exam-time"><i class="fas fa-clock"></i> 10:00 AM</span>
-          <span class="exam-duration"><i class="fas fa-hourglass"></i> 2 hours</span>
+      <div class="exam-header">
+        <div class="exam-subject">
+          <i class="fas fa-atom"></i>
+          <span>Physics</span>
         </div>
+        <div class="exam-difficulty medium">Medium</div>
       </div>
-      <button class="prepare-btn">Prepare</button>
+      <h3 class="exam-title">Mechanics Practice Test</h3>
+      <div class="exam-meta">
+        <span class="exam-questions">
+          <i class="fas fa-question-circle"></i>
+          40 questions
+        </span>
+        <span class="exam-duration">
+          <i class="fas fa-clock"></i>
+          60 minutes
+        </span>
+        <span class="exam-attempts">
+          <i class="fas fa-users"></i>
+          856 attempts
+        </span>
+      </div>
+      <button class="start-exam-btn">Start Exam</button>
     </div>
     
     <div class="exam-card">
-      <div class="exam-date">
-        <div class="date-number">22</div>
-        <div class="date-month">Jun</div>
-      </div>
-      <div class="exam-content">
-        <h3 class="exam-title">Chemistry Quiz</h3>
-        <p class="exam-description">Weekly chemistry knowledge assessment</p>
-        <div class="exam-meta">
-          <span class="exam-time"><i class="fas fa-clock"></i> 1:00 PM</span>
-          <span class="exam-duration"><i class="fas fa-hourglass"></i> 1 hour</span>
+      <div class="exam-header">
+        <div class="exam-subject">
+          <i class="fas fa-laptop-code"></i>
+          <span>Programming</span>
         </div>
+        <div class="exam-difficulty hard">Hard</div>
       </div>
-      <button class="prepare-btn">Prepare</button>
+      <h3 class="exam-title">Python Advanced Concepts</h3>
+      <div class="exam-meta">
+        <span class="exam-questions">
+          <i class="fas fa-question-circle"></i>
+          50 questions
+        </span>
+        <span class="exam-duration">
+          <i class="fas fa-clock"></i>
+          90 minutes
+        </span>
+        <span class="exam-attempts">
+          <i class="fas fa-users"></i>
+          634 attempts
+        </span>
+      </div>
+      <button class="start-exam-btn">Start Exam</button>
     </div>
   </div>
 </section>
 
 <style>
-.back-btn {
-  background: none;
-  border: none;
-  color: var(--text-primary);
-  font-size: var(--font-size-lg);
-  cursor: pointer;
-  padding: var(--spacing-2);
-  border-radius: 50%;
-  transition: all 0.2s ease;
-}
-
-.featured-section {
+.exam-categories-section,
+.available-exams-section {
   padding: var(--spacing-6) var(--spacing-5);
 }
 
-.exams-grid {
+.exam-types-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-4);
+}
+
+.exam-type-card {
+  background: var(--white);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-5);
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.exam-type-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.exam-icon {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  font-size: var(--font-size-lg);
+  margin: 0 auto var(--spacing-3);
+}
+
+.exam-type-card h3 {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  margin-bottom: var(--spacing-1);
+}
+
+.exam-type-card p {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+}
+
+.exams-list {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-4);
@@ -102,10 +208,7 @@ description: "Upcoming exams and test schedules"
   background: var(--white);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-xl);
-  padding: var(--spacing-4);
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-4);
+  padding: var(--spacing-5);
   transition: all 0.2s ease;
 }
 
@@ -114,72 +217,101 @@ description: "Upcoming exams and test schedules"
   box-shadow: var(--shadow-md);
 }
 
-.exam-date {
-  background: linear-gradient(135deg, var(--primary-purple) 0%, var(--primary-purple-light) 100%);
-  color: var(--white);
-  border-radius: var(--radius-lg);
-  padding: var(--spacing-3);
-  text-align: center;
-  min-width: 60px;
-  flex-shrink: 0;
+.exam-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-3);
 }
 
-.date-number {
-  font-size: var(--font-size-xl);
-  font-weight: 700;
-  line-height: 1;
+.exam-subject {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  color: var(--primary-purple);
+  font-weight: 500;
+  font-size: var(--font-size-sm);
 }
 
-.date-month {
+.exam-difficulty {
+  padding: var(--spacing-1) var(--spacing-2);
+  border-radius: var(--radius-md);
   font-size: var(--font-size-xs);
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
 }
 
-.exam-content {
-  flex: 1;
+.exam-difficulty.easy {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.exam-difficulty.medium {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.exam-difficulty.hard {
+  background: #fecaca;
+  color: #991b1b;
 }
 
 .exam-title {
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-lg);
   font-weight: 600;
-  margin-bottom: var(--spacing-1);
+  margin-bottom: var(--spacing-4);
   color: var(--text-primary);
-}
-
-.exam-description {
-  color: var(--text-secondary);
-  font-size: var(--font-size-sm);
-  margin-bottom: var(--spacing-2);
 }
 
 .exam-meta {
   display: flex;
-  gap: var(--spacing-3);
-}
-
-.exam-time,
-.exam-duration {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-1);
+  flex-wrap: wrap;
+  gap: var(--spacing-4);
+  margin-bottom: var(--spacing-4);
   font-size: var(--font-size-xs);
   color: var(--text-secondary);
 }
 
-.prepare-btn {
+.exam-meta span {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1);
+}
+
+.start-exam-btn {
+  width: 100%;
   background: var(--primary-purple);
   color: var(--white);
   border: none;
-  padding: var(--spacing-2) var(--spacing-4);
   border-radius: var(--radius-lg);
+  padding: var(--spacing-3) var(--spacing-4);
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
-  flex-shrink: 0;
 }
 
-.prepare-btn:hover {
+.start-exam-btn:hover {
   background: var(--primary-purple-light);
 }
 </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const startBtns = document.querySelectorAll('.start-exam-btn');
+  
+  startBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      const examTitle = this.closest('.exam-card').querySelector('.exam-title').textContent;
+      console.log('Starting exam:', examTitle);
+      
+      this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Starting...';
+      this.disabled = true;
+      
+      setTimeout(() => {
+        this.innerHTML = 'Start Exam';
+        this.disabled = false;
+      }, 2000);
+    });
+  });
+});
+</script>

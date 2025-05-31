@@ -1,15 +1,15 @@
 ---
 layout: mobile
 title: "Clubs"
-description: "Join clubs and connect with like-minded students"
+description: "Join study groups and educational clubs"
 ---
 
 <!-- Mobile Header -->
 <header class="mobile-header">
   <div class="header-left">
-    <button class="back-btn" onclick="history.back()">
+    <a href="/" class="back-btn">
       <i class="fas fa-arrow-left"></i>
-    </button>
+    </a>
   </div>
   
   <div class="header-center">
@@ -25,100 +25,101 @@ description: "Join clubs and connect with like-minded students"
 
 <!-- Featured Clubs -->
 <section class="featured-section">
-  <h2 class="section-title">Featured Clubs</h2>
+  <h2 class="section-title">Featured Study Clubs</h2>
   
   <div class="clubs-grid">
     <div class="club-card">
-      <div class="club-banner">
-        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=200&fit=crop&auto=format" alt="Tech Club" />
-        <div class="club-category">Technology</div>
-      </div>
-      <div class="club-content">
-        <h3 class="club-name">Tech Innovators Club</h3>
-        <p class="club-description">Join fellow tech enthusiasts to explore cutting-edge technologies and build amazing projects together.</p>
-        <div class="club-stats">
-          <div class="stat">
-            <i class="fas fa-users"></i>
-            <span>247 members</span>
-          </div>
-          <div class="stat">
-            <i class="fas fa-calendar"></i>
-            <span>Weekly meetups</span>
-          </div>
+      <div class="club-header">
+        <div class="club-avatar">
+          <i class="fas fa-users"></i>
         </div>
-        <div class="club-actions">
-          <button class="join-club-btn">Join Club</button>
-          <button class="learn-more-btn">Learn More</button>
+        <div class="club-status online">
+          <span class="status-dot"></span>
+          <span>12 online</span>
         </div>
       </div>
-    </div>
-    
-    <div class="club-card">
-      <div class="club-banner">
-        <img src="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=400&h=200&fit=crop&auto=format" alt="Art Club" />
-        <div class="club-category">Arts</div>
-      </div>
-      <div class="club-content">
-        <h3 class="club-name">Creative Arts Society</h3>
-        <p class="club-description">Express your creativity through various art forms including painting, sculpture, and digital art.</p>
-        <div class="club-stats">
-          <div class="stat">
-            <i class="fas fa-users"></i>
-            <span>156 members</span>
-          </div>
-          <div class="stat">
-            <i class="fas fa-calendar"></i>
-            <span>Bi-weekly workshops</span>
-          </div>
+      <div class="club-info">
+        <h3 class="club-name">Python Developers Club</h3>
+        <p class="club-description">Learn Python programming together with fellow developers</p>
+        <div class="club-meta">
+          <span class="members-count">
+            <i class="fas fa-user"></i>
+            248 members
+          </span>
+          <span class="club-type">Programming</span>
         </div>
-        <div class="club-actions">
-          <button class="join-club-btn">Join Club</button>
-          <button class="learn-more-btn">Learn More</button>
-        </div>
+        <button class="join-club-btn">Join Club</button>
       </div>
     </div>
     
     <div class="club-card">
-      <div class="club-banner">
-        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=200&fit=crop&auto=format" alt="Debate Club" />
-        <div class="club-category">Academic</div>
+      <div class="club-header">
+        <div class="club-avatar">
+          <i class="fas fa-calculator"></i>
+        </div>
+        <div class="club-status">
+          <span class="status-dot"></span>
+          <span>5 online</span>
+        </div>
       </div>
-      <div class="club-content">
-        <h3 class="club-name">Debate & Discussion Club</h3>
-        <p class="club-description">Sharpen your communication skills and engage in thought-provoking debates on current topics.</p>
-        <div class="club-stats">
-          <div class="stat">
-            <i class="fas fa-users"></i>
-            <span>89 members</span>
-          </div>
-          <div class="stat">
-            <i class="fas fa-calendar"></i>
-            <span>Weekly debates</span>
-          </div>
+      <div class="club-info">
+        <h3 class="club-name">Mathematics Study Group</h3>
+        <p class="club-description">Solve complex math problems and share solutions</p>
+        <div class="club-meta">
+          <span class="members-count">
+            <i class="fas fa-user"></i>
+            156 members
+          </span>
+          <span class="club-type">Mathematics</span>
         </div>
-        <div class="club-actions">
-          <button class="join-club-btn">Join Club</button>
-          <button class="learn-more-btn">Learn More</button>
+        <button class="join-club-btn">Join Club</button>
+      </div>
+    </div>
+    
+    <div class="club-card">
+      <div class="club-header">
+        <div class="club-avatar">
+          <i class="fas fa-atom"></i>
         </div>
+        <div class="club-status online">
+          <span class="status-dot"></span>
+          <span>8 online</span>
+        </div>
+      </div>
+      <div class="club-info">
+        <h3 class="club-name">Science Enthusiasts</h3>
+        <p class="club-description">Explore the wonders of science and conduct experiments</p>
+        <div class="club-meta">
+          <span class="members-count">
+            <i class="fas fa-user"></i>
+            192 members
+          </span>
+          <span class="club-type">Science</span>
+        </div>
+        <button class="join-club-btn">Join Club</button>
       </div>
     </div>
   </div>
 </section>
 
 <style>
+/* Common styles for all section pages */
 .back-btn {
-  background: none;
-  border: none;
-  color: var(--text-primary);
-  font-size: var(--font-size-lg);
-  cursor: pointer;
-  padding: var(--spacing-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: #f3f4f6;
   border-radius: 50%;
+  color: var(--text-secondary);
+  text-decoration: none;
   transition: all 0.2s ease;
 }
 
 .back-btn:hover {
   background: var(--border-color);
+  color: var(--text-primary);
 }
 
 .featured-section {
@@ -128,16 +129,16 @@ description: "Join clubs and connect with like-minded students"
 .clubs-grid {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-5);
+  gap: var(--spacing-4);
 }
 
 .club-card {
   background: var(--white);
   border-radius: var(--radius-xl);
-  overflow: hidden;
-  box-shadow: var(--shadow-sm);
+  padding: var(--spacing-5);
   border: 1px solid var(--border-color);
-  transition: all 0.3s ease;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
 }
 
 .club-card:hover {
@@ -145,33 +146,42 @@ description: "Join clubs and connect with like-minded students"
   box-shadow: var(--shadow-md);
 }
 
-.club-banner {
-  position: relative;
-  height: 120px;
-  overflow: hidden;
+.club-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-4);
 }
 
-.club-banner img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.club-category {
-  position: absolute;
-  top: var(--spacing-3);
-  right: var(--spacing-3);
-  background: rgba(168, 85, 247, 0.9);
+.club-avatar {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, var(--primary-purple) 0%, var(--primary-purple-light) 100%);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: var(--white);
-  padding: var(--spacing-1) var(--spacing-2);
-  border-radius: var(--radius-md);
-  font-size: var(--font-size-xs);
-  font-weight: 600;
-  backdrop-filter: blur(10px);
+  font-size: var(--font-size-xl);
 }
 
-.club-content {
-  padding: var(--spacing-4);
+.club-status {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #6b7280;
+}
+
+.club-status.online .status-dot {
+  background: var(--success-green);
 }
 
 .club-name {
@@ -184,66 +194,48 @@ description: "Join clubs and connect with like-minded students"
 .club-description {
   color: var(--text-secondary);
   font-size: var(--font-size-sm);
-  line-height: 1.5;
+  line-height: 1.4;
   margin-bottom: var(--spacing-4);
 }
 
-.club-stats {
+.club-meta {
   display: flex;
-  gap: var(--spacing-4);
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: var(--spacing-4);
 }
 
-.stat {
+.members-count {
   display: flex;
   align-items: center;
   gap: var(--spacing-1);
+  font-size: var(--font-size-xs);
   color: var(--text-secondary);
-  font-size: var(--font-size-sm);
 }
 
-.stat i {
-  color: var(--primary-purple);
-}
-
-.club-actions {
-  display: flex;
-  gap: var(--spacing-3);
+.club-type {
+  background: #f3f4f6;
+  color: var(--text-secondary);
+  padding: var(--spacing-1) var(--spacing-2);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-xs);
+  font-weight: 500;
 }
 
 .join-club-btn {
+  width: 100%;
   background: var(--primary-purple);
   color: var(--white);
   border: none;
-  padding: var(--spacing-2) var(--spacing-4);
   border-radius: var(--radius-lg);
+  padding: var(--spacing-3) var(--spacing-4);
   font-weight: 600;
-  font-size: var(--font-size-sm);
   cursor: pointer;
   transition: all 0.2s ease;
-  flex: 1;
 }
 
 .join-club-btn:hover {
   background: var(--primary-purple-light);
-}
-
-.learn-more-btn {
-  background: transparent;
-  color: var(--primary-purple);
-  border: 1px solid var(--primary-purple);
-  padding: var(--spacing-2) var(--spacing-4);
-  border-radius: var(--radius-lg);
-  font-weight: 600;
-  font-size: var(--font-size-sm);
-  cursor: pointer;
-  transition: all 0.2s ease;
-  flex: 1;
-}
-
-.learn-more-btn:hover {
-  background: var(--primary-purple);
-  color: var(--white);
 }
 </style>
 
@@ -259,7 +251,7 @@ document.addEventListener('DOMContentLoaded', function() {
       this.style.background = 'var(--success-green)';
       
       if (navigator.vibrate) {
-        navigator.vibrate([10, 100, 10]);
+        navigator.vibrate(10);
       }
     });
   });

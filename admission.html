@@ -1,14 +1,15 @@
 ---
 layout: mobile
 title: "Admission"
-description: "Admission information and applications"
+description: "Explore admission opportunities and requirements"
 ---
 
+<!-- Mobile Header -->
 <header class="mobile-header">
   <div class="header-left">
-    <button class="back-btn" onclick="history.back()">
+    <a href="/" class="back-btn">
       <i class="fas fa-arrow-left"></i>
-    </button>
+    </a>
   </div>
   
   <div class="header-center">
@@ -22,74 +23,197 @@ description: "Admission information and applications"
   </div>
 </header>
 
-<section class="featured-section">
+<!-- Admission Categories -->
+<section class="admission-categories-section">
+  <h2 class="section-title">Admission Types</h2>
+  
+  <div class="admission-types-grid">
+    <div class="admission-type-card">
+      <div class="admission-icon">
+        <i class="fas fa-university"></i>
+      </div>
+      <h3>Universities</h3>
+      <p>College admissions</p>
+    </div>
+    
+    <div class="admission-type-card">
+      <div class="admission-icon">
+        <i class="fas fa-school"></i>
+      </div>
+      <h3>Schools</h3>
+      <p>K-12 admissions</p>
+    </div>
+    
+    <div class="admission-type-card">
+      <div class="admission-icon">
+        <i class="fas fa-certificate"></i>
+      </div>
+      <h3>Courses</h3>
+      <p>Professional courses</p>
+    </div>
+    
+    <div class="admission-type-card">
+      <div class="admission-icon">
+        <i class="fas fa-globe"></i>
+      </div>
+      <h3>International</h3>
+      <p>Study abroad</p>
+    </div>
+  </div>
+</section>
+
+<!-- Open Admissions -->
+<section class="open-admissions-section">
   <h2 class="section-title">Open Admissions</h2>
   
-  <div class="admission-grid">
+  <div class="admissions-list">
     <div class="admission-card">
-      <div class="institution-logo">
-        <img src="https://images.unsplash.com/photo-1562774053-701939374585?w=100&h=100&fit=crop&auto=format" alt="University" />
-      </div>
-      <div class="admission-content">
-        <h3 class="institution-name">Tech University</h3>
-        <p class="program-name">Computer Science Program</p>
-        <div class="admission-meta">
-          <span class="deadline"><i class="fas fa-calendar"></i> Deadline: July 15</span>
-          <span class="fee"><i class="fas fa-dollar-sign"></i> $50 application fee</span>
+      <div class="admission-header">
+        <div class="institution-logo">
+          <i class="fas fa-university"></i>
+        </div>
+        <div class="admission-status open">
+          <span class="status-dot"></span>
+          <span>Open</span>
         </div>
       </div>
-      <button class="apply-btn">Apply Now</button>
+      <div class="admission-info">
+        <h3 class="institution-name">Stanford University</h3>
+        <p class="course-name">Computer Science Program</p>
+        <div class="admission-details">
+          <div class="detail">
+            <i class="fas fa-calendar"></i>
+            <span>Deadline: Dec 1, 2024</span>
+          </div>
+          <div class="detail">
+            <i class="fas fa-dollar-sign"></i>
+            <span>Fee: $90</span>
+          </div>
+          <div class="detail">
+            <i class="fas fa-graduation-cap"></i>
+            <span>Degree: Bachelor's</span>
+          </div>
+        </div>
+        <button class="apply-btn">Apply Now</button>
+      </div>
     </div>
     
     <div class="admission-card">
-      <div class="institution-logo">
-        <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=100&h=100&fit=crop&auto=format" alt="College" />
-      </div>
-      <div class="admission-content">
-        <h3 class="institution-name">Arts College</h3>
-        <p class="program-name">Fine Arts Program</p>
-        <div class="admission-meta">
-          <span class="deadline"><i class="fas fa-calendar"></i> Deadline: August 1</span>
-          <span class="fee"><i class="fas fa-dollar-sign"></i> $75 application fee</span>
+      <div class="admission-header">
+        <div class="institution-logo">
+          <i class="fas fa-school"></i>
+        </div>
+        <div class="admission-status closing-soon">
+          <span class="status-dot"></span>
+          <span>Closing Soon</span>
         </div>
       </div>
-      <button class="apply-btn">Apply Now</button>
+      <div class="admission-info">
+        <h3 class="institution-name">Rose Public School</h3>
+        <p class="course-name">High School Admission</p>
+        <div class="admission-details">
+          <div class="detail">
+            <i class="fas fa-calendar"></i>
+            <span>Deadline: Nov 15, 2024</span>
+          </div>
+          <div class="detail">
+            <i class="fas fa-dollar-sign"></i>
+            <span>Fee: $50</span>
+          </div>
+          <div class="detail">
+            <i class="fas fa-graduation-cap"></i>
+            <span>Grade: 9-12</span>
+          </div>
+        </div>
+        <button class="apply-btn">Apply Now</button>
+      </div>
     </div>
     
     <div class="admission-card">
-      <div class="institution-logo">
-        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=100&h=100&fit=crop&auto=format" alt="Business School" />
-      </div>
-      <div class="admission-content">
-        <h3 class="institution-name">Business School</h3>
-        <p class="program-name">MBA Program</p>
-        <div class="admission-meta">
-          <span class="deadline"><i class="fas fa-calendar"></i> Deadline: June 30</span>
-          <span class="fee"><i class="fas fa-dollar-sign"></i> $100 application fee</span>
+      <div class="admission-header">
+        <div class="institution-logo">
+          <i class="fas fa-certificate"></i>
+        </div>
+        <div class="admission-status open">
+          <span class="status-dot"></span>
+          <span>Open</span>
         </div>
       </div>
-      <button class="apply-btn">Apply Now</button>
+      <div class="admission-info">
+        <h3 class="institution-name">Tech Bootcamp</h3>
+        <p class="course-name">Full Stack Development</p>
+        <div class="admission-details">
+          <div class="detail">
+            <i class="fas fa-calendar"></i>
+            <span>Rolling Admission</span>
+          </div>
+          <div class="detail">
+            <i class="fas fa-dollar-sign"></i>
+            <span>Fee: Free</span>
+          </div>
+          <div class="detail">
+            <i class="fas fa-clock"></i>
+            <span>Duration: 6 months</span>
+          </div>
+        </div>
+        <button class="apply-btn">Apply Now</button>
+      </div>
     </div>
   </div>
 </section>
 
 <style>
-.back-btn {
-  background: none;
-  border: none;
-  color: var(--text-primary);
-  font-size: var(--font-size-lg);
-  cursor: pointer;
-  padding: var(--spacing-2);
-  border-radius: 50%;
-  transition: all 0.2s ease;
-}
-
-.featured-section {
+.admission-categories-section,
+.open-admissions-section {
   padding: var(--spacing-6) var(--spacing-5);
 }
 
-.admission-grid {
+.admission-types-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-4);
+}
+
+.admission-type-card {
+  background: var(--white);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-5);
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.admission-type-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.admission-icon {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #f97316 0%, #fb923c 100%);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  font-size: var(--font-size-lg);
+  margin: 0 auto var(--spacing-3);
+}
+
+.admission-type-card h3 {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  margin-bottom: var(--spacing-1);
+}
+
+.admission-type-card p {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+}
+
+.admissions-list {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-4);
@@ -99,10 +223,7 @@ description: "Admission information and applications"
   background: var(--white);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-xl);
-  padding: var(--spacing-4);
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-4);
+  padding: var(--spacing-5);
   transition: all 0.2s ease;
 }
 
@@ -111,65 +232,118 @@ description: "Admission information and applications"
   box-shadow: var(--shadow-md);
 }
 
+.admission-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-4);
+}
+
 .institution-logo {
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
+  background: #f8fafc;
   border-radius: var(--radius-lg);
-  overflow: hidden;
-  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-purple);
+  font-size: var(--font-size-lg);
 }
 
-.institution-logo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.admission-status {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  font-size: var(--font-size-xs);
+  font-weight: 500;
 }
 
-.admission-content {
-  flex: 1;
+.admission-status .status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.admission-status.open {
+  color: var(--success-green);
+}
+
+.admission-status.open .status-dot {
+  background: var(--success-green);
+}
+
+.admission-status.closing-soon {
+  color: #f97316;
+}
+
+.admission-status.closing-soon .status-dot {
+  background: #f97316;
 }
 
 .institution-name {
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-lg);
   font-weight: 600;
   margin-bottom: var(--spacing-1);
   color: var(--text-primary);
 }
 
-.program-name {
+.course-name {
   color: var(--text-secondary);
   font-size: var(--font-size-sm);
-  margin-bottom: var(--spacing-2);
+  margin-bottom: var(--spacing-4);
 }
 
-.admission-meta {
+.admission-details {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-1);
+  gap: var(--spacing-2);
+  margin-bottom: var(--spacing-4);
 }
 
-.deadline,
-.fee {
+.detail {
   display: flex;
   align-items: center;
-  gap: var(--spacing-1);
-  font-size: var(--font-size-xs);
+  gap: var(--spacing-2);
+  font-size: var(--font-size-sm);
   color: var(--text-secondary);
+}
+
+.detail i {
+  width: 16px;
+  color: var(--primary-purple);
 }
 
 .apply-btn {
+  width: 100%;
   background: var(--primary-purple);
   color: var(--white);
   border: none;
-  padding: var(--spacing-2) var(--spacing-4);
   border-radius: var(--radius-lg);
+  padding: var(--spacing-3) var(--spacing-4);
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
-  flex-shrink: 0;
 }
 
 .apply-btn:hover {
   background: var(--primary-purple-light);
 }
 </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const applyBtns = document.querySelectorAll('.apply-btn');
+  
+  applyBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      const institutionName = this.closest('.admission-card').querySelector('.institution-name').textContent;
+      console.log('Applying to:', institutionName);
+      
+      this.innerHTML = '<i class="fas fa-check"></i> Applied';
+      this.style.background = 'var(--success-green)';
+      this.disabled = true;
+    });
+  });
+});
+</script>

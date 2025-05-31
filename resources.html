@@ -1,14 +1,15 @@
 ---
 layout: mobile
 title: "Resources"
-description: "Access learning resources and study materials"
+description: "Access learning materials and study resources"
 ---
 
+<!-- Mobile Header -->
 <header class="mobile-header">
   <div class="header-left">
-    <button class="back-btn" onclick="history.back()">
+    <a href="/" class="back-btn">
       <i class="fas fa-arrow-left"></i>
-    </button>
+    </a>
   </div>
   
   <div class="header-center">
@@ -22,152 +23,257 @@ description: "Access learning resources and study materials"
   </div>
 </header>
 
+<!-- Categories -->
+<section class="categories-section">
+  <h2 class="section-title">Resource Categories</h2>
+  
+  <div class="resource-categories">
+    <div class="resource-category">
+      <div class="category-icon">
+        <i class="fas fa-book"></i>
+      </div>
+      <h3>eBooks</h3>
+      <p>1,247 books</p>
+    </div>
+    
+    <div class="resource-category">
+      <div class="category-icon">
+        <i class="fas fa-play-circle"></i>
+      </div>
+      <h3>Videos</h3>
+      <p>856 videos</p>
+    </div>
+    
+    <div class="resource-category">
+      <div class="category-icon">
+        <i class="fas fa-file-pdf"></i>
+      </div>
+      <h3>PDFs</h3>
+      <p>2,341 files</p>
+    </div>
+    
+    <div class="resource-category">
+      <div class="category-icon">
+        <i class="fas fa-microphone"></i>
+      </div>
+      <h3>Podcasts</h3>
+      <p>124 episodes</p>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Resources -->
 <section class="featured-section">
   <h2 class="section-title">Featured Resources</h2>
   
-  <div class="resources-grid">
-    <div class="resource-card">
+  <div class="resources-list">
+    <div class="resource-item">
       <div class="resource-icon">
-        <i class="fas fa-book-open"></i>
+        <i class="fas fa-book"></i>
       </div>
-      <div class="resource-content">
-        <h3 class="resource-title">Study Guides</h3>
-        <p class="resource-description">Comprehensive study guides for all subjects</p>
+      <div class="resource-info">
+        <h3>Complete Python Guide</h3>
+        <p>Comprehensive Python programming handbook</p>
         <div class="resource-meta">
-          <span class="resource-count">250+ guides</span>
           <span class="resource-type">PDF</span>
+          <span class="resource-size">2.4 MB</span>
+          <span class="download-count">1.2k downloads</span>
         </div>
       </div>
-      <button class="access-btn">Access</button>
+      <button class="download-btn">
+        <i class="fas fa-download"></i>
+      </button>
     </div>
     
-    <div class="resource-card">
+    <div class="resource-item">
       <div class="resource-icon">
-        <i class="fas fa-video"></i>
+        <i class="fas fa-play-circle"></i>
       </div>
-      <div class="resource-content">
-        <h3 class="resource-title">Video Lectures</h3>
-        <p class="resource-description">Expert-led video tutorials and lectures</p>
+      <div class="resource-info">
+        <h3>Calculus Video Series</h3>
+        <p>Step-by-step calculus tutorials</p>
         <div class="resource-meta">
-          <span class="resource-count">500+ videos</span>
-          <span class="resource-type">MP4</span>
+          <span class="resource-type">Video</span>
+          <span class="resource-duration">4h 32m</span>
+          <span class="view-count">15.6k views</span>
         </div>
       </div>
-      <button class="access-btn">Access</button>
+      <button class="play-btn">
+        <i class="fas fa-play"></i>
+      </button>
     </div>
     
-    <div class="resource-card">
+    <div class="resource-item">
       <div class="resource-icon">
         <i class="fas fa-file-alt"></i>
       </div>
-      <div class="resource-content">
-        <h3 class="resource-title">Practice Papers</h3>
-        <p class="resource-description">Previous year papers and mock tests</p>
+      <div class="resource-info">
+        <h3>Chemistry Lab Manual</h3>
+        <p>Practical chemistry experiments guide</p>
         <div class="resource-meta">
-          <span class="resource-count">100+ papers</span>
           <span class="resource-type">PDF</span>
+          <span class="resource-size">5.8 MB</span>
+          <span class="download-count">890 downloads</span>
         </div>
       </div>
-      <button class="access-btn">Access</button>
+      <button class="download-btn">
+        <i class="fas fa-download"></i>
+      </button>
     </div>
   </div>
 </section>
 
 <style>
-.back-btn {
-  background: none;
-  border: none;
-  color: var(--text-primary);
-  font-size: var(--font-size-lg);
-  cursor: pointer;
-  padding: var(--spacing-2);
-  border-radius: 50%;
-  transition: all 0.2s ease;
-}
-
-.featured-section {
+.categories-section {
   padding: var(--spacing-6) var(--spacing-5);
 }
 
-.resources-grid {
-  display: flex;
-  flex-direction: column;
+.resource-categories {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: var(--spacing-4);
 }
 
-.resource-card {
+.resource-category {
   background: var(--white);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-xl);
-  padding: var(--spacing-4);
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-4);
+  padding: var(--spacing-5);
+  text-align: center;
+  cursor: pointer;
   transition: all 0.2s ease;
 }
 
-.resource-card:hover {
+.resource-category:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
 }
 
-.resource-icon {
+.category-icon {
   width: 50px;
   height: 50px;
-  background: linear-gradient(135deg, var(--primary-purple) 0%, var(--primary-purple-light) 100%);
+  background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
   border-radius: var(--radius-lg);
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--white);
   font-size: var(--font-size-lg);
-  flex-shrink: 0;
+  margin: 0 auto var(--spacing-3);
 }
 
-.resource-content {
-  flex: 1;
-}
-
-.resource-title {
+.resource-category h3 {
   font-size: var(--font-size-base);
   font-weight: 600;
   margin-bottom: var(--spacing-1);
-  color: var(--text-primary);
 }
 
-.resource-description {
-  color: var(--text-secondary);
+.resource-category p {
   font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+}
+
+.resources-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.resource-item {
+  background: var(--white);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-4);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+}
+
+.resource-icon {
+  width: 50px;
+  height: 50px;
+  background: #f8fafc;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-purple);
+  font-size: var(--font-size-lg);
+}
+
+.resource-info {
+  flex: 1;
+}
+
+.resource-info h3 {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  margin-bottom: var(--spacing-1);
+}
+
+.resource-info p {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
   margin-bottom: var(--spacing-2);
 }
 
 .resource-meta {
   display: flex;
   gap: var(--spacing-3);
-}
-
-.resource-count,
-.resource-type {
   font-size: var(--font-size-xs);
   color: var(--text-secondary);
-  background: #f8fafc;
-  padding: var(--spacing-1) var(--spacing-2);
-  border-radius: var(--radius-md);
 }
 
-.access-btn {
+.resource-type {
+  background: #f3f4f6;
+  padding: var(--spacing-1) var(--spacing-2);
+  border-radius: var(--radius-md);
+  font-weight: 500;
+}
+
+.download-btn,
+.play-btn {
   background: var(--primary-purple);
   color: var(--white);
   border: none;
-  padding: var(--spacing-2) var(--spacing-4);
-  border-radius: var(--radius-lg);
-  font-weight: 600;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   transition: all 0.2s ease;
-  flex-shrink: 0;
 }
 
-.access-btn:hover {
+.download-btn:hover,
+.play-btn:hover {
   background: var(--primary-purple-light);
+  transform: scale(1.05);
 }
 </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const downloadBtns = document.querySelectorAll('.download-btn');
+  const playBtns = document.querySelectorAll('.play-btn');
+  
+  downloadBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      this.innerHTML = '<i class="fas fa-check"></i>';
+      this.style.background = 'var(--success-green)';
+      
+      setTimeout(() => {
+        this.innerHTML = '<i class="fas fa-download"></i>';
+        this.style.background = 'var(--primary-purple)';
+      }, 2000);
+    });
+  });
+  
+  playBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      console.log('Playing video...');
+    });
+  });
+});
+</script>
